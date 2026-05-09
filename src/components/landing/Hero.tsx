@@ -27,31 +27,6 @@ export function Hero() {
         }}
       />
 
-      {/* Floating butterflies — kept clear of artwork center */}
-      <Butterfly
-        className="absolute left-[6%] top-[14%] animate-drift"
-        color="var(--voya-orange)"
-        size={40}
-        style={{ animationDelay: "0s" }}
-      />
-      <Butterfly
-        className="absolute right-[8%] top-[22%] animate-drift"
-        color="var(--voya-purple)"
-        size={30}
-        style={{ animationDelay: "1.5s" }}
-      />
-      <Butterfly
-        className="absolute left-[14%] bottom-[18%] animate-float"
-        color="var(--voya-orange-light)"
-        size={26}
-        style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties}
-      />
-      <Butterfly
-        className="absolute right-[10%] bottom-[24%] animate-float"
-        color="var(--voya-orange)"
-        size={34}
-        style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
