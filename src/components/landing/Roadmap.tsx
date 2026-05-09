@@ -35,13 +35,13 @@ export function Roadmap() {
 
       <div className="relative mx-auto max-w-7xl px-6 text-white">
         <div className="max-w-2xl">
-          <p className="text-sm uppercase tracking-[0.2em] font-semibold opacity-80">Phase 2 roadmap</p>
+          <p className="text-sm uppercase tracking-[0.2em] font-semibold opacity-80">Roadmap · Phase 2</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            What's next, and why it matters.
+            Smarter, and in Marketing's hands.
           </h2>
           <p className="mt-4 text-lg text-white/80 leading-relaxed">
-            Phase 1 proves the loop works. Phase 2 widens the lens —
-            more signal sources, more models, more leverage for Marketing.
+            Phase 1 proves the loop works. Phase 2 makes it smarter and puts
+            it in Marketing's hands.
           </p>
         </div>
         <div className="mt-12 grid md:grid-cols-3 gap-6">
