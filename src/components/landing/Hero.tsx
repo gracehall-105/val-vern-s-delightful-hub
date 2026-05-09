@@ -67,6 +67,32 @@ export function Hero() {
                 }}
                 aria-hidden
               />
+
+              {/* Floating butterflies — fluttering around Val & Vern */}
+              <Butterfly
+                className="absolute left-[6%] top-[8%] animate-drift z-10"
+                color="var(--voya-orange)"
+                size={36}
+                style={{ animationDelay: "0s" }}
+              />
+              <Butterfly
+                className="absolute right-[4%] top-[14%] animate-drift z-10"
+                color="var(--voya-purple)"
+                size={28}
+                style={{ animationDelay: "1.5s" }}
+              />
+              <Butterfly
+                className="absolute left-[18%] top-[36%] animate-float z-10"
+                color="var(--voya-orange-light)"
+                size={24}
+                style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties}
+              />
+              <Butterfly
+                className="absolute right-[12%] top-[42%] animate-float z-10"
+                color="var(--voya-orange)"
+                size={32}
+                style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties}
+              />
               {/* Ground shadows */}
               <div className="absolute bottom-[8%] left-[14%] w-[26%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
               <div className="absolute bottom-[8%] right-[16%] w-[24%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
