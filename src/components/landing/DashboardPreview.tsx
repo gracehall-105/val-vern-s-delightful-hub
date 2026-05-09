@@ -17,14 +17,14 @@ export function DashboardPreview() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">
-            Command Center
+            Dashboard
           </p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            One screen. The whole story.
+            Live Command Center
           </h2>
           <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
-            Share of Model, gap score, twelve-week trend, competitor stack —
-            built for the CMO's three-second glance and the analyst's deep dive.
+            Real-time competitive intelligence. See where Voya stands, where
+            the gaps are, and what content is in the pipeline.
           </p>
         </div>
 

@@ -1,14 +1,16 @@
 const does = [
-  "Measures Voya's Share of Model in AI answers, every day.",
-  "Drafts six AI-optimized articles a week, targeted at gap topics.",
-  "Tracks edit history so the system gets smarter from your team's corrections.",
-  "Surfaces the prompts and competitors that matter — no noise.",
+  "Measure Voya's visibility in AI-generated answers daily.",
+  "Generate targeted content designed for AI citation.",
+  "Show week-over-week competitive trends with real data.",
+  "Give Marketing an analyst report without waiting for a human analyst.",
+  "Learn from editorial corrections to improve future drafts.",
 ];
 const doesnt = [
-  "Publish anything without a human review.",
-  "Replace your editorial judgment.",
-  "Promise a citation — it improves the probability.",
-  "Cover non-retirement topics in Phase 1.",
+  "Publish content without human review and approval.",
+  "Guarantee Voya will be cited — it improves the probability.",
+  "Replace Marketing's editorial judgment or brand voice.",
+  "Cover non-retirement topics (Phase 1 scope).",
+  "Require any new infrastructure — runs on Voya's existing Azure tenant.",
 ];
 
 export function DoesDoesnt() {
@@ -18,7 +20,7 @@ export function DoesDoesnt() {
         <div className="max-w-2xl">
           <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">The honest version</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            What it does. And what it doesn't.
+            What it does — and what it doesn't.
           </h2>
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
