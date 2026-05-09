@@ -170,7 +170,25 @@
   .animate-drift { animation: drift 9s ease-in-out infinite; }
   .animate-fade-up { animation: fade-up 0.8s ease-out both; }
 
+  /* Val the squirrel — gentle scamper sway */
+  @keyframes val-scamper {
+    0%, 100% { transform: translate(0,0) rotate(-2deg); }
+    25%      { transform: translate(-6px,-4px) rotate(-4deg); }
+    50%      { transform: translate(0,-10px) rotate(0deg); }
+    75%      { transform: translate(6px,-4px) rotate(2deg); }
+  }
+  /* Vern the rabbit — bouncing hop */
+  @keyframes vern-hop {
+    0%, 100% { transform: translateY(0) rotate(2deg); }
+    40%      { transform: translateY(-22px) rotate(-3deg); }
+    55%      { transform: translateY(-22px) rotate(-3deg); }
+    80%      { transform: translateY(0) rotate(2deg); }
+  }
+  .animate-val  { animation: val-scamper 5.5s ease-in-out infinite; transform-origin: 50% 90%; }
+  .animate-vern { animation: vern-hop 3.2s cubic-bezier(.5,0,.3,1) infinite; transform-origin: 50% 95%; }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-float, .animate-drift, .animate-fade-up { animation: none !important; }
+    .animate-float, .animate-drift, .animate-fade-up,
+    .animate-val, .animate-vern { animation: none !important; }
   }
 }

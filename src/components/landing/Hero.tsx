@@ -1,4 +1,5 @@
-import heroArt from "@/assets/val-vern-hero.png";
+import valSquirrel from "@/assets/val-squirrel.png";
+import vernRabbit from "@/assets/vern-rabbit.png";
 import { Butterfly } from "./Butterfly";
 
 /**
