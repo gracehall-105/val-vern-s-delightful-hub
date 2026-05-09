@@ -43,7 +43,6 @@ function Index() {
     <Personas key="personas" />,
     <DoesDoesnt key="dd" />,
     <div key="road" className="w-full"><JourneyDivider /><Roadmap /></div>,
-    <Footer key="footer" />,
   ];
 
   const updateButtons = () => {
