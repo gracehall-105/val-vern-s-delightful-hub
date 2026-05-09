@@ -13,6 +13,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { VoyaLogo } from "@/components/landing/VoyaLogo";
+import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 type Item = {
   to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/score" | "/app/prove";
@@ -152,6 +153,7 @@ export function AppShell() {
               <HelpCircle className="h-3.5 w-3.5" />
               How it works
             </Link>
+            <ThemeToggle />
             <button className="h-9 w-9 grid place-items-center rounded-full hover:bg-secondary text-foreground/70">
               <Bell className="h-4 w-4" />
             </button>
