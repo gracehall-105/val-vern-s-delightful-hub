@@ -81,9 +81,11 @@ function Index() {
           {slides.map((slide, i) => (
             <section
               key={i}
-              className="snap-start snap-always shrink-0 w-screen h-full overflow-y-auto flex flex-col justify-center pb-14"
+              className="snap-start snap-always shrink-0 w-screen h-full overflow-y-auto pb-14 flex flex-col"
             >
-              {slide}
+              <div className="my-auto w-full">
+                {slide}
+              </div>
             </section>
           ))}
         </div>
