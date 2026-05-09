@@ -10,6 +10,7 @@ import {
   Search,
   Bell,
   Settings,
+  HelpCircle,
 } from "lucide-react";
 import { VoyaLogo } from "@/components/landing/VoyaLogo";
 
@@ -143,6 +144,14 @@ export function AppShell() {
               <span>Search prompts, briefs, competitors…</span>
               <kbd className="ml-auto text-[10px] rounded bg-secondary px-1.5 py-0.5">⌘K</kbd>
             </div>
+            <Link
+              to="/app/how-it-works"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-voya-orange transition-colors px-2 py-1.5 rounded-md"
+              activeProps={{ className: "text-voya-orange" }}
+            >
+              <HelpCircle className="h-3.5 w-3.5" />
+              How it works
+            </Link>
             <button className="h-9 w-9 grid place-items-center rounded-full hover:bg-secondary text-foreground/70">
               <Bell className="h-4 w-4" />
             </button>
