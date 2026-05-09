@@ -1,40 +1,61 @@
 import heroArt from "@/assets/val-vern-hero.png";
 import { Butterfly } from "./Butterfly";
-import { VoyaJourney } from "./VoyaJourney";
 
+/**
+ * Hero — "Val and Vern's garden"
+ *
+ * Brand compliance notes:
+ * - Val (squirrel) and Vern (rabbit) sit on a clean warm-white stage.
+ *   Per brand: do NOT place the origami animals on an orange background
+ *   or inside the Voya Journey/Supergraphic.
+ * - Voya wordmark lives in the top nav, well away from the artwork.
+ *   Per brand: never lock up the logo with the origami.
+ * - The artwork itself is a brand-faithful PLACEHOLDER. Swap with the
+ *   licensed Val & Vern files before any external use.
+ */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-sky">
-      {/* Floating butterflies */}
+    <section className="relative overflow-hidden bg-background">
+      {/* Soft cream radial wash — never orange behind the characters */}
+      <div
+        className="absolute inset-0 -z-10"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 35%, oklch(0.985 0.012 75) 0%, oklch(0.97 0.012 70) 60%, var(--background) 100%)",
+        }}
+      />
+
+      {/* Floating butterflies — kept clear of artwork center */}
       <Butterfly
-        className="absolute left-[8%] top-[18%] animate-drift"
+        className="absolute left-[6%] top-[14%] animate-drift"
         color="var(--voya-orange)"
-        size={42}
+        size={40}
         style={{ animationDelay: "0s" }}
       />
       <Butterfly
-        className="absolute right-[12%] top-[28%] animate-drift"
+        className="absolute right-[8%] top-[22%] animate-drift"
         color="var(--voya-purple)"
-        size={32}
+        size={30}
         style={{ animationDelay: "1.5s" }}
       />
       <Butterfly
-        className="absolute left-[18%] bottom-[24%] animate-float"
+        className="absolute left-[14%] bottom-[18%] animate-float"
         color="var(--voya-orange-light)"
-        size={28}
+        size={26}
         style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties}
       />
       <Butterfly
-        className="absolute right-[6%] bottom-[32%] animate-float"
+        className="absolute right-[10%] bottom-[24%] animate-float"
         color="var(--voya-orange)"
-        size={36}
+        size={34}
         style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-8 md:pt-24 md:pb-16">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24 md:pb-32">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-voya-orange/30 bg-white/70 px-3 py-1 text-xs font-medium text-voya-orange">
+            <span className="inline-flex items-center gap-2 rounded-full border border-voya-orange/30 bg-white px-3 py-1 text-xs font-medium text-voya-orange shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-voya-orange animate-pulse" />
               Phase 1 — live today
             </span>
@@ -57,7 +78,7 @@ export function Hero() {
               </a>
               <a
                 href="#loop"
-                className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white/60 px-6 py-3 text-sm font-medium text-foreground hover:bg-white transition-colors"
+                className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
               >
                 See how it works
               </a>
@@ -66,29 +87,30 @@ export function Hero() {
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="relative aspect-[4/3] flex items-center justify-center">
+              {/* Soft warm halo — cream/peach, never solid orange behind characters */}
               <div
-                className="absolute inset-6 rounded-full blur-3xl opacity-50"
-                style={{ background: "var(--gradient-voya)" }}
+                className="absolute inset-10 rounded-full blur-3xl opacity-40"
+                style={{
+                  background:
+                    "radial-gradient(circle, oklch(0.92 0.09 55) 0%, transparent 70%)",
+                }}
                 aria-hidden
               />
               <img
                 src={heroArt}
-                alt="Val and Vern, Voya's origami fox and owl, surrounded by paper butterflies"
+                alt="Val the origami squirrel and Vern the origami rabbit, folded from dollar bills, with paper butterflies and flowers"
                 width={1536}
                 height={1024}
-                className="relative w-full h-auto drop-shadow-[0_20px_40px_rgba(255,75,0,0.15)] animate-float"
+                className="relative w-full h-auto animate-float"
               />
             </div>
-            {/* swap-marker for designers */}
-            <div className="absolute -bottom-3 right-2 text-[10px] uppercase tracking-widest text-foreground/40">
-              Val &amp; Vern · placeholder
-            </div>
+            {/* Designer note for the eventual asset swap */}
+            <p className="mt-2 text-center text-[10px] uppercase tracking-widest text-foreground/40">
+              Val &amp; Vern · brand-faithful placeholder
+            </p>
           </div>
         </div>
       </div>
-
-      {/* Voya Journey curve at bottom */}
-      <VoyaJourney className="block w-full h-[120px] md:h-[160px]" />
     </section>
   );
 }
