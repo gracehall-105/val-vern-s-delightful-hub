@@ -2,20 +2,20 @@ const steps = [
   {
     label: "Measure",
     color: "var(--voya-orange)",
-    title: "Every morning, we ask the questions.",
-    body: "Ten high-intent retirement prompts go to GPT-4o at 7:30 AM ET. We record which companies get cited. The result is your Share of Model — market share, but for AI answers.",
+    title: "Every day at 7:30 AM, we ask the questions.",
+    body: "Ten retirement questions go to GPT-4o, and we record which companies get cited. Share of Model tracks Voya's percentage over a 12-week trend.",
   },
   {
     label: "Create",
     color: "var(--voya-orange-light)",
-    title: "Sunday mornings, the pipeline drafts.",
-    body: "Where Voya is invisible but competitors aren't, the system writes targeted articles structured for AI to consume. Six per week, ready for your editor to refine.",
+    title: "The system identifies gaps and drafts.",
+    body: "Targeted articles weekly — structured for AI consumption, not just human readers. Marketing reviews and approves before anything goes live.",
   },
   {
     label: "Prove",
     color: "var(--voya-purple)",
-    title: "Next cycle tells you if it worked.",
-    body: "The next measurement checks whether new content moved the needle. Did Voya get cited where it wasn't before? The loop compounds, week over week.",
+    title: "The next cycle closes the loop.",
+    body: "We check whether Voya got cited where it wasn't before. No guessing. The content footprint — and the citations — compound over time.",
   },
 ];
 
