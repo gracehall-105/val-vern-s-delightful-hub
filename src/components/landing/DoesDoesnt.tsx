@@ -20,7 +20,7 @@ export function DoesDoesnt() {
         <div className="max-w-2xl">
           <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">The honest version</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            What it does. And what it doesn't.
+            What it does — and what it doesn't.
           </h2>
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-6">
