@@ -1,17 +1,69 @@
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { BarChart3, Sparkles, FileEdit, TrendingUp, Search, Bell, Settings } from "lucide-react";
+import {
+  LayoutDashboard,
+  Ear,
+  Sparkles,
+  Layers,
+  FileEdit,
+  Gauge,
+  TrendingUp,
+  Search,
+  Bell,
+  Settings,
+} from "lucide-react";
 import { VoyaLogo } from "@/components/landing/VoyaLogo";
 
-const nav = [
-  { to: "/app", label: "Command Center", icon: BarChart3, exact: true },
-  { to: "/app/measure", label: "Measure", icon: Sparkles, exact: false },
-  { to: "/app/create", label: "Create", icon: FileEdit, exact: false },
-  { to: "/app/prove", label: "Prove", icon: TrendingUp, exact: false },
-] as const;
+type Item = {
+  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/score" | "/app/prove";
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  phase?: 1 | 2;
+  exact?: boolean;
+};
+
+type Group = { label: string; items: Item[] };
+
+const groups: Group[] = [
+  {
+    label: "Overview",
+    items: [{ to: "/app", label: "Command Center", icon: LayoutDashboard, phase: 1, exact: true }],
+  },
+  {
+    label: "Listen",
+    items: [{ to: "/app/listen", label: "VoC Listening Post", icon: Ear, phase: 2 }],
+  },
+  {
+    label: "Measure",
+    items: [
+      { to: "/app/measure", label: "Prompt library", icon: Sparkles, phase: 1 },
+      { to: "/app/models", label: "Multi-model", icon: Layers, phase: 2 },
+    ],
+  },
+  {
+    label: "Create",
+    items: [
+      { to: "/app/create", label: "Content pipeline", icon: FileEdit, phase: 1 },
+      { to: "/app/score", label: "Content scoring", icon: Gauge, phase: 2 },
+    ],
+  },
+  {
+    label: "Prove",
+    items: [{ to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1 }],
+  },
+];
+
+const allItems = groups.flatMap((g) => g.items);
+
+function isActive(item: Item, path: string) {
+  return item.exact ? path === item.to : path === item.to || path.startsWith(item.to + "/");
+}
 
 function useTitle() {
   const path = useRouterState({ select: (s) => s.location.pathname });
-  const match = [...nav].reverse().find((n) => (n.exact ? path === n.to : path.startsWith(n.to)));
+  // Prefer the most specific (longest) match.
+  const match = [...allItems]
+    .sort((a, b) => b.to.length - a.to.length)
+    .find((i) => isActive(i, path));
   return match?.label ?? "GEO Command";
 }
 
@@ -22,50 +74,59 @@ export function AppShell() {
   return (
     <div className="min-h-screen flex w-full bg-secondary/30">
       {/* Sidebar */}
-      <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-border bg-card">
+      <aside className="hidden md:flex w-64 shrink-0 flex-col border-r border-border bg-card">
         <Link to="/" className="flex items-center gap-2 px-5 h-16 border-b border-border">
           <VoyaLogo height={22} />
           <span className="h-4 w-px bg-border" />
           <span className="text-xs font-semibold tracking-wide text-foreground/80">GEO Command</span>
         </Link>
 
-        <nav className="flex-1 px-3 py-5 space-y-0.5">
-          <p className="px-3 pb-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            Phase 1
-          </p>
-          {nav.map(({ to, label, icon: Icon, exact }) => {
-            const active = exact ? path === to : path.startsWith(to);
-            const isHome = to === "/app" && path === "/app";
-            const on = active || isHome;
-            return (
-              <Link
-                key={to}
-                to={to}
-                className={[
-                  "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                  on
-                    ? "bg-voya-orange/10 text-voya-orange font-medium"
-                    : "text-foreground/75 hover:bg-secondary hover:text-foreground",
-                ].join(" ")}
-              >
-                <Icon className="h-4 w-4" />
-                <span>{label}</span>
-                {on && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-voya-orange" />}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+          {groups.map((g) => (
+            <div key={g.label}>
+              <p className="px-3 pb-1.5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                {g.label}
+              </p>
+              <div className="space-y-0.5">
+                {g.items.map(({ to, label, icon: Icon, phase }) => {
+                  const on = isActive({ to, label, icon: Icon, exact: to === "/app" }, path);
+                  return (
+                    <Link
+                      key={to}
+                      to={to}
+                      className={[
+                        "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                        on
+                          ? "bg-voya-orange/10 text-voya-orange font-medium"
+                          : "text-foreground/75 hover:bg-secondary hover:text-foreground",
+                      ].join(" ")}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="truncate">{label}</span>
+                      {phase === 2 && (
+                        <span className="ml-auto text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-voya-purple/10 text-voya-purple">
+                          P2
+                        </span>
+                      )}
+                      {on && phase !== 2 && (
+                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-voya-orange" />
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </nav>
 
-        <div className="m-3 rounded-xl bg-gradient-supergraphic p-4 text-white">
-          <p className="text-[11px] uppercase tracking-widest opacity-80">Phase 2 preview</p>
-          <p className="mt-1 font-display text-lg leading-tight">VoC Listening Post</p>
-          <p className="mt-1 text-xs opacity-85">Coming next quarter.</p>
+        <div className="m-3 rounded-xl border border-border p-3 text-[11px] text-muted-foreground">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-voya-orange mr-1.5 align-middle" />
+          Phase 1 live · Phase 2 in design
         </div>
       </aside>
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top bar */}
         <header className="sticky top-0 z-30 h-16 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
           <div className="md:hidden">
             <VoyaLogo height={20} />
@@ -96,21 +157,20 @@ export function AppShell() {
 
         {/* Mobile nav */}
         <nav className="md:hidden flex gap-1 overflow-x-auto px-4 py-2 border-b border-border bg-card">
-          {nav.map(({ to, label, icon: Icon, exact }) => {
-            const on = exact ? path === to : path.startsWith(to);
-            const isHome = to === "/app" && path === "/app";
-            const active = on || isHome;
+          {allItems.map(({ to, label, icon: Icon, phase }) => {
+            const on = isActive({ to, label, icon: Icon, exact: to === "/app" }, path);
             return (
               <Link
                 key={to}
                 to={to}
                 className={[
                   "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs whitespace-nowrap",
-                  active ? "bg-voya-orange text-white" : "bg-secondary text-foreground/70",
+                  on ? "bg-voya-orange text-white" : "bg-secondary text-foreground/70",
                 ].join(" ")}
               >
                 <Icon className="h-3.5 w-3.5" />
                 {label}
+                {phase === 2 && <span className="text-[9px] opacity-70">·P2</span>}
               </Link>
             );
           })}
@@ -126,10 +186,27 @@ export function AppShell() {
 
 /* ---------- shared building blocks ---------- */
 
-export function PageIntro({ eyebrow, title, lede }: { eyebrow: string; title: string; lede: string }) {
+export function PageIntro({
+  eyebrow,
+  title,
+  lede,
+  phase,
+}: {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  phase?: 1 | 2;
+}) {
   return (
     <div className="max-w-3xl mb-8">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-voya-orange font-semibold">{eyebrow}</p>
+      <div className="flex items-center gap-2">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-voya-orange font-semibold">{eyebrow}</p>
+        {phase === 2 && (
+          <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-voya-purple/10 text-voya-purple">
+            Phase 2 · Preview
+          </span>
+        )}
+      </div>
       <h2 className="mt-2 font-display text-3xl md:text-4xl leading-tight">{title}</h2>
       <p className="mt-3 text-foreground/70 leading-relaxed">{lede}</p>
     </div>
@@ -165,7 +242,7 @@ export function Panel({
 export function Placeholder({ label, height = 160 }: { label: string; height?: number }) {
   return (
     <div
-      className="rounded-xl border border-dashed border-border/80 bg-secondary/40 grid place-items-center text-xs text-muted-foreground"
+      className="rounded-xl border border-dashed border-border/80 bg-secondary/40 grid place-items-center text-xs text-muted-foreground text-center px-4"
       style={{ minHeight: height }}
     >
       {label}

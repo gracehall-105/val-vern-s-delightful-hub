@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppProveRouteImport } from './routes/app.prove'
 import { Route as AppMeasureRouteImport } from './routes/app.measure'
+import { Route as AppListenRouteImport } from './routes/app.listen'
 import { Route as AppCreateRouteImport } from './routes/app.create'
 
 const AppRoute = AppRouteImport.update({
@@ -41,6 +42,11 @@ const AppMeasureRoute = AppMeasureRouteImport.update({
   path: '/measure',
   getParentRoute: () => AppRoute,
 } as any)
+const AppListenRoute = AppListenRouteImport.update({
+  id: '/listen',
+  path: '/listen',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCreateRoute = AppCreateRouteImport.update({
   id: '/create',
   path: '/create',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/create': typeof AppCreateRoute
+  '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/prove': typeof AppProveRoute
   '/app/': typeof AppIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/create': typeof AppCreateRoute
+  '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/prove': typeof AppProveRoute
   '/app': typeof AppIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/create': typeof AppCreateRoute
+  '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/prove': typeof AppProveRoute
   '/app/': typeof AppIndexRoute
@@ -77,16 +86,24 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/app/create'
+    | '/app/listen'
     | '/app/measure'
     | '/app/prove'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/create' | '/app/measure' | '/app/prove' | '/app'
+  to:
+    | '/'
+    | '/app/create'
+    | '/app/listen'
+    | '/app/measure'
+    | '/app/prove'
+    | '/app'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/app/create'
+    | '/app/listen'
     | '/app/measure'
     | '/app/prove'
     | '/app/'
@@ -134,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMeasureRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/listen': {
+      id: '/app/listen'
+      path: '/listen'
+      fullPath: '/app/listen'
+      preLoaderRoute: typeof AppListenRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/create': {
       id: '/app/create'
       path: '/create'
@@ -146,6 +170,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppCreateRoute: typeof AppCreateRoute
+  AppListenRoute: typeof AppListenRoute
   AppMeasureRoute: typeof AppMeasureRoute
   AppProveRoute: typeof AppProveRoute
   AppIndexRoute: typeof AppIndexRoute
@@ -153,6 +178,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppCreateRoute: AppCreateRoute,
+  AppListenRoute: AppListenRoute,
   AppMeasureRoute: AppMeasureRoute,
   AppProveRoute: AppProveRoute,
   AppIndexRoute: AppIndexRoute,
@@ -167,3 +193,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
