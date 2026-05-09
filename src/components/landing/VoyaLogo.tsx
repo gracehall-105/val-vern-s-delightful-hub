@@ -9,12 +9,8 @@ type Props = { className?: string; tone?: "dark" | "light" | "orange"; height?: 
  */
 export function VoyaLogo({ className = "", tone = "dark", height = 32 }: Props) {
   // tone filter: dark is native; light inverts to white; orange tints via hue-rotate fallback (rare)
-  const filter =
-    tone === "light"
-      ? "brightness(0) invert(1)"
-      : tone === "orange"
-      ? "brightness(0) saturate(100%) invert(45%) sepia(95%) saturate(4500%) hue-rotate(2deg) brightness(101%) contrast(105%)"
-      : undefined;
+  // Official Voya logo is full-color orange gradient; only invert for dark surfaces.
+  const filter = tone === "light" ? "brightness(0) invert(1)" : undefined;
 
   return (
     <img
