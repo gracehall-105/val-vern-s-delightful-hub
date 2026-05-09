@@ -1,15 +1,23 @@
 const personas = [
   {
     role: "CMO / SVP Marketing",
-    need: "A dashboard that shows Voya's competitive position in AI answers — with the week-over-week trends to back the story up.",
+    need: "A single dashboard showing Voya's competitive position in AI answers, with week-over-week trends and an AI-generated analyst report. One number tells the board how visible we are.",
   },
   {
-    role: "Content Marketing Team",
-    need: "Pre-drafted, AI-optimized articles ready to refine and publish. No more blank-page Mondays.",
+    role: "Content Marketing",
+    need: "Pre-drafted, AI-optimized articles ready for review — no blank-page problem. Edit inline, approve, and publish. The system learns from your corrections over time.",
   },
   {
     role: "Digital Strategy",
-    need: "The data on which retirement topics Voya is invisible for, and exactly where to point next quarter's effort.",
+    need: "Data on which retirement topics Voya is invisible for and where to focus. See which competitor dominates each prompt and where content investment will move the needle.",
+  },
+  {
+    role: "Investment Management",
+    need: "Retail investors researching rollovers and IRAs get Fidelity/Vanguard cited 6–7 out of 10 times. Voya: zero.",
+  },
+  {
+    role: "Workplace Solutions",
+    need: "\"Best 401k provider for small business\" returns Guideline, Human Interest, Fidelity — not Voya. Impacts plan acquisition, participant retention, and rollover capture.",
   },
 ];
 
