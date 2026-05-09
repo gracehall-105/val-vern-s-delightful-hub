@@ -1,4 +1,5 @@
-import heroArt from "@/assets/val-vern-hero.png";
+import valSquirrel from "@/assets/val-squirrel.png";
+import vernRabbit from "@/assets/vern-rabbit.png";
 import { Butterfly } from "./Butterfly";
 
 /**
@@ -86,8 +87,7 @@ export function Hero() {
           </div>
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="relative aspect-[4/3] flex items-center justify-center">
-              {/* Soft warm halo — cream/peach, never solid orange behind characters */}
+            <div className="relative aspect-[4/3] flex items-end justify-center">
               <div
                 className="absolute inset-10 rounded-full blur-3xl opacity-40"
                 style={{
@@ -96,21 +96,31 @@ export function Hero() {
                 }}
                 aria-hidden
               />
-              <img
-                src={heroArt}
-                alt="Val the origami squirrel and Vern the origami rabbit, folded from dollar bills, with paper butterflies and flowers"
-                width={1536}
-                height={1024}
-                className="relative w-full h-auto animate-float"
-              />
+              {/* Ground shadows */}
+              <div className="absolute bottom-[8%] left-[14%] w-[26%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
+              <div className="absolute bottom-[8%] right-[16%] w-[24%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
+
+              <div className="relative w-full h-full flex items-end justify-center gap-2 md:gap-4 pb-[6%]">
+                <img
+                  src={valSquirrel}
+                  alt="Val, an origami squirrel folded from orange dollar bills"
+                  width={1024}
+                  height={1024}
+                  className="w-[46%] h-auto animate-val drop-shadow-xl"
+                />
+                <img
+                  src={vernRabbit}
+                  alt="Vern, an origami rabbit folded from orange dollar bills"
+                  width={1024}
+                  height={1024}
+                  className="w-[44%] h-auto animate-vern drop-shadow-xl"
+                />
+              </div>
             </div>
-            {/* Designer note for the eventual asset swap */}
-            <p className="mt-2 text-center text-[10px] uppercase tracking-widest text-foreground/40">
-              Val &amp; Vern · brand-faithful placeholder
-            </p>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
