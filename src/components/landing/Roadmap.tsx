@@ -3,15 +3,15 @@ import { Butterfly } from "./Butterfly";
 const items = [
   {
     title: "Voice of Customer Listening Post",
-    body: "Replace prompt guessing with real questions from Genesys, Qualtrics/NPS, and chatbot transcripts. Same architecture, sharper signal.",
+    body: "Replace prompt guessing with real customer demand. Pull questions from Genesys, Qualtrics/NPS, and chatbot transcripts — feed them directly into measurement.",
   },
   {
-    title: "Content Scoring",
-    body: "Bring any draft — blog, landing page, whitepaper. The system scores its AI findability and tells you what to change before publish.",
+    title: "Content Scoring for Marketing",
+    body: "Bring any draft — blog, landing page, whitepaper — and the system scores it for AI findability before publish. \"Here's how likely this gets Voya cited. Here's what to change.\"",
   },
   {
     title: "Multi-Model Measurement",
-    body: "Expand beyond GPT-4o to Claude, Gemini, and Perplexity. See where Voya appears on one model but not another.",
+    body: "Expand beyond GPT-4o to Claude, Gemini, and Perplexity. See where Voya appears on one model but not another, and which model is hardest to crack.",
   },
 ];
 
