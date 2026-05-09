@@ -81,7 +81,7 @@ function Index() {
           {slides.map((slide, i) => (
             <section
               key={i}
-              className="snap-start snap-always shrink-0 w-screen h-full overflow-y-auto flex flex-col justify-center"
+              className="snap-start snap-always shrink-0 w-screen h-full overflow-y-auto flex flex-col justify-center pb-14"
             >
               {slide}
             </section>
@@ -106,6 +106,13 @@ function Index() {
         >
           <ArrowRight className="h-5 w-5" />
         </button>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background/85 backdrop-blur">
+          <div className="mx-auto max-w-7xl px-6 h-12 flex items-center justify-between text-[11px] text-muted-foreground">
+            <span className="font-medium tracking-wide">Voya · Plan. Invest. Protect.</span>
+            <span className="hidden sm:inline">GEO Command · Internal Voya Marketing tool · Not for public distribution</span>
+          </div>
+        </div>
       </main>
     </div>
   );
