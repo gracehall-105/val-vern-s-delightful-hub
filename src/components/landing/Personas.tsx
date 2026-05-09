@@ -31,14 +31,14 @@ export function Personas() {
             Built for the people who own the brand.
           </h2>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {personas.map((p) => (
             <div
               key={p.role}
-              className="rounded-3xl border border-border bg-card p-8 hover:shadow-soft transition-shadow"
+              className="rounded-3xl border border-border bg-card p-7 hover:shadow-soft transition-shadow"
             >
               <p className="font-display text-xl font-medium text-voya-orange">{p.role}</p>
-              <p className="mt-4 text-foreground/75 leading-relaxed">{p.need}</p>
+              <p className="mt-3 text-foreground/75 leading-relaxed">{p.need}</p>
             </div>
           ))}
         </div>
