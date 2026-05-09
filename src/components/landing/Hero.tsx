@@ -56,11 +56,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-voya-orange/30 bg-white px-3 py-1 text-xs font-medium text-voya-orange shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-voya-orange animate-pulse" />
-              Phase 1 — live today
-            </span>
-            <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
               Be the answer,
               <br />
               <span className="text-voya-orange">not an afterthought.</span>

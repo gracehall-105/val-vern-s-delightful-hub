@@ -30,20 +30,22 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const slideClass =
+    "snap-start snap-always min-h-screen w-full flex flex-col justify-center";
   return (
-    <div className="min-h-screen">
+    <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
       <Nav />
       <main>
-        <Hero />
-        <TrustStrip />
-        <LoopSection />
-        <DashboardPreview />
-        <Personas />
-        <DoesDoesnt />
-        <JourneyDivider />
-        <Roadmap />
+        <section className={slideClass}><Hero /></section>
+        <section className={slideClass}><TrustStrip /><LoopSection /></section>
+        <section className={slideClass}><DashboardPreview /></section>
+        <section className={slideClass}><Personas /></section>
+        <section className={slideClass}><DoesDoesnt /></section>
+        <section className={slideClass}><JourneyDivider /><Roadmap /></section>
+        <section className="snap-start snap-always min-h-screen w-full flex flex-col justify-end">
+          <Footer />
+        </section>
       </main>
-      <Footer />
     </div>
   );
 }
