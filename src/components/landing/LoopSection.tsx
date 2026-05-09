@@ -24,9 +24,9 @@ export function LoopSection() {
     <section id="loop" className="relative py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
-          <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">The loop</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">How it works</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            Measure, create, prove —<br /> on repeat.
+            The Loop: Measure → Create → Prove
           </h2>
           <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
             A closed-loop system that fixes the content architecture problem.
