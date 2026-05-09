@@ -44,7 +44,7 @@ export function Hero() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#preview"
+                href="/app"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
               >
                 Enter GEO Command →
