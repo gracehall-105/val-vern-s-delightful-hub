@@ -17,6 +17,7 @@ import { Route as AppProveRouteImport } from './routes/app.prove'
 import { Route as AppModelsRouteImport } from './routes/app.models'
 import { Route as AppMeasureRouteImport } from './routes/app.measure'
 import { Route as AppListenRouteImport } from './routes/app.listen'
+import { Route as AppHowItWorksRouteImport } from './routes/app.how-it-works'
 import { Route as AppCreateRouteImport } from './routes/app.create'
 
 const AppRoute = AppRouteImport.update({
@@ -59,6 +60,11 @@ const AppListenRoute = AppListenRouteImport.update({
   path: '/listen',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHowItWorksRoute = AppHowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCreateRoute = AppCreateRouteImport.update({
   id: '/create',
   path: '/create',
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/create': typeof AppCreateRoute
+  '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/create': typeof AppCreateRoute
+  '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/create': typeof AppCreateRoute
+  '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/app/create'
+    | '/app/how-it-works'
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app/create'
+    | '/app/how-it-works'
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/app/create'
+    | '/app/how-it-works'
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
@@ -196,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppListenRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/how-it-works': {
+      id: '/app/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/app/how-it-works'
+      preLoaderRoute: typeof AppHowItWorksRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/create': {
       id: '/app/create'
       path: '/create'
@@ -208,6 +227,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppCreateRoute: typeof AppCreateRoute
+  AppHowItWorksRoute: typeof AppHowItWorksRoute
   AppListenRoute: typeof AppListenRoute
   AppMeasureRoute: typeof AppMeasureRoute
   AppModelsRoute: typeof AppModelsRoute
@@ -218,6 +238,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppCreateRoute: AppCreateRoute,
+  AppHowItWorksRoute: AppHowItWorksRoute,
   AppListenRoute: AppListenRoute,
   AppMeasureRoute: AppMeasureRoute,
   AppModelsRoute: AppModelsRoute,
@@ -235,3 +256,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
