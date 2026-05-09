@@ -9,7 +9,7 @@ import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { Personas } from "@/components/landing/Personas";
 import { DoesDoesnt } from "@/components/landing/DoesDoesnt";
 import { Roadmap } from "@/components/landing/Roadmap";
-import { Footer } from "@/components/landing/Footer";
+
 import { JourneyDivider } from "@/components/landing/JourneyDivider";
 
 export const Route = createFileRoute("/")({
