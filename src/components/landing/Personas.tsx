@@ -28,7 +28,7 @@ export function Personas() {
         <div className="max-w-2xl">
           <p className="text-sm uppercase tracking-[0.2em] text-voya-orange font-semibold">Who it's for</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium leading-tight">
-            Three teams. One source of truth.
+            Built for the people who own the brand.
           </h2>
         </div>
         <div className="mt-12 grid md:grid-cols-3 gap-6">
