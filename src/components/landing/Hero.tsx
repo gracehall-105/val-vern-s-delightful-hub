@@ -27,31 +27,6 @@ export function Hero() {
         }}
       />
 
-      {/* Floating butterflies — kept clear of artwork center */}
-      <Butterfly
-        className="absolute left-[6%] top-[14%] animate-drift"
-        color="var(--voya-orange)"
-        size={40}
-        style={{ animationDelay: "0s" }}
-      />
-      <Butterfly
-        className="absolute right-[8%] top-[22%] animate-drift"
-        color="var(--voya-purple)"
-        size={30}
-        style={{ animationDelay: "1.5s" }}
-      />
-      <Butterfly
-        className="absolute left-[14%] bottom-[18%] animate-float"
-        color="var(--voya-orange-light)"
-        size={26}
-        style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties}
-      />
-      <Butterfly
-        className="absolute right-[10%] bottom-[24%] animate-float"
-        color="var(--voya-orange)"
-        size={34}
-        style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
@@ -91,6 +66,32 @@ export function Hero() {
                     "radial-gradient(circle, oklch(0.92 0.09 55) 0%, transparent 70%)",
                 }}
                 aria-hidden
+              />
+
+              {/* Floating butterflies — fluttering around Val & Vern */}
+              <Butterfly
+                className="absolute left-[6%] top-[8%] animate-drift z-10"
+                color="var(--voya-orange)"
+                size={36}
+                style={{ animationDelay: "0s" }}
+              />
+              <Butterfly
+                className="absolute right-[4%] top-[14%] animate-drift z-10"
+                color="var(--voya-purple)"
+                size={28}
+                style={{ animationDelay: "1.5s" }}
+              />
+              <Butterfly
+                className="absolute left-[18%] top-[36%] animate-float z-10"
+                color="var(--voya-orange-light)"
+                size={24}
+                style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties}
+              />
+              <Butterfly
+                className="absolute right-[12%] top-[42%] animate-float z-10"
+                color="var(--voya-orange)"
+                size={32}
+                style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties}
               />
               {/* Ground shadows */}
               <div className="absolute bottom-[8%] left-[14%] w-[26%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
