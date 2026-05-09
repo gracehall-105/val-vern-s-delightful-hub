@@ -34,7 +34,7 @@ export function AppShell() {
             Phase 1
           </p>
           {nav.map(({ to, label, icon: Icon, exact }) => {
-            const active = exact ? path === to : path.startsWith(to) && to !== "/app";
+            const active = exact ? path === to : path.startsWith(to);
             const isHome = to === "/app" && path === "/app";
             const on = active || isHome;
             return (
@@ -97,7 +97,7 @@ export function AppShell() {
         {/* Mobile nav */}
         <nav className="md:hidden flex gap-1 overflow-x-auto px-4 py-2 border-b border-border bg-card">
           {nav.map(({ to, label, icon: Icon, exact }) => {
-            const on = exact ? path === to : path.startsWith(to) && to !== "/app";
+            const on = exact ? path === to : path.startsWith(to);
             const isHome = to === "/app" && path === "/app";
             const active = on || isHome;
             return (
