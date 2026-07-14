@@ -11,7 +11,7 @@ export function Footer() {
           </p>
         </div>
         <div className="text-xs text-muted-foreground space-y-1 md:text-right">
-          <p>GEO Command · An internal Voya Marketing tool</p>
+          <p>Beacon · An internal Voya Marketing tool</p>
           <p>For internal use only. Not for public distribution.</p>
         </div>
       </div>

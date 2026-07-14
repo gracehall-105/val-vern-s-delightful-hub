@@ -9,7 +9,7 @@ export function Nav() {
           <VoyaLogo />
           <span className="hidden sm:inline-block h-5 w-px bg-border" />
           <span className="hidden sm:inline-block text-sm font-medium text-muted-foreground">
-            GEO Command
+            Beacon
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/80">
@@ -22,7 +22,7 @@ export function Nav() {
           to="/app"
           className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-5 py-2 text-sm font-medium shadow-soft hover:shadow-lg transition-shadow"
         >
-          Enter GEO Command
+          Enter Beacon
         </Link>
       </div>
     </header>
