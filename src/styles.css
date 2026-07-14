@@ -1,6 +1,6 @@
 @import "tailwindcss" source(none);
-@source "../src";
 @import "tw-animate-css";
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -16,9 +16,10 @@
  *
  * Typography: Optima for headlines (fallback Cormorant Garamond),
  * Proxima Nova for body (fallback Inter). Sentence case throughout.
+ * Fonts are loaded via <link> in src/routes/__root.tsx (Lightning CSS
+ * cannot resolve remote @import URLs).
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
