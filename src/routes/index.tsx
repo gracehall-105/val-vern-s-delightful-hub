@@ -15,13 +15,13 @@ import { JourneyDivider } from "@/components/landing/JourneyDivider";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "GEO Command — Voya Marketing" },
+      { title: "Beacon — Voya Marketing" },
       {
         name: "description",
         content:
-          "GEO Command is Voya's closed-loop system that measures, creates, and proves the content that gets Voya into AI answers.",
+          "Beacon is Voya's closed-loop system that measures, creates, and proves the content that gets Voya into AI answers.",
       },
-      { property: "og:title", content: "GEO Command — Voya Marketing" },
+      { property: "og:title", content: "Beacon — Voya Marketing" },
       {
         property: "og:description",
         content: "Be the answer, not an afterthought. Voya's AI visibility command center.",
@@ -112,7 +112,7 @@ function Index() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background/85 backdrop-blur">
           <div className="mx-auto max-w-7xl px-6 h-12 flex items-center justify-between text-[11px] text-muted-foreground">
             <span className="font-medium tracking-wide">Voya · Plan. Invest. Protect.</span>
-            <span className="hidden sm:inline">GEO Command · Internal Voya Marketing tool · Not for public distribution</span>
+            <span className="hidden sm:inline">Beacon · Internal Voya Marketing tool · Not for public distribution</span>
           </div>
         </div>
       </main>

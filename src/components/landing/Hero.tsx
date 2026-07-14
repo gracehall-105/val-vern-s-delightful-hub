@@ -38,7 +38,7 @@ export function Hero() {
               <span className="text-voya-orange">not an afterthought.</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
-              GEO Command measures whether AI recommends Voya, creates content
+              Beacon measures whether AI recommends Voya, creates content
               designed to change the answer, and proves it worked —
               automatically, every week.
             </p>
@@ -47,7 +47,7 @@ export function Hero() {
                 href="/app"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
               >
-                Enter GEO Command →
+                Enter Beacon →
               </a>
               <a
                 href="#loop"

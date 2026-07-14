@@ -4,7 +4,7 @@ import { PageIntro, Panel } from "@/components/app/AppShell";
 
 export const Route = createFileRoute("/app/how-it-works")({
   head: () => ({
-    meta: [{ title: "How GEO Command works — Voya internal" }],
+    meta: [{ title: "How Beacon works — Voya internal" }],
   }),
   component: HowItWorks,
 });
@@ -38,7 +38,7 @@ function HowItWorks() {
       <PageIntro
         eyebrow="How it works"
         title="The whole loop, in plain English."
-        lede="GEO Command turns AI visibility into a weekly habit: listen to what customers ask, measure where Voya stands, create the answers, prove it moved."
+        lede="Beacon turns AI visibility into a weekly habit: listen to what customers ask, measure where Voya stands, create the answers, prove it moved."
       />
 
       {/* The loop */}
@@ -103,7 +103,7 @@ function HowItWorks() {
             </span>
             <p className="mt-4 font-semibold">Publish to…</p>
             <p className="mt-2 text-sm text-foreground/70 leading-relaxed">
-              LinkedIn, X, the Voya blog, email. Push directly from GEO Command — no copy-paste,
+              LinkedIn, X, the Voya blog, email. Push directly from Beacon — no copy-paste,
               no separate scheduler.
             </p>
             <p className="mt-3 text-[11px] uppercase tracking-widest text-voya-purple">
