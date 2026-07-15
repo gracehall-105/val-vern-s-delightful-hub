@@ -159,7 +159,7 @@ export function AppShell() {
         <div className="flex items-center justify-between h-16 border-b border-border px-3">
           {!sidebarCollapsed && (
             <Link to="/" className="flex items-center gap-2">
-              <img src={lighthouseIcon} alt="" className="h-9 w-9 object-contain dark:invert" />
+              <img src={lighthouseIcon} alt="" className="h-[60px] w-[60px] object-contain dark:invert" />
               <span className="text-sm font-display tracking-wide text-foreground">Beacon</span>
             </Link>
           )}
@@ -251,7 +251,7 @@ export function AppShell() {
       <div className="flex-1 flex flex-col min-w-0">
         <header className="sticky top-0 z-30 h-16 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
           <div className="md:hidden flex items-center gap-2">
-            <img src={lighthouseIcon} alt="" className="h-9 w-9 object-contain dark:invert" />
+            <img src={lighthouseIcon} alt="" className="h-[60px] w-[60px] object-contain dark:invert" />
             <span className="text-sm font-display">Beacon</span>
           </div>
           <div>
