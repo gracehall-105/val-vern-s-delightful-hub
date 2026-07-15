@@ -21,6 +21,8 @@ import {
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
+import voyaTagline from "@/assets/voya-tagline.png.asset.json";
+import voyaLogo from "@/assets/voya-logo.png.asset.json";
 
 type Item = {
   to:
