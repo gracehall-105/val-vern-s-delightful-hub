@@ -256,7 +256,7 @@ export function AppShell() {
           ))}
         </nav>
 
-        <div className="border-t border-border p-3 space-y-3">
+        <div className="border-t border-border p-3">
           <div className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start px-1"].join(" ")}>
             <img
               src={sidebarCollapsed ? voyaLogo.url : voyaTagline.url}
@@ -264,17 +264,6 @@ export function AppShell() {
               className={sidebarCollapsed ? "h-5 w-auto object-contain" : "h-6 w-auto object-contain"}
             />
           </div>
-          <button
-            onClick={() => setSidebarCollapsed((v) => !v)}
-            title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className={[
-              "w-full rounded-lg hover:bg-secondary text-foreground/60 hover:text-foreground transition-colors flex items-center",
-              sidebarCollapsed ? "justify-center h-8" : "justify-start gap-2 px-3 h-8",
-            ].join(" ")}
-          >
-            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
-            {!sidebarCollapsed && <span className="text-sm">Collapse sidebar</span>}
-          </button>
         </div>
       </aside>
 
