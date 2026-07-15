@@ -15,6 +15,8 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  PanelLeft,
+  PanelRight,
 } from "lucide-react";
 import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
