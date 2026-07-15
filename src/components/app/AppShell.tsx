@@ -166,7 +166,7 @@ export function AppShell() {
           </Link>
         </div>
 
-        <nav className={`flex-1 overflow-y-auto py-4 space-y-5 ${sidebarCollapsed ? "px-2" : "px-3"}`}>
+        <nav className="flex-1 overflow-y-auto py-4 space-y-5 px-3">
           {groups.map((g) => (
             <div key={g.label}>
               {!sidebarCollapsed && (
