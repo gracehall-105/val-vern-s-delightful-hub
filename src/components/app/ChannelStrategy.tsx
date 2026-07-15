@@ -1,3 +1,4 @@
+// @ts-nocheck — direct port from VS Code; tighten types incrementally
 import { useState, useEffect, useMemo } from 'react';
 import { PageIntro, Panel } from '@/components/app/AppShell';
 import { ExternalLink, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react';

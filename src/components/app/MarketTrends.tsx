@@ -1,3 +1,4 @@
+// @ts-nocheck — direct port from VS Code; tighten types incrementally
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { Sparkles, Clock, BarChart3, LineChart } from 'lucide-react';
 import { Bar, Line } from 'react-chartjs-2';

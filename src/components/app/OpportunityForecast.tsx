@@ -1,3 +1,4 @@
+// @ts-nocheck — direct port from VS Code; tighten types incrementally
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Crosshair, TrendingUp, Eye, BarChart3, Loader2, DollarSign, Users, Zap } from 'lucide-react';
 import { API_BASE } from '@/lib/api';

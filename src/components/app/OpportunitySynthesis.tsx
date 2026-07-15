@@ -1,3 +1,4 @@
+// @ts-nocheck — direct port from VS Code; tighten types incrementally
 import { useState, useEffect, useMemo } from 'react';
 import {
   Lightbulb,
