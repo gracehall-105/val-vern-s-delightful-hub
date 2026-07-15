@@ -161,7 +161,7 @@ export function AppShell() {
             <img
               src={beaconLogoLockup.url}
               alt="Beacon"
-              className={`object-contain dark:invert ${sidebarCollapsed ? "h-12 w-auto" : "h-full max-h-20 w-auto"}`}
+              className={`object-contain dark:invert ${sidebarCollapsed ? "h-[43px] w-auto" : "h-full max-h-[72px] w-auto"}`}
             />
           </Link>
         </div>
