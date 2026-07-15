@@ -153,15 +153,15 @@ export function AppShell() {
       <aside
         className={[
           "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
-          sidebarCollapsed ? "w-16" : "w-80",
+          "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-24 border-b border-border px-3">
+        <div className="flex items-center justify-center h-32 border-b border-border px-3">
           <Link to="/" className="flex items-center justify-center w-full">
             <img
               src={beaconLogoLockup.url}
               alt="Beacon"
-              className={`object-contain dark:invert ${sidebarCollapsed ? "h-[43px] w-auto" : "h-full max-h-[72px] w-auto"}`}
+              className="object-contain dark:invert h-full max-h-[72px] w-auto"
             />
           </Link>
         </div>
