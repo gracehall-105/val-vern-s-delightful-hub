@@ -285,7 +285,7 @@ export function OpportunityGapCalculator({ onActivate }: Props) {
 
                       {/* Voya share indicator */}
                       <div className="shrink-0 text-right">
-                        <p className={`text-lg font-bold ${gap.voya_share === 0 ? 'text-red-500' : 'text-orange-500'}`}>
+                        <p className="text-lg font-bold text-voya-orange">
                           {gap.voya_share}%
                         </p>
                         <p className="text-[9px] text-muted-foreground">Voya share</p>

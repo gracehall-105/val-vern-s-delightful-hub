@@ -21,7 +21,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarEleme
 
 
 // Voya is always orange; competitors keep a fixed color across all views/time
-const VOYA_COLOR = '#FF4B00';
+const VOYA_COLOR = '#ff570c';
 
 // Fixed color assignments — each competitor always looks the same
 const COMPANY_COLORS: Record<string, string> = {

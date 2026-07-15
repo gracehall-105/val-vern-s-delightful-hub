@@ -229,11 +229,11 @@ function PromptFolder({
                   <div className="flex items-center gap-2">
                     <div className="w-16 h-1.5 rounded-full bg-foreground/[0.06] overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${voyaPct > 10 ? 'bg-green-500' : voyaPct > 0 ? 'bg-yellow-500' : 'bg-red-400'}`}
+                        className="h-full rounded-full bg-voya-orange"
                         style={{ width: `${Math.min(voyaPct, 100)}%` }}
                       />
                     </div>
-                    <span className={`text-xs font-semibold ${voyaPct > 10 ? 'text-green-600' : voyaPct > 0 ? 'text-yellow-600' : 'text-red-500'}`}>
+                    <span className="text-xs font-semibold text-voya-orange">
                       {voyaPct}%
                     </span>
                   </div>
