@@ -28,7 +28,7 @@ function CommandCenter() {
       })
       .catch(() => {
         if (cancelled) return;
-        setError("Backend not connected yet — showing placeholder.");
+        setError("Live signals unavailable — connect the backend to populate.");
         setLoading(false);
       });
     return () => {
