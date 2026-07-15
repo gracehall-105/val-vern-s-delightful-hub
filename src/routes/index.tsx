@@ -9,7 +9,7 @@ import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { Personas } from "@/components/landing/Personas";
 import { DoesDoesnt } from "@/components/landing/DoesDoesnt";
 import { Roadmap } from "@/components/landing/Roadmap";
-
+import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { JourneyDivider } from "@/components/landing/JourneyDivider";
 
 export const Route = createFileRoute("/")({
@@ -110,8 +110,11 @@ function Index() {
         </button>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background/85 backdrop-blur">
-          <div className="mx-auto max-w-7xl px-6 h-12 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span className="font-medium tracking-wide">Voya · Plan. Invest. Protect.</span>
+          <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between text-[11px] text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <VoyaLogo height={20} />
+              <span className="hidden sm:inline font-medium tracking-wide">Plan. Invest. Protect.</span>
+            </div>
             <span className="hidden sm:inline">Beacon · Internal Voya Marketing tool · Not for public distribution</span>
           </div>
         </div>
