@@ -239,6 +239,19 @@ export function AppShell() {
             Production workspace
           </div>
         )}
+        <div className="border-t border-border p-3">
+          <button
+            onClick={() => setSidebarCollapsed((v) => !v)}
+            title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className={[
+              "w-full rounded-lg hover:bg-secondary text-foreground/60 hover:text-foreground transition-colors flex items-center",
+              sidebarCollapsed ? "justify-center h-8" : "justify-start gap-2 px-3 h-8",
+            ].join(" ")}
+          >
+            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
+            {!sidebarCollapsed && <span className="text-sm">Collapse sidebar</span>}
+          </button>
+        </div>
       </aside>
 
       {/* Main */}
