@@ -52,6 +52,7 @@
   --color-voya-purple: var(--voya-purple);
   --color-voya-cream: var(--voya-cream);
   --color-voya-dark: var(--voya-dark);
+  --color-beacon-black: var(--beacon-black);
   --font-display: "Cormorant Garamond", "Optima", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", "Proxima Nova", system-ui, -apple-system, sans-serif;
 }
