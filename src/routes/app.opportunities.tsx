@@ -56,8 +56,8 @@ function OpportunitiesRoute() {
         ))}
       </div>
 
-      {tab === "synthesis" && <OpportunitySynthesis onNavigate={onActivate} />}
-      {tab === "gaps" && <OpportunityGapCalculator onActivate={onActivate} />}
+      {tab === "synthesis" && <OpportunitySynthesis onNavigate={onActivate as any} />}
+      {tab === "gaps" && <OpportunityGapCalculator onActivate={onActivate as any} />}
       {tab === "forecast" && <OpportunityForecast />}
     </>
   );

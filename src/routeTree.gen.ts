@@ -13,8 +13,10 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppValidationRouteImport } from './routes/app.validation'
+import { Route as AppTrendsRouteImport } from './routes/app.trends'
 import { Route as AppScoreRouteImport } from './routes/app.score'
 import { Route as AppProveRouteImport } from './routes/app.prove'
+import { Route as AppOpportunitiesRouteImport } from './routes/app.opportunities'
 import { Route as AppModelsRouteImport } from './routes/app.models'
 import { Route as AppMeasureRouteImport } from './routes/app.measure'
 import { Route as AppListenRouteImport } from './routes/app.listen'
@@ -42,6 +44,11 @@ const AppValidationRoute = AppValidationRouteImport.update({
   path: '/validation',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTrendsRoute = AppTrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppScoreRoute = AppScoreRouteImport.update({
   id: '/score',
   path: '/score',
@@ -50,6 +57,11 @@ const AppScoreRoute = AppScoreRouteImport.update({
 const AppProveRoute = AppProveRouteImport.update({
   id: '/prove',
   path: '/prove',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOpportunitiesRoute = AppOpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
   getParentRoute: () => AppRoute,
 } as any)
 const AppModelsRoute = AppModelsRouteImport.update({
@@ -92,8 +104,10 @@ export interface FileRoutesByFullPath {
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/trends': typeof AppTrendsRoute
   '/app/validation': typeof AppValidationRoute
   '/app/': typeof AppIndexRoute
 }
@@ -105,8 +119,10 @@ export interface FileRoutesByTo {
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/trends': typeof AppTrendsRoute
   '/app/validation': typeof AppValidationRoute
   '/app': typeof AppIndexRoute
 }
@@ -120,8 +136,10 @@ export interface FileRoutesById {
   '/app/listen': typeof AppListenRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
+  '/app/opportunities': typeof AppOpportunitiesRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/trends': typeof AppTrendsRoute
   '/app/validation': typeof AppValidationRoute
   '/app/': typeof AppIndexRoute
 }
@@ -136,8 +154,10 @@ export interface FileRouteTypes {
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
+    | '/app/opportunities'
     | '/app/prove'
     | '/app/score'
+    | '/app/trends'
     | '/app/validation'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -149,8 +169,10 @@ export interface FileRouteTypes {
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
+    | '/app/opportunities'
     | '/app/prove'
     | '/app/score'
+    | '/app/trends'
     | '/app/validation'
     | '/app'
   id:
@@ -163,8 +185,10 @@ export interface FileRouteTypes {
     | '/app/listen'
     | '/app/measure'
     | '/app/models'
+    | '/app/opportunities'
     | '/app/prove'
     | '/app/score'
+    | '/app/trends'
     | '/app/validation'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -204,6 +228,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppValidationRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/trends': {
+      id: '/app/trends'
+      path: '/trends'
+      fullPath: '/app/trends'
+      preLoaderRoute: typeof AppTrendsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/score': {
       id: '/app/score'
       path: '/score'
@@ -216,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/prove'
       fullPath: '/app/prove'
       preLoaderRoute: typeof AppProveRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/opportunities': {
+      id: '/app/opportunities'
+      path: '/opportunities'
+      fullPath: '/app/opportunities'
+      preLoaderRoute: typeof AppOpportunitiesRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/models': {
@@ -270,8 +308,10 @@ interface AppRouteChildren {
   AppListenRoute: typeof AppListenRoute
   AppMeasureRoute: typeof AppMeasureRoute
   AppModelsRoute: typeof AppModelsRoute
+  AppOpportunitiesRoute: typeof AppOpportunitiesRoute
   AppProveRoute: typeof AppProveRoute
   AppScoreRoute: typeof AppScoreRoute
+  AppTrendsRoute: typeof AppTrendsRoute
   AppValidationRoute: typeof AppValidationRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -283,8 +323,10 @@ const AppRouteChildren: AppRouteChildren = {
   AppListenRoute: AppListenRoute,
   AppMeasureRoute: AppMeasureRoute,
   AppModelsRoute: AppModelsRoute,
+  AppOpportunitiesRoute: AppOpportunitiesRoute,
   AppProveRoute: AppProveRoute,
   AppScoreRoute: AppScoreRoute,
+  AppTrendsRoute: AppTrendsRoute,
   AppValidationRoute: AppValidationRoute,
   AppIndexRoute: AppIndexRoute,
 }
