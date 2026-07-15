@@ -29,6 +29,30 @@ function formatPct(n?: number) {
 }
 
 export function Hero() {
+  const unbranded = useVoyaSom("unbranded");
+  const branded = useVoyaSom("branded");
+
+  const evidence = [
+    {
+      stat: formatPct(unbranded.sharePct),
+      body:
+        unbranded.promptCount !== undefined
+          ? `Voya's Share of Model across ${unbranded.promptCount} unbranded prompts — the questions people ask before they know our name.`
+          : "Voya's Share of Model across the unbranded prompt universe — the questions people ask before they know our name.",
+    },
+    {
+      stat: formatPct(branded.sharePct),
+      body:
+        branded.promptCount !== undefined
+          ? `Voya's Share of Model across ${branded.promptCount} branded prompts — where someone already searched for us by name.`
+          : "Voya's Share of Model across the branded prompt universe — where someone already searched for us by name.",
+    },
+    {
+      stat: "30%",
+      body: "Of web traffic will bypass traditional search by 2028, per Gartner. This isn't future — it's now.",
+    },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-background">
       <div
