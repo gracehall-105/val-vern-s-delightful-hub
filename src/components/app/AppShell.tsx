@@ -156,8 +156,10 @@ export function AppShell() {
       <aside
         className={[
           "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
+          "sticky top-0 h-screen",
           sidebarCollapsed ? "w-20" : "w-72",
         ].join(" ")}
+
       >
         <div
           className={[
