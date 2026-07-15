@@ -15,6 +15,8 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  PanelLeft,
+  PanelRight,
 } from "lucide-react";
 import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
@@ -107,6 +109,8 @@ export function AppShell() {
     setAuthed(true);
   }, [router, isLoginRoute]);
 
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -134,7 +138,7 @@ export function AppShell() {
       {tooltip && (
         <div
           className="fixed z-[100] pointer-events-none hidden md:block"
-          style={{ left: 260, top: tooltip.top, transform: "translateY(-50%)" }}
+          style={{ left: sidebarCollapsed ? 72 : 260, top: tooltip.top, transform: "translateY(-50%)" }}
         >
           <div className="relative ml-2 max-w-xs">
             <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rotate-45 rounded-[2px]" />
@@ -146,26 +150,45 @@ export function AppShell() {
       )}
 
       {/* Sidebar */}
-      <aside className="hidden md:flex w-64 shrink-0 flex-col border-r border-border bg-card">
-        <Link to="/" className="flex items-center gap-2 px-5 h-16 border-b border-border">
-          <VoyaLogo height={22} />
-          <span className="h-4 w-px bg-border" />
-          <span className="text-xs font-semibold tracking-wide text-foreground/80">by Voya</span>
-        </Link>
+      <aside
+        className={[
+          "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
+          sidebarCollapsed ? "w-16" : "w-64",
+        ].join(" ")}
+      >
+        <div className="flex items-center justify-between h-16 border-b border-border px-3">
+          {!sidebarCollapsed && (
+            <Link to="/" className="flex items-center gap-2">
+              <VoyaLogo height={22} />
+              <span className="h-4 w-px bg-border" />
+              <span className="text-xs font-semibold tracking-wide text-foreground/80">by Voya</span>
+            </Link>
+          )}
+          <button
+            onClick={() => setSidebarCollapsed((v) => !v)}
+            title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="h-8 w-8 rounded-lg hover:bg-secondary grid place-items-center text-foreground/60 hover:text-foreground transition-colors"
+          >
+            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
+          </button>
+        </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+        <nav className={`flex-1 overflow-y-auto py-4 space-y-5 ${sidebarCollapsed ? "px-2" : "px-3"}`}>
           {groups.map((g) => (
             <div key={g.label}>
-              <p className="px-3 pb-1.5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                {g.label}
-              </p>
+              {!sidebarCollapsed && (
+                <p className="px-3 pb-1.5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  {g.label}
+                </p>
+              )}
               <div className="space-y-0.5">
                 {g.items.map((item) => {
                   const { to, label, icon: Icon, phase, tooltip: tip } = item;
                   const on = isActive(item, path);
                   const isPhase2 = phase === 2;
                   const baseClass = [
-                    "w-full group flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                    "w-full group flex items-center rounded-lg py-2 text-sm transition-colors",
+                    sidebarCollapsed ? "justify-center px-2" : "gap-3 px-3",
                     isPhase2
                       ? "opacity-40 cursor-not-allowed text-foreground/50"
                       : on
@@ -175,14 +198,18 @@ export function AppShell() {
                   const content = (
                     <>
                       <Icon className="h-4 w-4" />
-                      <span className="truncate">{label}</span>
-                      {isPhase2 ? (
-                        <span className="ml-auto shrink-0 rounded-full bg-muted px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
-                          Phase 2
-                        </span>
-                      ) : on ? (
-                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-voya-orange" />
-                      ) : null}
+                      {!sidebarCollapsed && (
+                        <>
+                          <span className="truncate">{label}</span>
+                          {isPhase2 ? (
+                            <span className="ml-auto shrink-0 rounded-full bg-muted px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+                              Phase 2
+                            </span>
+                          ) : on ? (
+                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-voya-orange" />
+                          ) : null}
+                        </>
+                      )}
                     </>
                   );
                   const hoverText = isPhase2 ? "Coming in Phase 2 — requires additional integration" : tip;
@@ -213,10 +240,12 @@ export function AppShell() {
           ))}
         </nav>
 
-        <div className="m-3 rounded-xl border border-border p-3 text-[11px] text-muted-foreground">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-voya-orange mr-1.5 align-middle" />
-          Production workspace
-        </div>
+        {!sidebarCollapsed && (
+          <div className="m-3 rounded-xl border border-border p-3 text-[11px] text-muted-foreground">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-voya-orange mr-1.5 align-middle" />
+            Production workspace
+          </div>
+        )}
       </aside>
 
       {/* Main */}
