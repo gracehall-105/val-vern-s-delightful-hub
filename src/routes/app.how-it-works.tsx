@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Ear,
+  Search,
   Sparkles,
   FileEdit,
   TrendingUp,
@@ -24,9 +24,9 @@ export const Route = createFileRoute("/app/how-it-works")({
 
 const loop = [
   {
-    icon: Ear,
-    label: "Listen",
-    body: "Real customer questions land in Beacon from VoC sources (Genesys, Qualtrics, chat). Beacon clusters them so you see what's actually being asked. Promote a cluster and it becomes a tracked prompt in Measure.",
+    icon: Search,
+    label: "Discover",
+    body: "SEO rankings and Web Vitals signals surface what the market is searching for and how Voya.com performs. VoC listening will join this step once those integrations are wired up.",
   },
   {
     icon: Sparkles,
@@ -48,7 +48,6 @@ const loop = [
 const liveToday = [
   "Sign-in gate (Voya email + shared alpha password)",
   "Command Center: SoM trends, category filters, chart toggles, backfill",
-  "Listen: VoC clusters and Promote → Measure",
   "Measure / Prompt Library: search, expand categories, delete custom prompts",
   "Market Trends: audience, branded/unbranded, week, category filters",
   "Opportunity Forecast: fair-share gap calculator (branded vs. unbranded, channel vs. domain)",
@@ -59,9 +58,10 @@ const liveToday = [
 
 const comingSoon = [
   "Real SSO (replaces the shared alpha password)",
+  "VoC Listening Post: customer questions from Genesys, Qualtrics, and chat — Promote → Measure",
   "Run a Custom Prompt from the Prompt Library",
   "Direct publish to LinkedIn, X, Voya blog, and email",
-  "Chatbot transcripts and App Store reviews as Listen sources",
+  "Chatbot transcripts and App Store reviews as additional Listen sources",
   "Branded-source breakdowns in Opportunity Forecast",
 ];
 
@@ -204,8 +204,8 @@ function HowItWorks() {
               been backfilled yet.
             </p>
             <p>
-              VoC clusters in Listen come from the warehouse too; promoting a cluster registers it
-              as a tracked prompt so Measure and Prove can score it going forward.
+              SEO and Web Vitals signals for Discover will land first from the warehouse; VoC
+              clusters and the Promote → Measure flow will follow once those integrations are live.
             </p>
             <p>
               Nothing is auto-published. Every piece needs a human click before it leaves Voya —
