@@ -33,7 +33,7 @@ export function Hero() {
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="animate-fade-up">
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
-              Turn insight into action
+              Turn insight into <span className="text-voya-orange">action</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
               Voya Beacon measures AI and search visibility, identifies content
