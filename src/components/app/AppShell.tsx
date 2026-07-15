@@ -233,11 +233,6 @@ export function AppShell() {
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <div className="hidden md:flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 w-72 text-sm text-muted-foreground">
-              <Search className="h-3.5 w-3.5" />
-              <span>Search prompts, briefs, competitors…</span>
-              <kbd className="ml-auto text-[10px] rounded bg-secondary px-1.5 py-0.5">⌘K</kbd>
-            </div>
             <Link
               to={"/app/how-it-works" as any}
               className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-voya-orange transition-colors px-2 py-1.5 rounded-md"
