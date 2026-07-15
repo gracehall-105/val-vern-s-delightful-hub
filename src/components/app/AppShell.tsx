@@ -87,7 +87,7 @@ function useTitle() {
   const match = [...allItems]
     .sort((a, b) => b.to.length - a.to.length)
     .find((i) => isActive(i, path));
-  return match?.label ?? "Activation Studio";
+  return match?.label ?? "Voya Beacon";
 }
 
 export function AppShell() {
