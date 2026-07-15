@@ -9,6 +9,8 @@ import {
   Gauge,
   TrendingUp,
   Search,
+  BarChart3,
+  Target,
   Bell,
   Settings,
   HelpCircle,
@@ -17,7 +19,18 @@ import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 type Item = {
-  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/channels" | "/app/score" | "/app/prove" | "/app/validation";
+  to:
+    | "/app"
+    | "/app/listen"
+    | "/app/measure"
+    | "/app/trends"
+    | "/app/models"
+    | "/app/opportunities"
+    | "/app/create"
+    | "/app/channels"
+    | "/app/score"
+    | "/app/prove"
+    | "/app/validation";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
@@ -39,7 +52,14 @@ const groups: Group[] = [
     label: "Measure",
     items: [
       { to: "/app/measure", label: "Prompt library", icon: Sparkles, phase: 1 },
+      { to: "/app/trends", label: "Market trends", icon: BarChart3, phase: 1 },
       { to: "/app/models", label: "Multi-model", icon: Layers, phase: 2 },
+    ],
+  },
+  {
+    label: "Decide",
+    items: [
+      { to: "/app/opportunities", label: "Opportunities", icon: Target, phase: 1 },
     ],
   },
   {
