@@ -161,7 +161,7 @@ export function AppShell() {
             <Link to="/" className="flex items-center gap-2">
               <VoyaLogo height={22} />
               <span className="h-4 w-px bg-border" />
-              <span className="text-xs font-semibold tracking-wide text-foreground/80">by Voya</span>
+              <span className="text-xs font-semibold tracking-wide text-foreground/80">Beacon</span>
             </Link>
           )}
           <button
