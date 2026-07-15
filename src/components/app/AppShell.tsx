@@ -129,6 +129,7 @@ export function AppShell() {
   }
 
   if (authed === false) return null;
+  if (isLoginRoute) return <Outlet />;
 
   return (
     <div className="min-h-screen flex w-full bg-secondary/30">
