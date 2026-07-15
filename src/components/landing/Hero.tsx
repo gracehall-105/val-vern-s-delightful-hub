@@ -78,7 +78,7 @@ export function Hero() {
                 href="/app"
                 className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
               >
-                Enter Beacon →
+                Enter Voya Beacon →
               </a>
               <a
                 href="#loop"
