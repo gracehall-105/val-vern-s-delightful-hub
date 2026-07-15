@@ -25,8 +25,8 @@ export const Route = createFileRoute("/app/how-it-works")({
 const loop = [
   {
     icon: Ear,
-    label: "Listen",
-    body: "Real customer questions land in Beacon from VoC sources (Genesys, Qualtrics, chat). Beacon clusters them so you see what's actually being asked. Promote a cluster and it becomes a tracked prompt in Measure.",
+    label: "Discover",
+    body: "SEO rankings and Web Vitals signals surface what the market is searching for and how Voya.com performs. VoC listening will join this step once those integrations are wired up.",
   },
   {
     icon: Sparkles,
