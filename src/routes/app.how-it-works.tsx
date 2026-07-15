@@ -58,9 +58,10 @@ const liveToday = [
 
 const comingSoon = [
   "Real SSO (replaces the shared alpha password)",
+  "VoC Listening Post: customer questions from Genesys, Qualtrics, and chat — Promote → Measure",
   "Run a Custom Prompt from the Prompt Library",
   "Direct publish to LinkedIn, X, Voya blog, and email",
-  "Chatbot transcripts and App Store reviews as Listen sources",
+  "Chatbot transcripts and App Store reviews as additional Listen sources",
   "Branded-source breakdowns in Opportunity Forecast",
 ];
 
