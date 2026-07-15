@@ -94,11 +94,13 @@ export function AppShell() {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const title = useTitle();
   const router = useRouter();
+  const isLoginRoute = path === "/app/login";
 
   // Client-side session gate — parity with LoginPage from VS Code build.
   const [authed, setAuthed] = useState<boolean | null>(null);
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (isLoginRoute) { setAuthed(true); return; }
     const user = sessionStorage.getItem("activation-studio-user");
     if (!user) {
       router.navigate({ to: "/app/login" as any });
@@ -106,7 +108,7 @@ export function AppShell() {
       return;
     }
     setAuthed(true);
-  }, [router]);
+  }, [router, isLoginRoute]);
 
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
