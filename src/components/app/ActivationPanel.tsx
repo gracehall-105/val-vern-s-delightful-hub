@@ -16,31 +16,32 @@ interface ActivationPanelProps {
 }
 
 export function ActivationPanel({ prompt, promptId, voyaShare, onClose }: ActivationPanelProps) {
-  const [phase, setPhase] = useState<"loading" | "review" | "confirmed">("loading");
+  const [phase, setPhase] = useState<"loading" | "review" | "confirmed" | "empty">("loading");
   const [content, setContent] = useState<GeneratedContent | null>(null);
   const [selectedDest, setSelectedDest] = useState<string | null>(null);
   const [showArticle, setShowArticle] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
     async function loadContent() {
       try {
         const res = await fetch(`${API_BASE}/content/activate?prompt_id=${promptId}`);
-        if (res.ok) {
-          const data = await res.json();
-          setContent(data.content);
-          setSelectedDest(data.content.destinations?.[0]?.id || "reddit");
-        } else {
-          setContent(getFallbackContent());
-          setSelectedDest("reddit");
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+        setContent(data.content);
+        setSelectedDest(data.content?.destinations?.[0]?.id ?? null);
+        setPhase("review");
       } catch {
-        setContent(getFallbackContent());
-        setSelectedDest("reddit");
+        if (cancelled) return;
+        setContent(null);
+        setPhase("empty");
       }
-      setPhase("review");
     }
-    const t = setTimeout(loadContent, 1200);
-    return () => clearTimeout(t);
+    loadContent();
+    return () => {
+      cancelled = true;
+    };
   }, [promptId]);
 
   const selectedDestination = content?.destinations?.find((d) => d.id === selectedDest);
