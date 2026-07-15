@@ -19,6 +19,7 @@ import { Route as AppProveRouteImport } from './routes/app.prove'
 import { Route as AppOpportunitiesRouteImport } from './routes/app.opportunities'
 import { Route as AppModelsRouteImport } from './routes/app.models'
 import { Route as AppMeasureRouteImport } from './routes/app.measure'
+import { Route as AppLoginRouteImport } from './routes/app.login'
 import { Route as AppListenRouteImport } from './routes/app.listen'
 import { Route as AppHowItWorksRouteImport } from './routes/app.how-it-works'
 import { Route as AppCreateRouteImport } from './routes/app.create'
@@ -74,6 +75,11 @@ const AppMeasureRoute = AppMeasureRouteImport.update({
   path: '/measure',
   getParentRoute: () => AppRoute,
 } as any)
+const AppLoginRoute = AppLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppListenRoute = AppListenRouteImport.update({
   id: '/listen',
   path: '/listen',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
+  '/app/login': typeof AppLoginRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
+  '/app/login': typeof AppLoginRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
+  '/app/login': typeof AppLoginRoute
   '/app/measure': typeof AppMeasureRoute
   '/app/models': typeof AppModelsRoute
   '/app/opportunities': typeof AppOpportunitiesRoute
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
+    | '/app/login'
     | '/app/measure'
     | '/app/models'
     | '/app/opportunities'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
+    | '/app/login'
     | '/app/measure'
     | '/app/models'
     | '/app/opportunities'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
+    | '/app/login'
     | '/app/measure'
     | '/app/models'
     | '/app/opportunities'
@@ -270,6 +282,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppMeasureRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/login': {
+      id: '/app/login'
+      path: '/login'
+      fullPath: '/app/login'
+      preLoaderRoute: typeof AppLoginRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/listen': {
       id: '/app/listen'
       path: '/listen'
@@ -306,6 +325,7 @@ interface AppRouteChildren {
   AppCreateRoute: typeof AppCreateRoute
   AppHowItWorksRoute: typeof AppHowItWorksRoute
   AppListenRoute: typeof AppListenRoute
+  AppLoginRoute: typeof AppLoginRoute
   AppMeasureRoute: typeof AppMeasureRoute
   AppModelsRoute: typeof AppModelsRoute
   AppOpportunitiesRoute: typeof AppOpportunitiesRoute
@@ -321,6 +341,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCreateRoute: AppCreateRoute,
   AppHowItWorksRoute: AppHowItWorksRoute,
   AppListenRoute: AppListenRoute,
+  AppLoginRoute: AppLoginRoute,
   AppMeasureRoute: AppMeasureRoute,
   AppModelsRoute: AppModelsRoute,
   AppOpportunitiesRoute: AppOpportunitiesRoute,
