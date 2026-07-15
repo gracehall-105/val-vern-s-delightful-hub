@@ -157,7 +157,7 @@ export function AppShell() {
           sidebarCollapsed ? "w-16" : "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-16 border-b border-border px-3">
+        <div className="flex items-center justify-center h-28 border-b border-border px-3">
           <Link to="/" className="flex items-center gap-2">
             <img src={lighthouseIcon} alt="" className={`object-contain dark:invert mt-2 ${sidebarCollapsed ? "h-12 w-12" : "h-[96px] w-[96px]"}`} />
             {!sidebarCollapsed && (
