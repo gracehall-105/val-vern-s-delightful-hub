@@ -232,12 +232,6 @@ export function AppShell() {
           ))}
         </nav>
 
-        {!sidebarCollapsed && (
-          <div className="m-3 rounded-xl border border-border p-3 text-[11px] text-muted-foreground">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-voya-orange mr-1.5 align-middle" />
-            Production workspace
-          </div>
-        )}
         <div className="border-t border-border p-3">
           <button
             onClick={() => setSidebarCollapsed((v) => !v)}
