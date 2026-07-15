@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import lighthouseIcon from "@/assets/beacon-lighthouse.png";
+import beaconWordmark from "@/assets/beacon-wordmark-tagline.png";
 
 type Item = {
   to:
@@ -160,7 +161,7 @@ export function AppShell() {
           {!sidebarCollapsed && (
             <Link to="/" className="flex items-center gap-2">
               <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
-              <span className="text-sm font-display tracking-wide text-foreground">Beacon</span>
+              <img src={beaconWordmark} alt="Beacon" className="h-10 w-auto object-contain dark:invert" />
             </Link>
           )}
           <button
@@ -252,7 +253,7 @@ export function AppShell() {
         <header className="sticky top-0 z-30 h-16 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
           <div className="md:hidden flex items-center gap-2">
             <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
-            <span className="text-sm font-display">Beacon</span>
+            <img src={beaconWordmark} alt="Beacon" className="h-10 w-auto object-contain dark:invert" />
           </div>
           <div>
             <h1 className="font-display text-xl md:text-2xl leading-none">{title}</h1>
