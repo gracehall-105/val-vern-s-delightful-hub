@@ -70,7 +70,8 @@ export function Hero() {
             <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
               <span className="block">Voya Beacon measures AI and</span>
               <span className="block">search visibility, identifies content</span>
-              <span className="block">gaps, recommends improvements, and tracks impact.</span>
+              <span className="block">gaps, recommends improvements,</span>
+              <span className="block">and tracks impact.</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
