@@ -161,11 +161,11 @@ export function AppShell() {
       >
         <div
           className={[
-            "flex items-center border-b border-border h-16 md:h-20",
-            sidebarCollapsed ? "justify-center px-3" : "justify-start pl-3 pr-3",
+            "border-b border-border h-16 md:h-20",
+            sidebarCollapsed ? "flex flex-col items-center justify-center gap-2 px-2 py-2" : "flex items-center justify-between pl-3 pr-3",
           ].join(" ")}
         >
-          <Link to="/" className="flex items-center justify-center">
+          <Link to="/" className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start"].join(" ")}>
             {sidebarCollapsed ? (
               <img
                 src={lighthouseIcon.url}
@@ -180,6 +180,13 @@ export function AppShell() {
               />
             )}
           </Link>
+          <button
+            onClick={() => setSidebarCollapsed((v) => !v)}
+            title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="h-8 w-8 rounded-lg hover:bg-secondary text-foreground/60 hover:text-foreground transition-colors grid place-items-center"
+          >
+            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
+          </button>
         </div>
 
         <nav className="flex-1 overflow-y-auto py-4 space-y-5 px-3">
