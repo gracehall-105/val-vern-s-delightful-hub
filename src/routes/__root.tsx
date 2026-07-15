@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import beaconIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
 
 function NotFoundComponent() {
   return (
