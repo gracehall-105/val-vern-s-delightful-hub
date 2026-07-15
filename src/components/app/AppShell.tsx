@@ -258,7 +258,7 @@ export function AppShell() {
       <div className="flex-1 flex flex-col min-w-0">
         <header className="sticky top-0 z-30 h-16 md:h-32 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
           <div className="md:hidden flex items-center">
-            <img src={beaconLogoLockup.url} alt="Beacon" className="h-12 w-auto object-contain dark:invert" />
+            <img src={beaconLogoLockup.url} alt="Beacon" className="h-[43px] w-auto object-contain dark:invert" />
           </div>
           <div>
             <h1 className="font-display text-xl md:text-2xl leading-none">{title}</h1>
