@@ -31,8 +31,7 @@ type Item = {
     | "/app/create"
     | "/app/channels"
     | "/app/score"
-    | "/app/prove"
-    | "/app/validation";
+    | "/app/prove";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
@@ -71,7 +70,6 @@ const groups: Group[] = [
     items: [
       { to: "/app/models", label: "Multi-model", icon: Layers, phase: 1, tooltip: "Compare how GPT-5 and Claude Haiku cite Voya across the same prompts." },
       { to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1, tooltip: "Track whether published content moved Voya's share on targeted prompts." },
-      { to: "/app/validation", label: "Data validation", icon: Search, phase: 1, tooltip: "Audit source data and citation quality before insights ship." },
     ],
   },
 ];
