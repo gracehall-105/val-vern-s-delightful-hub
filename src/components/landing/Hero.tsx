@@ -125,11 +125,6 @@ export function Hero() {
             </div>
           ))}
         </div>
-        <p className="mt-6 max-w-3xl text-sm md:text-base italic text-foreground/70 leading-relaxed">
-          AI doesn't return a list of links — it returns one answer. If Voya
-          isn't in it, Voya doesn't exist for that person. No amount of ad spend
-          fixes this — it's a content architecture problem.
-        </p>
       </div>
     </section>
   );
