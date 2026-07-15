@@ -2,8 +2,9 @@ const steps = [
   {
     label: "Measure",
     color: "var(--voya-orange)",
-    title: "Every day at 7:30 AM, we ask the questions.",
-    body: "Ten retirement questions go to GPT-4o, and we record which companies get cited. Share of Model tracks Voya's percentage over a 12-week trend.",
+    title: "Measure",
+    body: "Beacon runs your prompts across GPT-5 and Claude Haiku and records Voya's share vs. competitors. Filter by audience, branded/unbranded, category, and week.",
+
   },
   {
     label: "Create",
