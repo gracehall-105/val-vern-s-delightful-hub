@@ -44,7 +44,7 @@ function LoginPage() {
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center mb-8">
           <VoyaLogo height={40} />
-          <p className="mt-3 text-sm text-white/60">by Voya · Sign in with your Voya credentials</p>
+          <p className="mt-3 text-sm text-white/60">Beacon · Sign in with your Voya credentials</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
