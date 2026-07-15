@@ -5,7 +5,7 @@ import { VoyaLogo } from "@/components/landing/VoyaLogo";
 export const Route = createFileRoute("/app/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — Activation Studio" },
+      { title: "Sign in — Voya Beacon" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
