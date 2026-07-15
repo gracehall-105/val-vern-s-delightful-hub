@@ -22,15 +22,12 @@ interface ModelConfig {
   Provider: string;
 }
 
-const MODEL_META: Record<string, { label: string; status: string }> = {
-  gpt4o: { label: 'ChatGPT (GPT-4o)', status: 'Live' },
-  claude: { label: 'Claude', status: 'Not connected' },
-  gemini: { label: 'Gemini', status: 'Not connected' },
-  perplexity: { label: 'Perplexity', status: 'Not connected' },
-  copilot: { label: 'Copilot', status: 'Not connected' },
+const MODEL_META: Record<string, { label: string; short: string; status: string }> = {
+  gpt5: { label: 'ChatGPT (GPT-5)', short: 'GPT-5', status: 'Live' },
+  haiku: { label: 'Claude Haiku', short: 'Haiku', status: 'Live' },
 };
 
-const MODEL_ORDER = ['gpt4o', 'claude', 'gemini', 'perplexity', 'copilot'];
+const MODEL_ORDER = ['gpt5', 'haiku'];
 
 export function ModelsView() {
   const [modelShares, setModelShares] = useState<ModelShare[]>([]);
