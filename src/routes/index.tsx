@@ -5,7 +5,39 @@ import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { TrustStrip } from "@/components/landing/TrustStrip";
 import { LoopSection } from "@/components/landing/LoopSection";
-...
+import { DashboardPreview } from "@/components/landing/DashboardPreview";
+import { Personas } from "@/components/landing/Personas";
+import { DoesDoesnt } from "@/components/landing/DoesDoesnt";
+import { Roadmap } from "@/components/landing/Roadmap";
+import { VoyaLogo } from "@/components/landing/VoyaLogo";
+import { JourneyDivider } from "@/components/landing/JourneyDivider";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Beacon — Voya Marketing" },
+      {
+        name: "description",
+        content:
+          "Beacon is Voya's closed-loop system that measures, creates, and proves the content that gets Voya into AI answers.",
+      },
+      { property: "og:title", content: "Beacon — Voya Marketing" },
+      {
+        property: "og:description",
+        content: "Be the answer, not an afterthought. Voya's AI visibility command center.",
+      },
+    ],
+  }),
+  component: Index,
+});
+
+function Index() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const slides = [
+    <Hero key="hero" />,
     <div key="loop" className="w-full"><TrustStrip /><LoopSection /></div>,
     <DashboardPreview key="dash" />,
     <Personas key="personas" />,
@@ -78,8 +110,11 @@ import { LoopSection } from "@/components/landing/LoopSection";
         </button>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background/85 backdrop-blur">
-          <div className="mx-auto max-w-7xl px-6 h-12 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span className="font-medium tracking-wide">Voya · Plan. Invest. Protect.</span>
+          <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between text-[11px] text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <VoyaLogo height={20} />
+              <span className="hidden sm:inline font-medium tracking-wide">Plan. Invest. Protect.</span>
+            </div>
             <span className="hidden sm:inline">Beacon · Internal Voya Marketing tool · Not for public distribution</span>
           </div>
         </div>
