@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
-import { TrustStrip } from "@/components/landing/TrustStrip";
 import { LoopSection } from "@/components/landing/LoopSection";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { Personas } from "@/components/landing/Personas";
@@ -56,7 +55,6 @@ function VerticalLanding() {
   return (
     <div className="w-full">
       <Hero />
-      <TrustStrip />
       <LoopSection />
       <DashboardPreview />
       <Personas />
