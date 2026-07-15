@@ -161,8 +161,8 @@ export function AppShell() {
       >
         <div
           className={[
-            "flex items-center border-b border-border h-32",
-            sidebarCollapsed ? "justify-center px-3" : "justify-start pl-4 pr-3",
+            "flex items-center border-b border-border h-16 md:h-20",
+            sidebarCollapsed ? "justify-center px-3" : "justify-start pl-3 pr-3",
           ].join(" ")}
         >
           <Link to="/" className="flex items-center justify-center">
@@ -170,13 +170,13 @@ export function AppShell() {
               <img
                 src={lighthouseIcon.url}
                 alt="Beacon"
-                className="object-contain dark:invert h-10 w-auto"
+                className="object-contain dark:invert h-8 w-auto"
               />
             ) : (
               <img
                 src={beaconLogoLockup.url}
                 alt="Beacon"
-                className="object-contain dark:invert h-full max-h-[58px] w-auto"
+                className="object-contain dark:invert h-full max-h-[44px] w-auto"
               />
             )}
           </Link>
