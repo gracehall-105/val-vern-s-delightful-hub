@@ -305,8 +305,12 @@ export function AppShell() {
             >
               <LogOut className="h-4 w-4" />
             </button>
-            <div className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold">
-              MK
+            <div
+              className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold"
+              title={currentUser?.name ?? "Account"}
+              aria-label={currentUser?.name ?? "Account"}
+            >
+              {currentUser?.initials ?? "MK"}
             </div>
           </div>
         </header>
