@@ -91,7 +91,7 @@ export function ModelsView() {
         lede="Run the same prompt across every model that matters. See where Voya appears on one and not another, and prioritize the platforms with the biggest gaps."
       />
 
-      <div className="grid lg:grid-cols-5 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         {MODEL_ORDER.map((mid) => {
           const meta = MODEL_META[mid];
           const ms = shareMap.get(mid);
