@@ -78,7 +78,7 @@ function VerticalLanding() {
 //
 //   const slides = [
 //     <Hero key="hero" />,
-//     <div key="loop" className="w-full"><TrustStrip /><LoopSection /></div>,
+//     <div key="loop" className="w-full"><LoopSection /></div>,
 //     <DashboardPreview key="dash" />,
 //     <Personas key="personas" />,
 //     <DoesDoesnt key="dd" />,
