@@ -33,14 +33,11 @@ export function Hero() {
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="animate-fade-up">
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
-              Be the answer,
-              <br />
-              <span className="text-voya-orange">not an afterthought.</span>
+              Turn insight into action
             </h1>
             <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
-              Beacon measures whether AI recommends Voya, creates content
-              designed to change the answer, and proves it worked —
-              automatically, every week.
+              Voya Beacon measures AI and search visibility, identifies content
+              gaps, recommends improvements, and tracks impact.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
