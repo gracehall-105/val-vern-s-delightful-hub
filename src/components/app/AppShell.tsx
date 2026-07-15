@@ -157,11 +157,11 @@ export function AppShell() {
           sidebarCollapsed ? "w-16" : "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-28 border-b border-border px-3">
+        <div className="flex items-center justify-center h-32 border-b border-border px-3">
           <Link to="/" className="flex items-center gap-2">
             <img src={lighthouseIcon} alt="" className={`object-contain dark:invert mt-2 ${sidebarCollapsed ? "h-12 w-12" : "h-[96px] w-[96px]"}`} />
             {!sidebarCollapsed && (
-              <img src={beaconWordmark} alt="Beacon" className="h-14 w-auto object-contain dark:invert" />
+              <img src={beaconWordmark} alt="Beacon" className="h-16 w-auto object-contain dark:invert" />
             )}
           </Link>
         </div>
@@ -256,10 +256,10 @@ export function AppShell() {
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-30 h-16 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
+        <header className="sticky top-0 z-30 h-16 md:h-32 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
           <div className="md:hidden flex items-center gap-2">
-            <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
-            <img src={beaconWordmark} alt="Beacon" className="h-14 w-auto object-contain dark:invert" />
+            <img src={lighthouseIcon} alt="" className="h-14 w-14 object-contain dark:invert mt-1" />
+            <img src={beaconWordmark} alt="Beacon" className="h-12 w-auto object-contain dark:invert" />
           </div>
           <div>
             <h1 className="font-display text-xl md:text-2xl leading-none">{title}</h1>
