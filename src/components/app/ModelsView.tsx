@@ -130,9 +130,9 @@ export function ModelsView() {
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="grid grid-cols-12 gap-3 px-4 py-4 border-t border-border items-center">
-                <div className="col-span-5 h-3 rounded bg-secondary/70" />
+                <div className="col-span-6 h-3 rounded bg-secondary/70" />
                 {MODEL_ORDER.map((__, j) => (
-                  <div key={j} className="col-span-1 flex justify-center">
+                  <div key={j} className="col-span-2 flex justify-center">
                     <span className="h-3 w-3 rounded-full bg-secondary" />
                   </div>
                 ))}
