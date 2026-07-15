@@ -138,7 +138,7 @@ export function AppShell() {
       {tooltip && (
         <div
           className="fixed z-[100] pointer-events-none hidden md:block"
-          style={{ left: sidebarCollapsed ? 72 : 324, top: tooltip.top, transform: "translateY(-50%)" }}
+          style={{ left: 324, top: tooltip.top, transform: "translateY(-50%)" }}
         >
           <div className="relative ml-2 max-w-xs">
             <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rotate-45 rounded-[2px]" />
@@ -153,20 +153,20 @@ export function AppShell() {
       <aside
         className={[
           "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
-          sidebarCollapsed ? "w-16" : "w-80",
+          "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-24 border-b border-border px-3">
+        <div className="flex items-center justify-center h-32 border-b border-border px-3">
           <Link to="/" className="flex items-center justify-center w-full">
             <img
               src={beaconLogoLockup.url}
               alt="Beacon"
-              className={`object-contain dark:invert ${sidebarCollapsed ? "h-[43px] w-auto" : "h-full max-h-[72px] w-auto"}`}
+              className="object-contain dark:invert h-full max-h-[72px] w-auto"
             />
           </Link>
         </div>
 
-        <nav className={`flex-1 overflow-y-auto py-4 space-y-5 ${sidebarCollapsed ? "px-2" : "px-3"}`}>
+        <nav className="flex-1 overflow-y-auto py-4 space-y-5 px-3">
           {groups.map((g) => (
             <div key={g.label}>
               {!sidebarCollapsed && (
@@ -180,8 +180,7 @@ export function AppShell() {
                   const on = isActive(item, path);
                   const isPhase2 = phase === 2;
                   const baseClass = [
-                    "w-full group flex items-center rounded-lg py-2 text-sm transition-colors",
-                    sidebarCollapsed ? "justify-center px-2" : "gap-3 px-3",
+                    "w-full group flex items-center rounded-lg py-2 text-sm transition-colors gap-3 px-3",
                     isPhase2
                       ? "opacity-40 cursor-not-allowed text-foreground/50"
                       : on
