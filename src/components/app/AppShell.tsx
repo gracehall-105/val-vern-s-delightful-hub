@@ -19,8 +19,7 @@ import {
   PanelRight,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
-import lighthouseIcon from "@/assets/beacon-lighthouse.png";
-import beaconWordmark from "@/assets/beacon-wordmark-tagline.png";
+import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 
 type Item = {
   to:
