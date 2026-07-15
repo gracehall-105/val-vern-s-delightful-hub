@@ -269,12 +269,12 @@ export function AppShell() {
           ))}
         </nav>
 
-        <div className="border-t border-border py-0.5 px-3">
-          <div className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start"].join(" ")}>
+        <div className="border-t border-border h-16 md:h-20 px-3 flex items-center">
+          <div className={["flex items-center w-full", sidebarCollapsed ? "justify-center" : "justify-start"].join(" ")}>
             <img
               src={voyaLogo.url}
               alt="Voya"
-              className={sidebarCollapsed ? "h-20 w-auto object-contain" : "h-28 w-auto object-contain"}
+              className={sidebarCollapsed ? "h-10 w-auto object-contain" : "h-12 md:h-14 w-auto object-contain"}
             />
           </div>
         </div>
