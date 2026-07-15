@@ -127,15 +127,15 @@
     scroll-behavior: smooth;
   }
 
-  html, body {
+  * {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     display: none;
   }
+
 
   body {
     background-color: var(--color-background);
