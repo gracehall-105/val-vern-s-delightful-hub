@@ -256,15 +256,16 @@ export function AppShell() {
           ))}
         </nav>
 
-        <div className="border-t border-border p-3">
+        <div className="border-t border-border p-4">
           <div className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start px-1"].join(" ")}>
             <img
-              src={sidebarCollapsed ? voyaLogo.url : voyaTagline.url}
-              alt="Voya — Plan. Invest. Protect."
-              className={sidebarCollapsed ? "h-5 w-auto object-contain" : "h-6 w-auto object-contain"}
+              src={voyaLogo.url}
+              alt="Voya"
+              className={sidebarCollapsed ? "h-6 w-auto object-contain" : "h-9 w-auto object-contain"}
             />
           </div>
         </div>
+
       </aside>
 
       {/* Main */}
