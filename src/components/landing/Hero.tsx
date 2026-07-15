@@ -1,21 +1,32 @@
 import valSquirrel from "@/assets/val-squirrel.png";
 import vernRabbit from "@/assets/vern-rabbit.png";
 import { Butterfly } from "./Butterfly";
+import { useCompanies, usePrompts } from "@/lib/queries";
 
-const evidence = [
-  {
-    stat: "0 / 9",
-    body: "Generic retirement prompts where Voya is cited. Fidelity, Schwab, and Vanguard dominate all of them.",
-  },
-  {
-    stat: "67%",
-    body: "Voya only appears when someone already knows our name — on brand queries only.",
-  },
-  {
-    stat: "30%",
-    body: "Of web traffic will bypass traditional search by 2028, per Gartner. This isn't future — it's now.",
-  },
-];
+function useVoyaSom(branding: "branded" | "unbranded") {
+  const companiesQ = useCompanies(branding);
+  const promptsQ = usePrompts();
+  const companies = (companiesQ.data as any)?.companies as
+    | Array<{ company: string; share_pct: number }>
+    | undefined;
+  const voya = companies?.find(
+    (c) => c.company?.toLowerCase() === "voya",
+  );
+  const prompts = promptsQ.data as
+    | Array<{ branding?: string }>
+    | undefined;
+  const promptCount = prompts?.filter((p) => p.branding === branding).length;
+  return {
+    sharePct: voya?.share_pct,
+    promptCount,
+    loading: companiesQ.isLoading || promptsQ.isLoading,
+  };
+}
+
+function formatPct(n?: number) {
+  if (n === undefined || n === null || Number.isNaN(n)) return "—";
+  return `${Math.round(n)}%`;
+}
 
 export function Hero() {
   return (
