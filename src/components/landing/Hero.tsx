@@ -47,10 +47,6 @@ export function Hero() {
           ? `Voya's Share of Model across ${branded.promptCount} branded prompts — where someone already searched for us by name.`
           : "Voya's Share of Model across the branded prompt universe — where someone already searched for us by name.",
     },
-    {
-      stat: "30%",
-      body: "Of web traffic will bypass traditional search by 2028, per Gartner. This isn't future — it's now.",
-    },
   ];
 
   return (
