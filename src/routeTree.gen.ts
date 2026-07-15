@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppValidationRouteImport } from './routes/app.validation'
 import { Route as AppScoreRouteImport } from './routes/app.score'
 import { Route as AppProveRouteImport } from './routes/app.prove'
 import { Route as AppModelsRouteImport } from './routes/app.models'
@@ -34,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppValidationRoute = AppValidationRouteImport.update({
+  id: '/validation',
+  path: '/validation',
   getParentRoute: () => AppRoute,
 } as any)
 const AppScoreRoute = AppScoreRouteImport.update({
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/app/models': typeof AppModelsRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/validation': typeof AppValidationRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/app/models': typeof AppModelsRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/validation': typeof AppValidationRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/app/models': typeof AppModelsRoute
   '/app/prove': typeof AppProveRoute
   '/app/score': typeof AppScoreRoute
+  '/app/validation': typeof AppValidationRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/app/models'
     | '/app/prove'
     | '/app/score'
+    | '/app/validation'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/app/models'
     | '/app/prove'
     | '/app/score'
+    | '/app/validation'
     | '/app'
   id:
     | '__root__'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/app/models'
     | '/app/prove'
     | '/app/score'
+    | '/app/validation'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/validation': {
+      id: '/app/validation'
+      path: '/validation'
+      fullPath: '/app/validation'
+      preLoaderRoute: typeof AppValidationRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/score': {
@@ -253,6 +272,7 @@ interface AppRouteChildren {
   AppModelsRoute: typeof AppModelsRoute
   AppProveRoute: typeof AppProveRoute
   AppScoreRoute: typeof AppScoreRoute
+  AppValidationRoute: typeof AppValidationRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -265,6 +285,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppModelsRoute: AppModelsRoute,
   AppProveRoute: AppProveRoute,
   AppScoreRoute: AppScoreRoute,
+  AppValidationRoute: AppValidationRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
