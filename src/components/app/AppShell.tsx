@@ -174,8 +174,8 @@ export function AppShell() {
       >
         <div
           className={[
-            "border-b border-border dark:border-white/10 h-14 md:h-16 dark:bg-beacon-black shrink-0",
-            sidebarCollapsed ? "flex flex-col items-center justify-center gap-2 px-2 py-2" : "flex items-center justify-between pl-3 pr-3",
+            "border-b border-border dark:border-white/10 h-9 md:h-10 dark:bg-beacon-black shrink-0",
+            sidebarCollapsed ? "flex flex-col items-center justify-center gap-1 px-2 py-1" : "flex items-center justify-between pl-2.5 pr-2.5",
           ].join(" ")}
         >
           <Link to="/" className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start"].join(" ")}>
@@ -183,22 +183,22 @@ export function AppShell() {
               <img
                 src={lighthouseIcon.url}
                 alt="Beacon"
-                className="object-contain dark:invert h-7 w-auto"
+                className="object-contain dark:invert h-5 w-auto"
               />
             ) : (
               <img
                 src={beaconLogoLockup.url}
                 alt="Beacon"
-                className="object-contain dark:invert h-full max-h-[36px] w-auto"
+                className="object-contain dark:invert h-full max-h-[24px] w-auto"
               />
             )}
           </Link>
           <button
             onClick={() => setSidebarCollapsed((v) => !v)}
             title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className="h-8 w-8 rounded-lg hover:bg-secondary text-foreground/60 hover:text-foreground transition-colors grid place-items-center"
+            className="h-7 w-7 rounded-lg hover:bg-secondary text-foreground/60 hover:text-foreground transition-colors grid place-items-center"
           >
-            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
+            {sidebarCollapsed ? <PanelRight className="h-3.5 w-3.5" /> : <PanelLeft className="h-3.5 w-3.5" />}
           </button>
         </div>
 
