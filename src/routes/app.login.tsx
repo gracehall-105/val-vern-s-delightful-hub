@@ -48,7 +48,7 @@ function LoginPage() {
             alt="Beacon by Voya"
             className="h-[25.5rem] w-auto"
           />
-          <p className="mt-1 mb-3 text-sm text-gray-600">Sign in with your Voya credentials</p>
+          <p className="mt-0 mb-2 text-sm text-gray-600">Sign in with your Voya credentials</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
