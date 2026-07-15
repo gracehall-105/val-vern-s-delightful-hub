@@ -46,19 +46,10 @@ function Create() {
               </p>
               <span className="text-[11px] text-muted-foreground">{c.count}</span>
             </div>
-            <div className="mt-3 space-y-3">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="rounded-xl border border-border bg-background p-3">
-                  <div className="h-2.5 w-3/4 rounded bg-secondary" />
-                  <div className="mt-2 h-2 w-1/2 rounded bg-secondary/70" />
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                      —
-                    </span>
-                    <div className="h-5 w-5 rounded-full bg-gradient-voya" />
-                  </div>
-                </div>
-              ))}
+            <div className="mt-3 grid place-items-center h-[340px] rounded-xl border border-dashed border-border/70 text-center px-3">
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                No items yet.<br />Briefs will appear here once the pipeline is connected.
+              </p>
             </div>
           </div>
         ))}

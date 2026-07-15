@@ -28,7 +28,7 @@ function CommandCenter() {
       })
       .catch(() => {
         if (cancelled) return;
-        setError("Backend not connected yet — showing placeholder.");
+        setError("Live signals unavailable — connect the backend to populate.");
         setLoading(false);
       });
     return () => {
@@ -64,17 +64,7 @@ function CommandCenter() {
           <Placeholder label="Trend chart" height={220} />
         </Panel>
         <Panel title="Competitor leaderboard" hint="Updated daily">
-          <ul className="space-y-3">
-            {["Fidelity", "Vanguard", "Schwab", "T. Rowe Price", "Voya"].map((n) => (
-              <li key={n} className="text-sm">
-                <div className="flex justify-between text-xs">
-                  <span className={n === "Voya" ? "font-semibold" : ""}>{n}</span>
-                  <span className="text-muted-foreground">—%</span>
-                </div>
-                <div className="mt-1.5 h-1.5 rounded-full bg-secondary" />
-              </li>
-            ))}
-          </ul>
+          <Placeholder label="Rankings appear once live model runs return" height={180} />
         </Panel>
       </div>
 

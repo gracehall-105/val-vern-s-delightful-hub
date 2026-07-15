@@ -16,31 +16,32 @@ interface ActivationPanelProps {
 }
 
 export function ActivationPanel({ prompt, promptId, voyaShare, onClose }: ActivationPanelProps) {
-  const [phase, setPhase] = useState<"loading" | "review" | "confirmed">("loading");
+  const [phase, setPhase] = useState<"loading" | "review" | "confirmed" | "empty">("loading");
   const [content, setContent] = useState<GeneratedContent | null>(null);
   const [selectedDest, setSelectedDest] = useState<string | null>(null);
   const [showArticle, setShowArticle] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
     async function loadContent() {
       try {
         const res = await fetch(`${API_BASE}/content/activate?prompt_id=${promptId}`);
-        if (res.ok) {
-          const data = await res.json();
-          setContent(data.content);
-          setSelectedDest(data.content.destinations?.[0]?.id || "reddit");
-        } else {
-          setContent(getFallbackContent());
-          setSelectedDest("reddit");
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+        setContent(data.content);
+        setSelectedDest(data.content?.destinations?.[0]?.id ?? null);
+        setPhase("review");
       } catch {
-        setContent(getFallbackContent());
-        setSelectedDest("reddit");
+        if (cancelled) return;
+        setContent(null);
+        setPhase("empty");
       }
-      setPhase("review");
     }
-    const t = setTimeout(loadContent, 1200);
-    return () => clearTimeout(t);
+    loadContent();
+    return () => {
+      cancelled = true;
+    };
   }, [promptId]);
 
   const selectedDestination = content?.destinations?.find((d) => d.id === selectedDest);
@@ -77,6 +78,17 @@ export function ActivationPanel({ prompt, promptId, voyaShare, onClose }: Activa
               <p className="text-xs text-muted-foreground">Generating content recommendation…</p>
             </div>
           )}
+
+          {phase === "empty" && (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <p className="text-sm font-medium text-foreground mb-1">No draft available yet</p>
+              <p className="text-xs text-muted-foreground max-w-xs">
+                The activation service didn't return a recommendation for this prompt. Try again once the backend is connected.
+              </p>
+            </div>
+          )}
+
+
 
           {phase === "review" && content && (
             <div className="space-y-5">
@@ -227,44 +239,3 @@ export function ActivationPanel({ prompt, promptId, voyaShare, onClose }: Activa
   );
 }
 
-function getFallbackContent(): GeneratedContent {
-  return {
-    title: "How to roll over your 401(k) to an IRA",
-    slug: "retirement/how-to-roll-over-401k-to-ira",
-    meta_description:
-      "Learn how to roll over your 401(k) to an IRA step by step. Understand direct vs indirect rollovers, tax rules, and timeline after leaving your job.",
-    body_html: `<h2>How to roll over your 401(k) to an IRA</h2>
-<p>When you leave a job, you typically have 60 days to decide what to do with your 401(k). Rolling it over to an IRA is one of the most common choices.</p>
-<h2>Direct vs. indirect rollover</h2>
-<p><strong>Direct rollover (recommended):</strong> Funds transfer institution-to-institution. No withholding, no 60-day deadline.</p>
-<p><strong>Indirect rollover:</strong> You receive a check with 20% withheld; must redeposit within 60 days.</p>`,
-    word_count: 1150,
-    faq_count: 5,
-    compliance_notes: "No performance guarantees • 'Consult advisor' present • No absolute claims",
-    target_keywords: ["401k to IRA rollover", "direct rollover", "rollover IRA"],
-    schema_types: ["Article", "FAQPage"],
-    destinations: [
-      {
-        id: "reddit",
-        name: "Reddit r/personalfinance",
-        why: "GPT-4o cites Reddit threads for this query 34% of the time",
-        url: "https://reddit.com/r/personalfinance",
-        type: "recommended",
-      },
-      {
-        id: "linkedin",
-        name: "LinkedIn Article",
-        why: "Professional finance content gets cited in Copilot answers",
-        url: "https://linkedin.com",
-        type: "alternative",
-      },
-      {
-        id: "voya",
-        name: "Voya.com Blog",
-        why: "Builds domain authority over time; low immediate AI citation rate",
-        url: "https://voya.com/blog",
-        type: "alternative",
-      },
-    ],
-  };
-}
