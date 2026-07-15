@@ -40,7 +40,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-6">
+    <div className="min-h-screen flex flex-col items-center justify-start bg-white pt-12 pb-6">
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center">
           <img
