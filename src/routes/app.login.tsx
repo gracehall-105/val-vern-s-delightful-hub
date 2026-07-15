@@ -43,11 +43,13 @@ function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center mb-8">
-          <img
-            src={beaconLogoSignin.url}
-            alt="Beacon by Voya"
-            className="h-[21rem] w-auto"
-          />
+          <div className="bg-white rounded-2xl p-8 shadow-2xl shadow-black/30">
+            <img
+              src={beaconLogoSignin.url}
+              alt="Beacon by Voya"
+              className="h-[21rem] w-auto"
+            />
+          </div>
           <p className="mt-4 text-sm text-white/60">Sign in with your Voya credentials</p>
         </div>
 
