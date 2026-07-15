@@ -273,17 +273,17 @@ export function AppShell() {
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-30 h-16 md:h-32 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
+        <header className="sticky top-0 z-30 h-16 md:h-20 bg-card/80 backdrop-blur border-b border-border flex items-center gap-3 px-4 md:px-6">
           <div className="md:hidden flex items-center">
-            <img src={beaconLogoLockup.url} alt="Beacon" className="h-[34px] w-auto object-contain dark:invert" />
+            <img src={beaconLogoLockup.url} alt="Beacon" className="h-[28px] w-auto object-contain dark:invert" />
           </div>
           <div>
-            <h1 className="font-display text-xl md:text-2xl leading-none">{title}</h1>
-            <p className="text-[11px] uppercase tracking-widest text-muted-foreground mt-1">
+            <h1 className="font-display text-lg md:text-xl leading-none">{title}</h1>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-0.5">
               Internal use only
             </p>
           </div>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
             <Link
               to={"/app/how-it-works" as any}
               className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-voya-orange transition-colors px-2 py-1.5 rounded-md"
