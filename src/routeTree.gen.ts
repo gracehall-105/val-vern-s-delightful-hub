@@ -19,6 +19,7 @@ import { Route as AppMeasureRouteImport } from './routes/app.measure'
 import { Route as AppListenRouteImport } from './routes/app.listen'
 import { Route as AppHowItWorksRouteImport } from './routes/app.how-it-works'
 import { Route as AppCreateRouteImport } from './routes/app.create'
+import { Route as AppChannelsRouteImport } from './routes/app.channels'
 
 const AppRoute = AppRouteImport.update({
   id: '/app',
@@ -70,10 +71,16 @@ const AppCreateRoute = AppCreateRouteImport.update({
   path: '/create',
   getParentRoute: () => AppRoute,
 } as any)
+const AppChannelsRoute = AppChannelsRouteImport.update({
+  id: '/channels',
+  path: '/channels',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/channels'
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
@@ -123,6 +133,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/channels'
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
@@ -135,6 +146,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/channels'
     | '/app/create'
     | '/app/how-it-works'
     | '/app/listen'
@@ -222,10 +234,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCreateRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/channels': {
+      id: '/app/channels'
+      path: '/channels'
+      fullPath: '/app/channels'
+      preLoaderRoute: typeof AppChannelsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppChannelsRoute: typeof AppChannelsRoute
   AppCreateRoute: typeof AppCreateRoute
   AppHowItWorksRoute: typeof AppHowItWorksRoute
   AppListenRoute: typeof AppListenRoute
@@ -237,6 +257,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppChannelsRoute: AppChannelsRoute,
   AppCreateRoute: AppCreateRoute,
   AppHowItWorksRoute: AppHowItWorksRoute,
   AppListenRoute: AppListenRoute,
