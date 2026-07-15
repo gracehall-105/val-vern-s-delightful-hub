@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Ear,
+  Search,
   Sparkles,
   FileEdit,
   TrendingUp,
