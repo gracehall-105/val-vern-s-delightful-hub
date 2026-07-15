@@ -1,22 +1,17 @@
-import beaconLogoSrc from "@/assets/beacon-logo.png";
-import beaconWordmarkSrc from "@/assets/beacon-wordmark.png";
+import voyaLogoSrc from "@/assets/voya-logo.png.asset.json";
 
-type Props = { className?: string; tone?: "dark" | "light" | "orange"; height?: number; variant?: "logo" | "wordmark" };
+type Props = { className?: string; height?: number };
 
 /**
- * Beacon brand lockup. `variant="logo"` renders the icon+wordmark lockup;
- * `variant="wordmark"` renders the wordmark only.
+ * Voya corporate wordmark. Used as a parent-company mark on the Beacon site.
  */
-export function VoyaLogo({ className = "", tone = "dark", height = 32, variant = "logo" }: Props) {
-  const src = variant === "wordmark" ? beaconWordmarkSrc : beaconLogoSrc;
-  const filter = tone === "light" ? "brightness(0) invert(1)" : undefined;
-
+export function VoyaLogo({ className = "", height = 28 }: Props) {
   return (
     <img
-      src={src}
-      alt="Beacon"
+      src={voyaLogoSrc.url}
+      alt="Voya"
       height={height}
-      style={{ height, width: "auto", filter, display: "block" }}
+      style={{ height, width: "auto", display: "block" }}
       className={className}
     />
   );

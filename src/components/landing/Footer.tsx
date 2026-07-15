@@ -4,9 +4,9 @@ export function Footer() {
   return (
     <footer className="bg-background border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div>
-          <VoyaLogo />
-          <p className="mt-2 text-sm text-muted-foreground font-medium tracking-wide">
+        <div className="flex flex-col gap-2">
+          <VoyaLogo height={32} />
+          <p className="text-sm text-muted-foreground font-medium tracking-wide">
             Plan. Invest. Protect.
           </p>
         </div>
