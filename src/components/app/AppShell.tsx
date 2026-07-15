@@ -156,12 +156,13 @@ export function AppShell() {
           sidebarCollapsed ? "w-16" : "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-32 border-b border-border px-3">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={lighthouseIcon} alt="" className={`object-contain dark:invert mt-2 ${sidebarCollapsed ? "h-12 w-12" : "h-[96px] w-[96px]"}`} />
-            {!sidebarCollapsed && (
-              <img src={beaconWordmark} alt="Beacon" className="h-16 w-auto object-contain dark:invert" />
-            )}
+        <div className="flex items-center justify-center h-24 border-b border-border px-3">
+          <Link to="/" className="flex items-center justify-center w-full">
+            <img
+              src={beaconLogoLockup.url}
+              alt="Beacon"
+              className={`object-contain dark:invert ${sidebarCollapsed ? "h-12 w-auto" : "h-full max-h-20 w-auto"}`}
+            />
           </Link>
         </div>
 
