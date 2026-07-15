@@ -31,7 +31,7 @@ const loop = [
   {
     icon: Sparkles,
     label: "Measure",
-    body: "Beacon runs your prompts across GPT-5 and Claude Haiku today (more models coming) and records Voya's share vs. competitors. Filter by audience, branded/unbranded, category, and week.",
+    body: "Beacon runs your prompts across GPT-5 and Claude Haiku and records Voya's share vs. competitors. Filter by audience, branded/unbranded, category, and week.",
   },
   {
     icon: FileEdit,
@@ -63,7 +63,6 @@ const comingSoon = [
   "Direct publish to LinkedIn, X, Voya blog, and email",
   "Chatbot transcripts and App Store reviews as Listen sources",
   "Branded-source breakdowns in Opportunity Forecast",
-  "Additional models (Gemini, Perplexity)",
 ];
 
 function HowItWorks() {
