@@ -146,7 +146,7 @@ export function ModelsView() {
               let modelsCited = 0;
               return (
                 <div key={pid} className="grid grid-cols-12 gap-3 px-4 py-3 border-t border-border items-center">
-                  <div className="col-span-5 text-sm text-foreground/80 truncate" title={ptext}>{ptext}</div>
+                  <div className="col-span-6 text-sm text-foreground/80 truncate" title={ptext}>{ptext}</div>
                   {MODEL_ORDER.map((mid) => {
                     const ms = shareMap.get(mid);
                     const pp = (ms?.per_prompt || []).find((p) => p.prompt_id === pid);
@@ -154,7 +154,7 @@ export function ModelsView() {
                     const connected = connectedIds.has(mid);
                     if (connected && voyaShare > 0) modelsCited++;
                     return (
-                      <div key={mid} className="col-span-1 flex justify-center">
+                      <div key={mid} className="col-span-2 flex justify-center">
                         {!connected ? (
                           <span className="h-3 w-3 rounded-full bg-secondary/50" title="Not connected" />
                         ) : voyaShare > 0 ? (
