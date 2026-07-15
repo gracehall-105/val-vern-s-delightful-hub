@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
+import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
 
 type Item = {
   to:
@@ -138,7 +139,7 @@ export function AppShell() {
       {tooltip && (
         <div
           className="fixed z-[100] pointer-events-none hidden md:block"
-          style={{ left: 292, top: tooltip.top, transform: "translateY(-50%)" }}
+          style={{ left: sidebarCollapsed ? 84 : 292, top: tooltip.top, transform: "translateY(-50%)" }}
         >
           <div className="relative ml-2 max-w-xs">
             <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rotate-45 rounded-[2px]" />
@@ -153,16 +154,29 @@ export function AppShell() {
       <aside
         className={[
           "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
-          "w-72",
+          sidebarCollapsed ? "w-20" : "w-72",
         ].join(" ")}
       >
-        <div className="flex items-center justify-start h-32 border-b border-border pl-4 pr-3">
-          <Link to="/" className="flex items-center justify-start w-full">
-            <img
-              src={beaconLogoLockup.url}
-              alt="Beacon"
-              className="object-contain dark:invert h-full max-h-[58px] w-auto"
-            />
+        <div
+          className={[
+            "flex items-center border-b border-border h-32",
+            sidebarCollapsed ? "justify-center px-3" : "justify-start pl-4 pr-3",
+          ].join(" ")}
+        >
+          <Link to="/" className="flex items-center justify-center">
+            {sidebarCollapsed ? (
+              <img
+                src={lighthouseIcon.url}
+                alt="Beacon"
+                className="object-contain dark:invert h-10 w-auto"
+              />
+            ) : (
+              <img
+                src={beaconLogoLockup.url}
+                alt="Beacon"
+                className="object-contain dark:invert h-full max-h-[58px] w-auto"
+              />
+            )}
           </Link>
         </div>
 
@@ -181,6 +195,7 @@ export function AppShell() {
                   const isPhase2 = phase === 2;
                   const baseClass = [
                     "w-full group flex items-center rounded-lg py-2 text-sm transition-colors gap-3 px-3",
+                    sidebarCollapsed ? "justify-center" : "justify-start",
                     isPhase2
                       ? "opacity-40 cursor-not-allowed text-foreground/50"
                       : on
