@@ -18,8 +18,8 @@ import {
   PanelLeft,
   PanelRight,
 } from "lucide-react";
-import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
+import lighthouseIcon from "@/assets/beacon-lighthouse.png";
 
 type Item = {
   to:
