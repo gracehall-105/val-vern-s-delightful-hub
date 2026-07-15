@@ -18,8 +18,8 @@ import {
   PanelLeft,
   PanelRight,
 } from "lucide-react";
-import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
+import lighthouseIcon from "@/assets/beacon-lighthouse.png";
 
 type Item = {
   to:
@@ -159,9 +159,8 @@ export function AppShell() {
         <div className="flex items-center justify-between h-16 border-b border-border px-3">
           {!sidebarCollapsed && (
             <Link to="/" className="flex items-center gap-2">
-              <VoyaLogo height={22} />
-              <span className="h-4 w-px bg-border" />
-              <span className="text-xs font-semibold tracking-wide text-foreground/80">Beacon</span>
+              <img src={lighthouseIcon} alt="" className="h-6 w-6 object-contain dark:invert" />
+              <span className="text-sm font-display tracking-wide text-foreground">Beacon</span>
             </Link>
           )}
           <button
@@ -251,8 +250,9 @@ export function AppShell() {
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
         <header className="sticky top-0 z-30 h-16 bg-card/80 backdrop-blur border-b border-border flex items-center gap-4 px-5 md:px-8">
-          <div className="md:hidden">
-            <VoyaLogo height={20} />
+          <div className="md:hidden flex items-center gap-2">
+            <img src={lighthouseIcon} alt="" className="h-6 w-6 object-contain dark:invert" />
+            <span className="text-sm font-display">Beacon</span>
           </div>
           <div>
             <h1 className="font-display text-xl md:text-2xl leading-none">{title}</h1>
