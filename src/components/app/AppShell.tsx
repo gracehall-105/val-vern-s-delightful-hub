@@ -19,6 +19,15 @@ import {
   PanelRight,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User as UserIcon } from "lucide-react";
 import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
 import voyaTagline from "@/assets/voya-tagline.png.asset.json";
@@ -300,20 +309,53 @@ export function AppShell() {
             <button className="h-9 w-9 grid place-items-center rounded-full hover:bg-secondary text-foreground/70">
               <Settings className="h-4 w-4" />
             </button>
-            <button
-              onClick={signOut}
-              title="Sign out"
-              className="h-9 w-9 grid place-items-center rounded-full hover:bg-secondary text-foreground/70"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-            <div
-              className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold"
-              title={currentUser?.name ?? "Account"}
-              aria-label={currentUser?.name ?? "Account"}
-            >
-              {currentUser?.initials ?? "MK"}
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold ring-offset-background focus:outline-none focus:ring-2 focus:ring-voya-orange focus:ring-offset-2"
+                  aria-label={currentUser?.name ?? "Account menu"}
+                >
+                  {currentUser?.initials ?? "MK"}
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-64">
+                <DropdownMenuLabel className="flex flex-col gap-0.5 py-2">
+                  <span className="text-sm font-semibold text-foreground">
+                    {currentUser?.name ?? "Account"}
+                  </span>
+                  {currentUser?.email && (
+                    <span className="text-xs font-normal text-muted-foreground truncate">
+                      {currentUser.email}
+                    </span>
+                  )}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem disabled className="gap-2">
+                  <UserIcon className="h-4 w-4" />
+                  Profile
+                  <span className="ml-auto text-[10px] uppercase tracking-wide text-muted-foreground">Soon</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled className="gap-2">
+                  <Settings className="h-4 w-4" />
+                  Settings
+                  <span className="ml-auto text-[10px] uppercase tracking-wide text-muted-foreground">Soon</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="gap-2">
+                  <Link to="/app/how-it-works">
+                    <HelpCircle className="h-4 w-4" />
+                    How it works
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onSelect={signOut}
+                  className="gap-2 text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
 
