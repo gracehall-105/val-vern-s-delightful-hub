@@ -46,7 +46,7 @@ function LoginPage() {
           <img
             src={beaconLogoSignin.url}
             alt="Beacon by Voya"
-            className="h-28 w-auto"
+            className="h-[21rem] w-auto"
           />
           <p className="mt-4 text-sm text-white/60">Sign in with your Voya credentials</p>
         </div>
