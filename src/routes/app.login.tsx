@@ -42,7 +42,7 @@ function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-sm mx-4">
-        <div className="flex flex-col items-center mt-12 mb-8">
+        <div className="flex flex-col items-center mt-6 mb-8">
           <img
             src={beaconLogoSignin.url}
             alt="Beacon by Voya"
@@ -88,7 +88,7 @@ function LoginPage() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-[#FF4B00] hover:bg-[#e04400] text-white font-medium py-2.5 text-sm transition-colors cursor-pointer"
+            className="w-full rounded-lg bg-[#FF570C] hover:bg-[#e64e00] text-white font-medium py-2.5 text-sm transition-colors cursor-pointer"
           >
             Sign In
           </button>
