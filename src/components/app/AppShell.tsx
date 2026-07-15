@@ -17,7 +17,7 @@ import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 type Item = {
-  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/channels" | "/app/score" | "/app/prove";
+  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/channels" | "/app/score" | "/app/prove" | "/app/validation";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
@@ -52,7 +52,10 @@ const groups: Group[] = [
   },
   {
     label: "Prove",
-    items: [{ to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1 }],
+    items: [
+      { to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1 },
+      { to: "/app/validation", label: "Data validation", icon: Search, phase: 1 },
+    ],
   },
 ];
 
