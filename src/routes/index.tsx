@@ -4,12 +4,12 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { TrustStrip } from "@/components/landing/TrustStrip";
-import { LoopSection } from "@/components/landing/LoopSection";
+import { LoopStrip } from "@/components/landing/LoopSection";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { Personas } from "@/components/landing/Personas";
 import { DoesDoesnt } from "@/components/landing/DoesDoesnt";
 import { Roadmap } from "@/components/landing/Roadmap";
-
+import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { JourneyDivider } from "@/components/landing/JourneyDivider";
 
 export const Route = createFileRoute("/")({
