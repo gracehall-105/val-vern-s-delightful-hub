@@ -19,6 +19,15 @@ import {
   PanelRight,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User as UserIcon } from "lucide-react";
 import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
 import voyaTagline from "@/assets/voya-tagline.png.asset.json";
