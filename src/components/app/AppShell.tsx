@@ -45,6 +45,7 @@ const groups: Group[] = [
     label: "Create",
     items: [
       { to: "/app/create", label: "Content pipeline", icon: FileEdit, phase: 1 },
+      { to: "/app/channels", label: "Channel strategy", icon: Compass, phase: 1 },
       { to: "/app/score", label: "Content scoring", icon: Gauge, phase: 2 },
     ],
   },
