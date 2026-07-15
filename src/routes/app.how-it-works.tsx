@@ -204,8 +204,8 @@ function HowItWorks() {
               been backfilled yet.
             </p>
             <p>
-              VoC clusters in Listen come from the warehouse too; promoting a cluster registers it
-              as a tracked prompt so Measure and Prove can score it going forward.
+              SEO and Web Vitals signals for Discover will land first from the warehouse; VoC
+              clusters and the Promote → Measure flow will follow once those integrations are live.
             </p>
             <p>
               Nothing is auto-published. Every piece needs a human click before it leaves Voya —
