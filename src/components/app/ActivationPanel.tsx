@@ -79,6 +79,17 @@ export function ActivationPanel({ prompt, promptId, voyaShare, onClose }: Activa
             </div>
           )}
 
+          {phase === "empty" && (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <p className="text-sm font-medium text-foreground mb-1">No draft available yet</p>
+              <p className="text-xs text-muted-foreground max-w-xs">
+                The activation service didn't return a recommendation for this prompt. Try again once the backend is connected.
+              </p>
+            </div>
+          )}
+
+
+
           {phase === "review" && content && (
             <div className="space-y-5">
               <div className="rounded-xl border border-border bg-background/60 p-4">
