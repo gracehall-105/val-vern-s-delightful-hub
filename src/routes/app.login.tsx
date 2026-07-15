@@ -42,7 +42,7 @@ function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-sm mx-4">
-        <div className="flex flex-col items-center mb-8">
+        <div className="flex flex-col items-center mt-12 mb-8">
           <img
             src={beaconLogoSignin.url}
             alt="Beacon by Voya"
