@@ -23,6 +23,7 @@ import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
 import voyaTagline from "@/assets/voya-tagline.png.asset.json";
 import voyaLogo from "@/assets/voya-logo.png.asset.json";
+import { useCurrentUser } from "@/lib/currentUser";
 
 type Item = {
   to:
@@ -113,6 +114,7 @@ export function AppShell() {
   }, [router, isLoginRoute]);
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const currentUser = useCurrentUser();
 
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -305,8 +307,12 @@ export function AppShell() {
             >
               <LogOut className="h-4 w-4" />
             </button>
-            <div className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold">
-              MK
+            <div
+              className="ml-1 h-9 w-9 rounded-full bg-gradient-voya grid place-items-center text-white text-xs font-semibold"
+              title={currentUser?.name ?? "Account"}
+              aria-label={currentUser?.name ?? "Account"}
+            >
+              {currentUser?.initials ?? "MK"}
             </div>
           </div>
         </header>
