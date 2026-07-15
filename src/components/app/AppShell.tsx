@@ -159,7 +159,7 @@ export function AppShell() {
       >
         <div className="flex items-center justify-center h-16 border-b border-border px-3">
           <Link to="/" className="flex items-center gap-2">
-            <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
+            <img src={lighthouseIcon} alt="" className={`object-contain dark:invert mt-2 ${sidebarCollapsed ? "h-12 w-12" : "h-[96px] w-[96px]"}`} />
             {!sidebarCollapsed && (
               <img src={beaconWordmark} alt="Beacon" className="h-14 w-auto object-contain dark:invert" />
             )}
