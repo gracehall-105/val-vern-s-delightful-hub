@@ -22,7 +22,7 @@ export function Nav() {
           to="/app"
           className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-5 py-2 text-sm font-medium shadow-soft hover:shadow-lg transition-shadow"
         >
-          Enter Beacon
+          Enter Voya Beacon
         </Link>
       </div>
     </header>
