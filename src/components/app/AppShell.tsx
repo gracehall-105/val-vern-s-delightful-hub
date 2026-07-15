@@ -21,6 +21,8 @@ import {
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import lighthouseIcon from "@/assets/beacon-lighthouse-icon.png.asset.json";
+import voyaTagline from "@/assets/voya-tagline.png.asset.json";
+import voyaLogo from "@/assets/voya-logo.png.asset.json";
 
 type Item = {
   to:
@@ -247,7 +249,14 @@ export function AppShell() {
           ))}
         </nav>
 
-        <div className="border-t border-border p-3">
+        <div className="border-t border-border p-3 space-y-3">
+          <div className={["flex items-center", sidebarCollapsed ? "justify-center" : "justify-start px-1"].join(" ")}>
+            <img
+              src={sidebarCollapsed ? voyaLogo.url : voyaTagline.url}
+              alt="Voya — Plan. Invest. Protect."
+              className={sidebarCollapsed ? "h-5 w-auto object-contain" : "h-6 w-auto object-contain"}
+            />
+          </div>
           <button
             onClick={() => setSidebarCollapsed((v) => !v)}
             title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
