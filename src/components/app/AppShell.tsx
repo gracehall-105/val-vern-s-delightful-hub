@@ -139,7 +139,7 @@ export function AppShell() {
       {tooltip && (
         <div
           className="fixed z-[100] pointer-events-none hidden md:block"
-          style={{ left: sidebarCollapsed ? 72 : 260, top: tooltip.top, transform: "translateY(-50%)" }}
+          style={{ left: sidebarCollapsed ? 72 : 324, top: tooltip.top, transform: "translateY(-50%)" }}
         >
           <div className="relative ml-2 max-w-xs">
             <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rotate-45 rounded-[2px]" />
@@ -154,12 +154,12 @@ export function AppShell() {
       <aside
         className={[
           "hidden md:flex shrink-0 flex-col border-r border-border bg-card transition-all duration-300",
-          sidebarCollapsed ? "w-16" : "w-64",
+          sidebarCollapsed ? "w-16" : "w-80",
         ].join(" ")}
       >
-        <div className="flex items-center justify-center h-16 border-b border-border px-3">
+        <div className="flex items-center justify-center h-28 border-b border-border px-3">
           <Link to="/" className="flex items-center gap-2">
-            <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
+            <img src={lighthouseIcon} alt="" className={`object-contain dark:invert mt-2 ${sidebarCollapsed ? "h-12 w-12" : "h-[96px] w-[96px]"}`} />
             {!sidebarCollapsed && (
               <img src={beaconWordmark} alt="Beacon" className="h-14 w-auto object-contain dark:invert" />
             )}
