@@ -162,7 +162,7 @@ export function ModelsView() {
                             {Math.round(voyaShare)}
                           </span>
                         ) : (
-                          <span className="h-3 w-3 rounded-full bg-red-500/20 border border-red-500/30" title="0%" />
+                          <span className="h-3 w-3 rounded-full bg-muted-foreground/30 border border-muted-foreground/40" title="0%" />
                         )}
                       </div>
                     );

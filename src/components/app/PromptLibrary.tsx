@@ -192,11 +192,7 @@ function PromptFolder({
         </div>
         <div className="flex items-center gap-3">
           {avgVoyaShare !== null && (
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-              avgVoyaShare > 10 ? 'bg-green-500/10 text-green-600' :
-              avgVoyaShare > 0 ? 'bg-yellow-500/10 text-yellow-600' :
-              'bg-red-500/10 text-red-600'
-            }`}>
+            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-voya-orange/10 text-voya-orange">
               Voya {avgVoyaShare}%
             </span>
           )}
@@ -229,11 +225,11 @@ function PromptFolder({
                   <div className="flex items-center gap-2">
                     <div className="w-16 h-1.5 rounded-full bg-foreground/[0.06] overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${voyaPct > 10 ? 'bg-green-500' : voyaPct > 0 ? 'bg-yellow-500' : 'bg-red-400'}`}
+                        className="h-full rounded-full bg-voya-orange"
                         style={{ width: `${Math.min(voyaPct, 100)}%` }}
                       />
                     </div>
-                    <span className={`text-xs font-semibold ${voyaPct > 10 ? 'text-green-600' : voyaPct > 0 ? 'text-yellow-600' : 'text-red-500'}`}>
+                    <span className="text-xs font-semibold text-voya-orange">
                       {voyaPct}%
                     </span>
                   </div>
@@ -382,7 +378,7 @@ export function PromptLibrary() {
         <span className="font-semibold text-foreground">{filtered.length} prompts</span>
         <span>across {grouped.size} categories</span>
         <span>·</span>
-        <span>Voya cited in <span className={totalVoyaCited > 0 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'}>{totalVoyaCited}</span> of {prompts.length}</span>
+        <span>Voya cited in <span className="text-voya-orange font-semibold">{totalVoyaCited}</span> of {prompts.length}</span>
       </div>
 
       {loading ? (
