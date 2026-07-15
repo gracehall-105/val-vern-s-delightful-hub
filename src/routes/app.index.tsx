@@ -7,19 +7,27 @@ export const Route = createFileRoute("/app/")({
 
 function CommandCenterRoute() {
   const navigate = useNavigate();
-  const onNavigate = (view: string) => {
-    const map: Record<string, string> = {
-      "market-trends": "/app/trends",
-      "prompt-library": "/app/measure",
-      operations: "/app/create",
-      opportunities: "/app/opportunities",
-      models: "/app/models",
-      channels: "/app/channels",
-      listen: "/app/listen",
-      prove: "/app/prove",
-    };
-    const to = map[view] ?? `/app/${view}`;
-    navigate({ to });
-  };
-  return <CommandCenter onNavigate={onNavigate} />;
+  return (
+    <CommandCenter
+      onNavigate={(topic, articleType, rationale, contentId, targetGap) => {
+        navigate({
+          to: "/app/create",
+          search: { topic, articleType, rationale, contentId, targetGap } as any,
+        });
+      }}
+      onViewChange={(view) => {
+        const map: Record<string, string> = {
+          "market-trends": "/app/trends",
+          "prompt-library": "/app/measure",
+          operations: "/app/create",
+          opportunities: "/app/opportunities",
+          models: "/app/models",
+          channels: "/app/channels",
+          listen: "/app/listen",
+          prove: "/app/prove",
+        };
+        navigate({ to: (map[view] ?? `/app/${view}`) as any });
+      }}
+    />
+  );
 }
