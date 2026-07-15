@@ -5,6 +5,7 @@ import {
   Sparkles,
   Layers,
   FileEdit,
+  Compass,
   Gauge,
   TrendingUp,
   Search,
