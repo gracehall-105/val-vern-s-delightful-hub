@@ -174,7 +174,7 @@ export function AppShell() {
       >
         <div
           className={[
-            "border-b border-border h-16 md:h-20",
+            "border-b border-border dark:border-white/10 h-16 md:h-20 dark:bg-beacon-black",
             sidebarCollapsed ? "flex flex-col items-center justify-center gap-2 px-2 py-2" : "flex items-center justify-between pl-3 pr-3",
           ].join(" ")}
         >
