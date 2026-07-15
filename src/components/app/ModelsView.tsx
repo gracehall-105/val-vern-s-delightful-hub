@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from 'react';
 import { PageIntro, Panel } from './AppShell';
-import { API_BASE } from '../lib/api';
+import { API_BASE } from '@/lib/api';
 
 interface PromptShare {
   prompt_id: string;

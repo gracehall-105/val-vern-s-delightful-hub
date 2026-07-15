@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ShieldCheck, AlertCircle, Download, FileText, ArrowLeft, Loader2 } from 'lucide-react';
-import { API_BASE } from '../lib/api';
-import { VoyaLogo } from './landing/VoyaLogo';
+import { API_BASE } from '@/lib/api';
+import { VoyaLogo } from '@/components/landing/VoyaLogo';
 import { Panel } from './AppShell';
 
 interface Props {

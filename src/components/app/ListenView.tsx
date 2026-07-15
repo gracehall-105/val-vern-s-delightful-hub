@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PageIntro, Panel, Placeholder } from './AppShell';
-import { API_BASE } from '../lib/api';
+import { API_BASE } from '@/lib/api';
 
 interface VoCStats {
   total_questions: number;

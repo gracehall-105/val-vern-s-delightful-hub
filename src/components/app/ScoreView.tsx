@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { API_BASE } from '../lib/api';
+import { API_BASE } from '@/lib/api';
 import { PageIntro, Panel } from './AppShell';
 
 interface ScoreCheck {
