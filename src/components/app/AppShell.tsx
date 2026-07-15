@@ -114,6 +114,7 @@ export function AppShell() {
   }, [router, isLoginRoute]);
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const currentUser = useCurrentUser();
 
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
