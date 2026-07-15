@@ -180,8 +180,7 @@ export function AppShell() {
                   const on = isActive(item, path);
                   const isPhase2 = phase === 2;
                   const baseClass = [
-                    "w-full group flex items-center rounded-lg py-2 text-sm transition-colors",
-                    sidebarCollapsed ? "justify-center px-2" : "gap-3 px-3",
+                    "w-full group flex items-center rounded-lg py-2 text-sm transition-colors gap-3 px-3",
                     isPhase2
                       ? "opacity-40 cursor-not-allowed text-foreground/50"
                       : on
