@@ -40,22 +40,20 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center mb-8">
-          <div className="bg-white rounded-2xl p-8 shadow-2xl shadow-black/30">
-            <img
-              src={beaconLogoSignin.url}
-              alt="Beacon by Voya"
-              className="h-[21rem] w-auto"
-            />
-          </div>
-          <p className="mt-4 text-sm text-white/60">Sign in with your Voya credentials</p>
+          <img
+            src={beaconLogoSignin.url}
+            alt="Beacon by Voya"
+            className="h-[21rem] w-auto"
+          />
+          <p className="mt-4 text-sm text-gray-600">Sign in with your Voya credentials</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-xs font-medium text-white/70 mb-1.5">
+            <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1.5">
               Email
             </label>
             <input
@@ -66,12 +64,12 @@ function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@voya.com"
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF4B00]/50 focus:border-[#FF4B00]/50"
+              className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF4B00]/50 focus:border-[#FF4B00]/50"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-xs font-medium text-white/70 mb-1.5">
+            <label htmlFor="password" className="block text-xs font-medium text-gray-700 mb-1.5">
               Password
             </label>
             <input
@@ -82,11 +80,11 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF4B00]/50 focus:border-[#FF4B00]/50"
+              className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF4B00]/50 focus:border-[#FF4B00]/50"
             />
           </div>
 
-          {error && <p className="text-xs text-red-400">{error}</p>}
+          {error && <p className="text-xs text-red-600">{error}</p>}
 
           <button
             type="submit"
@@ -96,7 +94,7 @@ function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-[11px] text-white/30">Internal use only</p>
+        <p className="mt-6 text-center text-[11px] text-gray-400">Internal use only</p>
       </div>
     </div>
   );
