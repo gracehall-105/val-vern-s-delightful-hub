@@ -24,7 +24,7 @@ export const Route = createFileRoute("/app/how-it-works")({
 
 const loop = [
   {
-    icon: Ear,
+    icon: Search,
     label: "Discover",
     body: "SEO rankings and Web Vitals signals surface what the market is searching for and how Voya.com performs. VoC listening will join this step once those integrations are wired up.",
   },
