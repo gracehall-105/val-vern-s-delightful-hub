@@ -22,15 +22,12 @@ interface ModelConfig {
   Provider: string;
 }
 
-const MODEL_META: Record<string, { label: string; status: string }> = {
-  gpt4o: { label: 'ChatGPT (GPT-4o)', status: 'Live' },
-  claude: { label: 'Claude', status: 'Not connected' },
-  gemini: { label: 'Gemini', status: 'Not connected' },
-  perplexity: { label: 'Perplexity', status: 'Not connected' },
-  copilot: { label: 'Copilot', status: 'Not connected' },
+const MODEL_META: Record<string, { label: string; short: string; status: string }> = {
+  gpt5: { label: 'ChatGPT (GPT-5)', short: 'GPT-5', status: 'Live' },
+  haiku: { label: 'Claude Haiku', short: 'Haiku', status: 'Live' },
 };
 
-const MODEL_ORDER = ['gpt4o', 'claude', 'gemini', 'perplexity', 'copilot'];
+const MODEL_ORDER = ['gpt5', 'haiku'];
 
 export function ModelsView() {
   const [modelShares, setModelShares] = useState<ModelShare[]>([]);
@@ -94,7 +91,7 @@ export function ModelsView() {
         lede="Run the same prompt across every model that matters. See where Voya appears on one and not another, and prioritize the platforms with the biggest gaps."
       />
 
-      <div className="grid lg:grid-cols-5 gap-4">
+      <div className="grid sm:grid-cols-2 gap-4">
         {MODEL_ORDER.map((mid) => {
           const meta = MODEL_META[mid];
           const ms = shareMap.get(mid);
@@ -124,18 +121,18 @@ export function ModelsView() {
       <Panel title="Cross-model coverage" hint="Per prompt" className="mt-5">
         <div className="overflow-hidden rounded-xl border border-border">
           <div className="grid grid-cols-12 gap-3 px-4 py-2.5 bg-secondary/60 text-[11px] uppercase tracking-widest text-muted-foreground">
-            <div className="col-span-5">Prompt</div>
+            <div className="col-span-6">Prompt</div>
             {MODEL_ORDER.map((mid) => (
-              <div key={mid} className="col-span-1 text-center">{mid === 'gpt4o' ? 'GPT' : MODEL_META[mid].label.split(' ')[0]}</div>
+              <div key={mid} className="col-span-2 text-center">{MODEL_META[mid].short}</div>
             ))}
             <div className="col-span-2 text-right">Coverage</div>
           </div>
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="grid grid-cols-12 gap-3 px-4 py-4 border-t border-border items-center">
-                <div className="col-span-5 h-3 rounded bg-secondary/70" />
+                <div className="col-span-6 h-3 rounded bg-secondary/70" />
                 {MODEL_ORDER.map((__, j) => (
-                  <div key={j} className="col-span-1 flex justify-center">
+                  <div key={j} className="col-span-2 flex justify-center">
                     <span className="h-3 w-3 rounded-full bg-secondary" />
                   </div>
                 ))}
@@ -149,7 +146,7 @@ export function ModelsView() {
               let modelsCited = 0;
               return (
                 <div key={pid} className="grid grid-cols-12 gap-3 px-4 py-3 border-t border-border items-center">
-                  <div className="col-span-5 text-sm text-foreground/80 truncate" title={ptext}>{ptext}</div>
+                  <div className="col-span-6 text-sm text-foreground/80 truncate" title={ptext}>{ptext}</div>
                   {MODEL_ORDER.map((mid) => {
                     const ms = shareMap.get(mid);
                     const pp = (ms?.per_prompt || []).find((p) => p.prompt_id === pid);
@@ -157,7 +154,7 @@ export function ModelsView() {
                     const connected = connectedIds.has(mid);
                     if (connected && voyaShare > 0) modelsCited++;
                     return (
-                      <div key={mid} className="col-span-1 flex justify-center">
+                      <div key={mid} className="col-span-2 flex justify-center">
                         {!connected ? (
                           <span className="h-3 w-3 rounded-full bg-secondary/50" title="Not connected" />
                         ) : voyaShare > 0 ? (
