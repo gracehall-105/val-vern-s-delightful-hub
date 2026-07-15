@@ -109,6 +109,8 @@ export function AppShell() {
     setAuthed(true);
   }, [router, isLoginRoute]);
 
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
