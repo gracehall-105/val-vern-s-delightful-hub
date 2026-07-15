@@ -200,8 +200,27 @@
   .animate-val  { animation: val-scamper 5.5s ease-in-out infinite; transform-origin: 50% 90%; }
   .animate-vern { animation: vern-hop 3.2s cubic-bezier(.5,0,.3,1) infinite; transform-origin: 50% 95%; }
 
+  /* Butterflies — gentle 3D wing flap */
+  @keyframes flap-left {
+    0%, 100% { transform: rotateY(0deg); }
+    50% { transform: rotateY(42deg); }
+  }
+  @keyframes flap-right {
+    0%, 100% { transform: rotateY(0deg); }
+    50% { transform: rotateY(-42deg); }
+  }
+  .animate-flap-left {
+    animation: flap-left 0.9s ease-in-out infinite;
+    transform-origin: 32px 32px;
+  }
+  .animate-flap-right {
+    animation: flap-right 0.9s ease-in-out infinite;
+    transform-origin: 32px 32px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-float, .animate-drift, .animate-fade-up,
-    .animate-val, .animate-vern { animation: none !important; }
+    .animate-val, .animate-vern,
+    .animate-flap-left, .animate-flap-right { animation: none !important; }
   }
 }
