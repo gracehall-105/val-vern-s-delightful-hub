@@ -10,6 +10,32 @@ export const Route = createFileRoute("/app/")({
 });
 
 function CommandCenter() {
+  const [signals, setSignals] = useState<CompetitiveSignal[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | undefined>();
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${API_BASE}/competitive/signals?days=7`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json() as Promise<{ signals: CompetitiveSignal[] }>;
+      })
+      .then((d) => {
+        if (cancelled) return;
+        setSignals(d.signals ?? []);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setError("Backend not connected yet — showing placeholder.");
+        setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <>
       <PageIntro
@@ -53,9 +79,7 @@ function CommandCenter() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-5 mt-5">
-        <Panel title="What moved this week" hint="Auto-summarized">
-          <Placeholder label="Movement digest — wins, losses, new gaps" height={180} />
-        </Panel>
+        <CompetitiveContentCard signals={signals} loading={loading} error={error} />
         <Panel title="Recommended next actions" hint="From Measure → Create">
           <Placeholder label="Top 5 prompts to brief next" height={180} />
         </Panel>
