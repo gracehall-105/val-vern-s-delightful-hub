@@ -157,20 +157,13 @@ export function AppShell() {
           sidebarCollapsed ? "w-16" : "w-64",
         ].join(" ")}
       >
-        <div className="flex items-center justify-between h-16 border-b border-border px-3">
-          {!sidebarCollapsed && (
-            <Link to="/" className="flex items-center gap-2">
-              <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
+        <div className="flex items-center justify-center h-16 border-b border-border px-3">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={lighthouseIcon} alt="" className="h-[96px] w-[96px] object-contain dark:invert mt-2" />
+            {!sidebarCollapsed && (
               <img src={beaconWordmark} alt="Beacon" className="h-10 w-auto object-contain dark:invert" />
-            </Link>
-          )}
-          <button
-            onClick={() => setSidebarCollapsed((v) => !v)}
-            title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className="h-8 w-8 rounded-lg hover:bg-secondary grid place-items-center text-foreground/60 hover:text-foreground transition-colors"
-          >
-            {sidebarCollapsed ? <PanelRight className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
-          </button>
+            )}
+          </Link>
         </div>
 
         <nav className={`flex-1 overflow-y-auto py-4 space-y-5 ${sidebarCollapsed ? "px-2" : "px-3"}`}>
