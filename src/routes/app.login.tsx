@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { VoyaLogo } from "@/components/landing/VoyaLogo";
+import beaconLogoSignin from "@/assets/beacon-logo-signin.png.asset.json";
 
 export const Route = createFileRoute("/app/login")({
   head: () => ({
