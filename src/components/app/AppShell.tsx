@@ -274,7 +274,7 @@ export function AppShell() {
             <img
               src={voyaLogo.url}
               alt="Voya"
-              className={sidebarCollapsed ? "h-6 w-auto object-contain" : "h-9 w-auto object-contain"}
+              className={sidebarCollapsed ? "h-8 w-auto object-contain" : "h-12 w-auto object-contain"}
             />
           </div>
         </div>
