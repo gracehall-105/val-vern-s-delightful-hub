@@ -4,40 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { TrustStrip } from "@/components/landing/TrustStrip";
-import { LoopStrip } from "@/components/landing/LoopSection";
-import { DashboardPreview } from "@/components/landing/DashboardPreview";
-import { Personas } from "@/components/landing/Personas";
-import { DoesDoesnt } from "@/components/landing/DoesDoesnt";
-import { Roadmap } from "@/components/landing/Roadmap";
-import { VoyaLogo } from "@/components/landing/VoyaLogo";
-import { JourneyDivider } from "@/components/landing/JourneyDivider";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Beacon — Voya Marketing" },
-      {
-        name: "description",
-        content:
-          "Beacon is Voya's closed-loop system that measures, creates, and proves the content that gets Voya into AI answers.",
-      },
-      { property: "og:title", content: "Beacon — Voya Marketing" },
-      {
-        property: "og:description",
-        content: "Be the answer, not an afterthought. Voya's AI visibility command center.",
-      },
-    ],
-  }),
-  component: Index,
-});
-
-function Index() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
-
-  const slides = [
-    <Hero key="hero" />,
+import { LoopSection } from "@/components/landing/LoopSection";
+...
     <div key="loop" className="w-full"><TrustStrip /><LoopSection /></div>,
     <DashboardPreview key="dash" />,
     <Personas key="personas" />,
