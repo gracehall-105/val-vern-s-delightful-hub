@@ -88,7 +88,7 @@ function LoginPage() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-[#FF570C] hover:bg-[#e64e00] text-white font-medium py-2 text-sm transition-colors cursor-pointer"
+            className="w-full rounded-lg bg-gradient-voya hover:opacity-90 text-white font-medium py-2 text-sm transition-opacity cursor-pointer"
           >
             Sign In
           </button>
