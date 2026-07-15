@@ -67,6 +67,7 @@
   --voya-cream: oklch(0.985 0.012 75);
   --voya-dark: oklch(0.275 0.005 50);
   --voya-warm-white: oklch(0.99 0.005 70);
+  --voya-white: oklch(1 0 0);
   --beacon-black: oklch(0 0 0);
 
   /* Gradients — orange always darker on the left, per brand rule */

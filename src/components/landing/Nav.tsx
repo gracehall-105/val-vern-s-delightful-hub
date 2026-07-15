@@ -3,7 +3,7 @@ import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 
 export function Nav() {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_oklab,var(--background)_85%,transparent)] border-b border-border/60">
+    <header className="sticky top-0 z-40 bg-[var(--voya-white)] border-b border-border/60">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center h-full py-2">
           <img
