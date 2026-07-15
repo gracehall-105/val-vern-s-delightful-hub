@@ -40,15 +40,15 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-6">
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center">
           <img
             src={beaconLogoSignin.url}
             alt="Beacon by Voya"
-            className="h-44 w-auto"
+            className="h-[17rem] w-auto"
           />
-          <p className="mt-2 mb-4 text-sm text-gray-600">Sign in with your Voya credentials</p>
+          <p className="mt-1 mb-3 text-sm text-gray-600">Sign in with your Voya credentials</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -94,7 +94,7 @@ function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-4 text-center text-[11px] text-gray-400">Internal use only</p>
+        <p className="mt-3 text-center text-[11px] text-gray-400">Internal use only</p>
       </div>
     </div>
   );
