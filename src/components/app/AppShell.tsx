@@ -5,6 +5,7 @@ import {
   Sparkles,
   Layers,
   FileEdit,
+  Compass,
   Gauge,
   TrendingUp,
   Search,
@@ -16,7 +17,7 @@ import { VoyaLogo } from "@/components/landing/VoyaLogo";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 type Item = {
-  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/score" | "/app/prove";
+  to: "/app" | "/app/listen" | "/app/measure" | "/app/models" | "/app/create" | "/app/channels" | "/app/score" | "/app/prove";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
@@ -45,6 +46,7 @@ const groups: Group[] = [
     label: "Create",
     items: [
       { to: "/app/create", label: "Content pipeline", icon: FileEdit, phase: 1 },
+      { to: "/app/channels", label: "Channel strategy", icon: Compass, phase: 1 },
       { to: "/app/score", label: "Content scoring", icon: Gauge, phase: 2 },
     ],
   },

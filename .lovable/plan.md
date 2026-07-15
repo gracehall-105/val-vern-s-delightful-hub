@@ -1,60 +1,71 @@
 ## Goal
 
-A delightful, brand-true landing page for **GEO Command** — Voya's internal AI-visibility marketing tool. The page must feel unmistakably Voya (orange-first, Optima headlines, Proxima Nova body, the Journey curve) and open with a playful **Val and Vern** garden scene with flowers and butterflies. Once "inside the app," visuals dial back to subtle echoes of that landing moment.
+Make this Lovable project the single source of truth for Beacon's **frontend UI**. Reconcile the four files you uploaded (from your VS Code build) with the visual polish already here (Beacon lockup, Val & Vern, butterflies, Voya tokens, Journey curve, motion, snap-scroll landing, AppShell chrome). End in mind: you stop editing UI in VS Code and edit it here in Lovable, then deploy the built static assets as a **Databricks App** frontend that talks to your Databricks-hosted backend.
 
-This deliverable is **UI/UX only** — no backend wiring, no real data hooks. End state: a polished landing page you can show Marketing, plus a clean visual language that translates to the app.
+## What Databricks allows (short version)
 
-## On the Val & Vern artwork
+Databricks **Apps** (the current product — "Warehouse Apps" isn't the official name) run inside Databricks and support:
 
-You don't have official PNGs and the brand guide forbids altering or recreating them. So I'll generate **brand-faithful origami-style stand-in characters** (a fox and an owl in folded-paper style, Voya orange palette) clearly positioned as placeholders. In the handoff prompt for VS Code, I'll flag exactly where to swap in the real licensed Val & Vern artwork. This keeps us safe with brand compliance while letting you preview the full experience.
+- **Static frontends** — any framework that builds to static HTML/JS/CSS (Vite/React works). Serve `dist/` behind the app's built-in web server.
+- **A backend process** alongside the frontend — commonly Python (FastAPI/Flask/Streamlit/Dash) or Node. That is where your existing Python/Databricks SQL logic lives.
+- **Same-origin** frontend ↔ backend calls (so `API_BASE=""` and paths like `/som/sources` just work — no CORS setup).
+- **Databricks-managed auth** — the signed-in Databricks user is passed to the backend via headers; the app can call Databricks SQL / Unity Catalog on their behalf.
+- **Env vars & secrets** injected at runtime (`VITE_*` at build for the frontend, real secrets to the backend).
+- **Size/runtime limits** apply (small compute, no long-lived websockets by default, no arbitrary native binaries in the frontend build) — nothing we're doing bumps into these.
 
-## Landing page structure
+Net: a Vite React SPA that fetches `${API_BASE}/...` is exactly the shape Databricks Apps expects. Perfect fit.
 
-1. **Top nav** — Voya wordmark left, slim links (Overview, How it works, Use cases, Dashboard preview), primary "Enter GEO Command" CTA right.
-2. **Hero — "Val and Vern's garden"**
-   - Side-by-side playful scene: origami fox + owl on a soft cream stage, orange→light-orange gradient sky behind, the Voya Journey curve sweeping under them, drifting butterflies and petals (subtle CSS animation, respects `prefers-reduced-motion`).
-   - Optima headline: *"Be the answer, not an afterthought."*
-   - Sub-deck in Proxima: one-liner about measuring, creating, and proving Voya's presence in AI answers.
-   - Two CTAs: "Enter GEO Command" (orange) + "See how it works" (ghost).
-3. **Trust strip** — "Phase 1 live • Powered by Azure OpenAI • Built on Voya infrastructure."
-4. **The Loop — Measure → Create → Prove** — three cards with origami-flat icons, each tied to a brand color (orange, light orange, dark purple accent).
-5. **Command Center preview** — A stylized mockup card (not real data) showing Share of Model KPI, Gap Score, the 12-week trend, competitor legend. Demonstrates the in-app aesthetic — clean dashboard with orange gradient accents, one butterfly motif tucked in a corner.
-6. **Who it's for** — Three personas (CMO, Content Marketing, Digital Strategy) as quiet cards.
-7. **Use cases / What it does (and doesn't)** — Two-column "Does / Doesn't" lifted from the PRD, written in Voya's "savviest best friend" voice.
-8. **Phase 2 roadmap teaser** — VoC Listening Post, Content Scoring, Multi-Model — set on a gradient supergraphic background.
-9. **Footer** — Voya logo, "For internal use only," capabilities line *Plan. Invest. Protect.*
+## What I see in the four uploaded files
 
-## Visual system (added to `src/styles.css`)
+1. **`AppShell.tsx` (yours)** — only exports `PageIntro`, `Panel`, `Placeholder`. Ours has those *plus* the sidebar, topbar, Beacon lockup, theme toggle. Compatible — same primitive names, same props.
+2. **`CompetitiveContentCard.tsx`** — real component, types from `../lib/queries`, uses `react-router-dom` `useNavigate`.
+3. **`ChannelStrategy.tsx`** — full page, fetches `${API_BASE}/som/sources?days=30`, channel breakdown with colors + copy.
+4. **`ActivationPanel.tsx`** — insight → content → review → destination → publish side panel, fetches `${API_BASE}/content/activate`.
 
-- Color tokens in `oklch` mapped from the brand hexes:
-  - `--voya-orange` `#FF4B00`, `--voya-orange-light` `#FF8000`, `--voya-purple` `#991350`, `--voya-dark-gray`, neutral grays per page 4 of the guide.
-  - Semantic tokens (`--primary`, `--accent`, etc.) re-pointed to Voya palette so the rest of the app inherits the brand.
-- Gradients: `--gradient-voya` (orange → light orange, left-to-right per brand rule), `--gradient-supergraphic`.
-- Typography: load Optima (or "Cormorant Garamond" / system serif fallback if Optima isn't licensed in the browser) for headlines, Proxima Nova (fallback Inter) for body. Sentence case throughout — no all-caps, per the guide.
-- Motion: subtle butterfly drift, petal fall, hover lift on cards. All respect `prefers-reduced-motion`.
+Signal: your VS Code app is **React Router DOM + `fetch(API_BASE)`**. This project is **TanStack Router**. That router mismatch is the main reconciliation decision.
 
-## "Inside the app" treatment (subtle echoes)
+## The plan
 
-A second route (`/dashboard-preview`) shows what the rest of the app should feel like: clean white surfaces, orange gradient accent bar, one or two whisper-quiet butterfly/petal motifs in empty states or section dividers — never crowding the data. This gives the Marketing team and your VS Code build a reference point.
+### Phase 0 — One decision from you: the router
 
-## Files I'll create / change
+- **A. Convert uploaded files to TanStack Router** (keep everything we've built here — snap-scroll landing, file-based routes, SEO head, AppShell). Mechanical swaps: `react-router-dom` → `@tanstack/react-router`, `useNavigate` API is nearly identical, `<Link to>` unchanged.
+- **B. Switch this project to React Router DOM** so future VS Code pastes drop in with zero rewrite. Cost: rebuild landing routing + head metadata; we lose some TanStack niceties but gain 1:1 parity.
 
-- `src/styles.css` — Voya color tokens, gradients, typography setup.
-- `src/routes/index.tsx` — full landing page.
-- `src/routes/dashboard-preview.tsx` — in-app aesthetic reference.
-- `src/components/landing/*` — Hero, LoopSection, DashboardPreviewCard, Personas, DoesDoesnt, RoadmapTeaser, Footer, Butterflies (animated SVG), VoyaJourney (SVG curve).
-- `src/assets/val-vern-placeholder.png` (generated origami scene), `src/assets/butterfly.svg`, `src/assets/petal.svg`.
-- Root `__root.tsx` head metadata: title "GEO Command — Voya," internal-tool description.
+Recommendation: **A**. Databricks doesn't care which router — both build to static — and A preserves more of what you like here.
 
-## Out of scope (per your ask)
+### Phase 1 — Frontend contract for Databricks Apps
 
-- No real data, no API calls, no auth, no backend.
-- No code-splitting of components into your VS Code repo — you'll port via the handoff prompt.
+- Add `src/lib/api.ts` exporting `API_BASE = import.meta.env.VITE_API_BASE ?? ""` (empty default = same-origin, which is what Databricks Apps gives you).
+- Add `src/lib/queries.ts` with the shared TS types your uploaded components import (`CompetitiveSignal`, `Citation`, plus what `ChannelStrategy` and `ActivationPanel` need).
+- Treat this repo as **frontend-only**: no Lovable Cloud, no Supabase, no TanStack `createServerFn` for real data. If we need mocks locally, they're plain client stubs.
+- Add `databricks-app.md` documenting: `bun run build` → `dist/`, env vars, same-origin backend expectation, auth header pass-through.
 
-## Handoff at the end
+### Phase 2 — Merge uploaded pages into our shell
 
-Once you approve the look, I'll give you a clean prompt for VS Code that lists: the design tokens, the component breakdown, the asset swap points (especially the Val & Vern placeholder), and the motion guidelines — so your existing wired-up prototype just inherits the new skin.
+- Keep our `AppShell` (sidebar + topbar + Beacon + theme toggle). Add your `PageIntro` / `Panel` / `Placeholder` exports alongside — same names, drop-in for your pages.
+- Port `ChannelStrategy` → `/app/prove/channels` (or whichever slot in the nav you prefer).
+- Port `CompetitiveContentCard` → Command Center (`/app`).
+- Port `ActivationPanel` → mounted from Measure/Prove rows as a slide-in.
+- All three keep their `fetch(${API_BASE}/...)` calls untouched.
 
----
+### Phase 3 — Preserve the cool Lovable-side work
 
-Approve this and I'll build it.
+Explicitly kept:
+- Landing route `/` — snap-scroll slides, Beacon nav, Val & Vern with butterflies, Journey divider, personas, does/doesn't, roadmap, pinned footer.
+- Beacon `VoyaLogo` component + assets.
+- Voya tokens & gradients in `src/styles.css`, motion keyframes, dark mode.
+- AppShell chrome, `ThemeToggle`, and the primitives.
+- Cormorant Garamond / Inter fonts from `__root.tsx`.
+
+### Phase 4 — Prove the Databricks fit
+
+- Confirm `bun run build` produces a clean static `dist/` with no server-only runtime dependencies.
+- Verify no route or component secretly relies on a Node/edge server function at request time.
+- Note the one gotcha: **`VITE_API_BASE` is baked at build time**. If you want to point the same build at different Databricks environments, either rebuild per env or serve the API same-origin (recommended — no env var needed).
+
+## What I need from you before I start
+
+1. **Router: A (convert your files to TanStack) or B (switch project to React Router DOM)?**
+2. Any other VS Code files you want in this first reconciliation pass, or start with these four?
+
+Approve and I'll execute.
