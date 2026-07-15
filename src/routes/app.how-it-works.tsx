@@ -48,7 +48,6 @@ const loop = [
 const liveToday = [
   "Sign-in gate (Voya email + shared alpha password)",
   "Command Center: SoM trends, category filters, chart toggles, backfill",
-  "Listen: VoC clusters and Promote → Measure",
   "Measure / Prompt Library: search, expand categories, delete custom prompts",
   "Market Trends: audience, branded/unbranded, week, category filters",
   "Opportunity Forecast: fair-share gap calculator (branded vs. unbranded, channel vs. domain)",
