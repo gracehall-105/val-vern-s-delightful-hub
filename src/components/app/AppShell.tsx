@@ -87,7 +87,7 @@ function useTitle() {
   const match = [...allItems]
     .sort((a, b) => b.to.length - a.to.length)
     .find((i) => isActive(i, path));
-  return match?.label ?? "Activation Studio";
+  return match?.label ?? "Voya Beacon";
 }
 
 export function AppShell() {
@@ -153,7 +153,7 @@ export function AppShell() {
         <Link to="/" className="flex items-center gap-2 px-5 h-16 border-b border-border">
           <VoyaLogo height={22} />
           <span className="h-4 w-px bg-border" />
-          <span className="text-xs font-semibold tracking-wide text-foreground/80">Activation Studio</span>
+          <span className="text-xs font-semibold tracking-wide text-foreground/80">by Voya</span>
         </Link>
 
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">

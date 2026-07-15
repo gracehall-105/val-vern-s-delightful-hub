@@ -5,7 +5,7 @@ import { VoyaLogo } from "@/components/landing/VoyaLogo";
 export const Route = createFileRoute("/app/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — Activation Studio" },
+      { title: "Sign in — Voya Beacon" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -43,9 +43,8 @@ function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
       <div className="w-full max-w-sm mx-4">
         <div className="flex flex-col items-center mb-8">
-          <VoyaLogo height={28} />
-          <h1 className="mt-4 text-xl font-semibold text-white">Activation Studio</h1>
-          <p className="mt-1 text-sm text-white/60">Sign in with your Voya credentials</p>
+          <VoyaLogo height={40} />
+          <p className="mt-3 text-sm text-white/60">by Voya · Sign in with your Voya credentials</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
