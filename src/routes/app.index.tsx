@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageIntro, Panel, Placeholder } from "@/components/app/AppShell";
+import { CompetitiveContentCard } from "@/components/app/CompetitiveContentCard";
+import { API_BASE } from "@/lib/api";
+import type { CompetitiveSignal } from "@/lib/queries";
 
 export const Route = createFileRoute("/app/")({
   component: CommandCenter,
