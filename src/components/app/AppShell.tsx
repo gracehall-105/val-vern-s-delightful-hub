@@ -147,7 +147,7 @@ export function AppShell() {
   if (isLoginRoute) return <Outlet />;
 
   return (
-    <div className="min-h-screen flex w-full bg-secondary/30">
+    <div className="min-h-screen flex w-full bg-secondary/30 dark:bg-neutral-900">
       {/* Tooltip portal */}
       {tooltip && (
         <div
