@@ -8,7 +8,6 @@ import {
   FileEdit,
   Gauge,
   TrendingUp,
-  Search,
   BarChart3,
   Lightbulb,
   Radio,
