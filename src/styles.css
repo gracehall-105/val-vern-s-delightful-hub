@@ -52,6 +52,7 @@
   --color-voya-purple: var(--voya-purple);
   --color-voya-cream: var(--voya-cream);
   --color-voya-dark: var(--voya-dark);
+  --color-beacon-black: var(--beacon-black);
   --font-display: "Cormorant Garamond", "Optima", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", "Proxima Nova", system-ui, -apple-system, sans-serif;
 }
@@ -66,6 +67,7 @@
   --voya-cream: oklch(0.985 0.012 75);
   --voya-dark: oklch(0.275 0.005 50);
   --voya-warm-white: oklch(0.99 0.005 70);
+  --beacon-black: oklch(0 0 0);
 
   /* Gradients — orange always darker on the left, per brand rule */
   --gradient-voya: linear-gradient(90deg, var(--voya-orange) 0%, var(--voya-orange-light) 100%);

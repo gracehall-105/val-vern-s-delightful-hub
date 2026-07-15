@@ -283,7 +283,7 @@ export function AppShell() {
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-30 h-16 md:h-20 bg-card/80 backdrop-blur border-b border-border flex items-center gap-3 px-4 md:px-6">
+        <header className="sticky top-0 z-30 h-16 md:h-20 bg-card/80 dark:bg-beacon-black/95 backdrop-blur border-b border-border dark:border-white/10 flex items-center gap-3 px-4 md:px-6">
           <div className="md:hidden flex items-center">
             <img src={beaconLogoLockup.url} alt="Beacon" className="h-[28px] w-auto object-contain dark:invert" />
           </div>
