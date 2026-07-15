@@ -1,16 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import { VoyaLogo } from "./VoyaLogo";
+import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 
 export function Nav() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-[color-mix(in_oklab,var(--background)_85%,transparent)] border-b border-border/60">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <VoyaLogo />
-          <span className="hidden sm:inline-block h-5 w-px bg-border" />
-          <span className="hidden sm:inline-block text-sm font-medium text-muted-foreground">
-            Beacon
-          </span>
+        <Link to="/" className="flex items-center h-full py-2">
+          <img
+            src={beaconLogoLockup.url}
+            alt="Beacon"
+            className="object-contain h-full max-h-[44px] w-auto"
+          />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/80">
           <a href="#loop" className="hover:text-voya-orange transition-colors">How it works</a>
