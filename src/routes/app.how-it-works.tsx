@@ -63,7 +63,6 @@ const comingSoon = [
   "Direct publish to LinkedIn, X, Voya blog, and email",
   "Chatbot transcripts and App Store reviews as Listen sources",
   "Branded-source breakdowns in Opportunity Forecast",
-  "Additional models (Gemini, Perplexity)",
 ];
 
 function HowItWorks() {
