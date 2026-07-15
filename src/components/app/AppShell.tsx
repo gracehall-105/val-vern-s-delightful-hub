@@ -138,7 +138,7 @@ export function AppShell() {
       {tooltip && (
         <div
           className="fixed z-[100] pointer-events-none hidden md:block"
-          style={{ left: sidebarCollapsed ? 72 : 324, top: tooltip.top, transform: "translateY(-50%)" }}
+          style={{ left: 324, top: tooltip.top, transform: "translateY(-50%)" }}
         >
           <div className="relative ml-2 max-w-xs">
             <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-foreground rotate-45 rounded-[2px]" />
