@@ -86,6 +86,7 @@ const groups: Group[] = [
     items: [
       { to: "/app/models", label: "Multi-model", icon: Layers, phase: 1, tooltip: "Compare how GPT-5 and Claude Haiku cite Voya across the same prompts." },
       { to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1, tooltip: "Track whether published content moved Voya's share on targeted prompts." },
+      { to: "/app/dataset", label: "Prompt dataset", icon: Database, phase: 1, tooltip: "Browse the full 444-prompt universe with 10 weeks of Share-of-Model data." },
     ],
   },
 ];
