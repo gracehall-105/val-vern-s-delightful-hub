@@ -17,6 +17,7 @@ import {
   LogOut,
   PanelLeft,
   PanelRight,
+  Database,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import {

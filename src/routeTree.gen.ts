@@ -21,6 +21,7 @@ import { Route as AppMeasureRouteImport } from './routes/app.measure'
 import { Route as AppLoginRouteImport } from './routes/app.login'
 import { Route as AppListenRouteImport } from './routes/app.listen'
 import { Route as AppHowItWorksRouteImport } from './routes/app.how-it-works'
+import { Route as AppDatasetRouteImport } from './routes/app.dataset'
 import { Route as AppCreateRouteImport } from './routes/app.create'
 import { Route as AppChannelsRouteImport } from './routes/app.channels'
 
@@ -84,6 +85,11 @@ const AppHowItWorksRoute = AppHowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDatasetRoute = AppDatasetRouteImport.update({
+  id: '/dataset',
+  path: '/dataset',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCreateRoute = AppCreateRouteImport.update({
   id: '/create',
   path: '/create',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
+  '/app/dataset': typeof AppDatasetRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/login': typeof AppLoginRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
+  '/app/dataset': typeof AppDatasetRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/login': typeof AppLoginRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/app/channels': typeof AppChannelsRoute
   '/app/create': typeof AppCreateRoute
+  '/app/dataset': typeof AppDatasetRoute
   '/app/how-it-works': typeof AppHowItWorksRoute
   '/app/listen': typeof AppListenRoute
   '/app/login': typeof AppLoginRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/channels'
     | '/app/create'
+    | '/app/dataset'
     | '/app/how-it-works'
     | '/app/listen'
     | '/app/login'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app/channels'
     | '/app/create'
+    | '/app/dataset'
     | '/app/how-it-works'
     | '/app/listen'
     | '/app/login'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/channels'
     | '/app/create'
+    | '/app/dataset'
     | '/app/how-it-works'
     | '/app/listen'
     | '/app/login'
@@ -284,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHowItWorksRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/dataset': {
+      id: '/app/dataset'
+      path: '/dataset'
+      fullPath: '/app/dataset'
+      preLoaderRoute: typeof AppDatasetRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/create': {
       id: '/app/create'
       path: '/create'
@@ -304,6 +323,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppChannelsRoute: typeof AppChannelsRoute
   AppCreateRoute: typeof AppCreateRoute
+  AppDatasetRoute: typeof AppDatasetRoute
   AppHowItWorksRoute: typeof AppHowItWorksRoute
   AppListenRoute: typeof AppListenRoute
   AppLoginRoute: typeof AppLoginRoute
@@ -319,6 +339,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppChannelsRoute: AppChannelsRoute,
   AppCreateRoute: AppCreateRoute,
+  AppDatasetRoute: AppDatasetRoute,
   AppHowItWorksRoute: AppHowItWorksRoute,
   AppListenRoute: AppListenRoute,
   AppLoginRoute: AppLoginRoute,
