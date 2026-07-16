@@ -17,6 +17,7 @@ import {
   LogOut,
   PanelLeft,
   PanelRight,
+  Database,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import {
@@ -45,7 +46,8 @@ type Item = {
     | "/app/create"
     | "/app/channels"
     | "/app/score"
-    | "/app/prove";
+    | "/app/prove"
+    | "/app/dataset";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
@@ -84,6 +86,7 @@ const groups: Group[] = [
     items: [
       { to: "/app/models", label: "Multi-model", icon: Layers, phase: 1, tooltip: "Compare how GPT-5 and Claude Haiku cite Voya across the same prompts." },
       { to: "/app/prove", label: "Reporting", icon: TrendingUp, phase: 1, tooltip: "Track whether published content moved Voya's share on targeted prompts." },
+      { to: "/app/dataset", label: "Prompt dataset", icon: Database, phase: 1, tooltip: "Browse the full 444-prompt universe with 10 weeks of Share-of-Model data." },
     ],
   },
 ];
