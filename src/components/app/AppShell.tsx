@@ -46,7 +46,8 @@ type Item = {
     | "/app/create"
     | "/app/channels"
     | "/app/score"
-    | "/app/prove";
+    | "/app/prove"
+    | "/app/dataset";
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   phase?: 1 | 2;
