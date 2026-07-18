@@ -116,15 +116,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Evidence cards */}
-        <div className="mt-10 grid md:grid-cols-3 gap-4">
-          {evidence.map((e) => (
-            <div key={e.stat} className="rounded-2xl bg-card border border-border p-5 shadow-soft">
-              <p className="font-display text-3xl md:text-4xl font-medium text-voya-orange leading-none">{e.stat}</p>
-              <p className="mt-2 text-sm text-foreground/75 leading-relaxed">{e.body}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
