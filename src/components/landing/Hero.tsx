@@ -16,18 +16,7 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 md:pt-16 md:pb-20">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div className="animate-fade-up">
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
-              <span className="block">Turn insight</span>
-              <span className="block">into <span className="text-voya-orange">action</span></span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
-              <span className="block">Voya Beacon measures AI and</span>
-              <span className="block">search visibility, identifies content</span>
-              <span className="block">gaps, recommends improvements,</span>
-              <span className="block">and tracks impact.</span>
-            </p>
-          </div>
+          <div className="animate-fade-up" />
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="relative aspect-[4/3] flex items-end justify-center">
@@ -56,19 +45,28 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-end gap-3">
-          <a
-            href="/app"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
-          >
-            Enter Voya Beacon →
-          </a>
-          <a
-            href="#loop"
-            className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
-          >
-            See how it works
-          </a>
+        <div className="mt-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <p className="text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
+            <span className="block">Voya Beacon measures AI and</span>
+            <span className="block">search visibility, identifies content</span>
+            <span className="block">gaps, recommends improvements,</span>
+            <span className="block">and tracks impact.</span>
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="/app"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
+            >
+              Enter Voya Beacon →
+            </a>
+            <a
+              href="#loop"
+              className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+            >
+              See how it works
+            </a>
+          </div>
         </div>
       </div>
     </section>
