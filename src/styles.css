@@ -219,22 +219,9 @@
     transform-origin: 32px 32px;
   }
 
-  /* Lighthouse — rotating light beam */
-  @keyframes beacon-sweep {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  @keyframes beacon-pulse {
-    0%, 100% { opacity: 0.85; }
-    50%      { opacity: 1; }
-  }
-  .animate-beacon-sweep { animation: beacon-sweep 4s linear infinite; transform-origin: 50% 50%; }
-  .animate-beacon-pulse { animation: beacon-pulse 2s ease-in-out infinite; }
-
   @media (prefers-reduced-motion: reduce) {
     .animate-float, .animate-drift, .animate-fade-up,
     .animate-val, .animate-vern,
-    .animate-flap-left, .animate-flap-right,
-    .animate-beacon-sweep, .animate-beacon-pulse { animation: none !important; }
+    .animate-flap-left, .animate-flap-right { animation: none !important; }
   }
 }
