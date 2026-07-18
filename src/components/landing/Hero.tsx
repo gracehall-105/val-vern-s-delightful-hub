@@ -1,6 +1,6 @@
 import valSquirrel from "@/assets/val-squirrel.png";
 import vernRabbit from "@/assets/vern-rabbit.png";
-import beaconLighthouse from "@/assets/beacon-lighthouse-icon.png.asset.json";
+import beaconLighthouse from "@/assets/beacon-lighthouse-silhouette.png";
 import { Butterfly } from "./Butterfly";
 import { useCompanies, usePrompts } from "@/lib/queries";
 
