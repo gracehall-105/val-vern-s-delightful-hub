@@ -6,50 +6,60 @@ import { Butterfly } from "./Butterfly";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-background">
-      <div
-        className="absolute inset-0 -z-10"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 35%, oklch(0.985 0.012 75) 0%, oklch(0.97 0.012 70) 60%, var(--background) 100%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-14 md:pb-20">
-        {/* Stage: giant Beacon lockup centered, Val & Vern nestled to the right */}
+      <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-14 md:pt-14 md:pb-16">
+        {/* Stage */}
         <div className="relative animate-fade-up">
-          <div className="relative mx-auto flex items-center justify-center min-h-[420px] md:min-h-[520px]">
-            {/* Beacon logo lockup — the hero centerpiece */}
-            <img
-              src={beaconLogoLockup.url}
-              alt="Voya Beacon — Insights. Intelligence. Impact."
-              className="relative z-10 w-[78%] md:w-[62%] lg:w-[56%] h-auto object-contain drop-shadow-sm"
+          {/* Soft textured panel holding the Beacon lockup */}
+          <div
+            className="relative rounded-2xl overflow-hidden"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 60% at 50% 40%, oklch(0.975 0 0) 0%, oklch(0.955 0.003 90) 70%, oklch(0.94 0.003 90) 100%)",
+            }}
+          >
+            {/* subtle noise/grain to match the reference texture */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-[0.35] mix-blend-multiply"
+              aria-hidden
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px)",
+                backgroundSize: "3px 3px",
+              }}
             />
 
-            {/* Val & Vern floating to the right of the lockup */}
-            <div className="absolute right-0 md:right-2 lg:right-6 top-1/2 -translate-y-1/2 w-[32%] md:w-[26%] lg:w-[24%] pointer-events-none">
-              <div className="relative aspect-[5/4]">
-                <Butterfly className="absolute left-[2%] top-[2%] animate-drift z-20" color="var(--voya-orange)" size={20} style={{ animationDelay: "0s" }} />
-                <Butterfly className="absolute right-[6%] top-[0%] animate-drift z-20" color="var(--voya-purple)" size={18} style={{ animationDelay: "1.5s" }} />
-                <Butterfly className="absolute left-[46%] top-[8%] animate-float z-20" color="var(--voya-orange-light)" size={16} style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties} />
+            <div className="relative flex items-center justify-center py-14 md:py-20 lg:py-24 px-6">
+              <img
+                src={beaconLogoLockup.url}
+                alt="Voya Beacon — Insights. Intelligence. Impact."
+                className="relative z-10 w-[70%] md:w-[58%] lg:w-[52%] h-auto object-contain"
+              />
+            </div>
 
-                <div className="absolute bottom-[4%] left-[8%] w-[36%] h-2 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
-                <div className="absolute bottom-[4%] right-[8%] w-[34%] h-2 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
+            {/* Val & Vern — floating card nestled at the right edge */}
+            <div className="absolute right-4 md:right-6 lg:right-10 top-1/2 -translate-y-1/2 w-[30%] md:w-[24%] lg:w-[22%] z-20">
+              <div
+                className="relative rounded-xl bg-white shadow-soft ring-1 ring-black/5 overflow-hidden"
+                style={{ aspectRatio: "5 / 4" }}
+              >
+                <Butterfly className="absolute left-[6%] top-[6%] animate-drift z-20" color="var(--voya-orange)" size={16} style={{ animationDelay: "0s" }} />
+                <Butterfly className="absolute right-[8%] top-[4%] animate-drift z-20" color="var(--voya-purple)" size={14} style={{ animationDelay: "1.5s" }} />
+                <Butterfly className="absolute left-[46%] top-[10%] animate-float z-20" color="var(--voya-orange-light)" size={12} style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties} />
 
-                <div className="relative w-full h-full flex items-end justify-center gap-1 md:gap-2 pb-[4%]">
+                <div className="absolute inset-x-0 bottom-0 h-full flex items-end justify-center gap-1 pb-[6%] px-[6%]">
                   <img
                     src={valSquirrel}
                     alt="Val, an origami squirrel folded from orange dollar bills"
                     width={1024}
                     height={1024}
-                    className="w-[48%] h-auto animate-val drop-shadow-xl"
+                    className="w-[46%] h-auto animate-val drop-shadow-md"
                   />
                   <img
                     src={vernRabbit}
                     alt="Vern, an origami rabbit folded from orange dollar bills"
                     width={1024}
                     height={1024}
-                    className="w-[46%] h-auto animate-vern drop-shadow-xl"
+                    className="w-[44%] h-auto animate-vern drop-shadow-md"
                   />
                 </div>
               </div>
@@ -58,7 +68,7 @@ export function Hero() {
         </div>
 
         {/* Bottom row: subheader on the left, CTAs on the right */}
-        <div className="mt-10 md:mt-14 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div className="mt-10 md:mt-12 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
           <p className="text-lg md:text-xl text-foreground/80 max-w-xl leading-relaxed">
             Voya Beacon measures AI and search visibility, identifies content
             gaps, recommends improvements, and tracks impact.
