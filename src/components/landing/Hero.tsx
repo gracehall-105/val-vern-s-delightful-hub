@@ -1,6 +1,6 @@
 import valSquirrel from "@/assets/val-squirrel.png";
 import vernRabbit from "@/assets/vern-rabbit.png";
-import beaconLighthouse from "@/assets/beacon-lighthouse-icon.png.asset.json";
+import beaconLighthouse from "@/assets/beacon-lighthouse-silhouette.png";
 import { Butterfly } from "./Butterfly";
 import { useCompanies, usePrompts } from "@/lib/queries";
 
@@ -92,56 +92,64 @@ export function Hero() {
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="relative aspect-[4/3] flex items-end justify-center">
+              {/* Warm dawn glow across the sky — the light the lighthouse casts */}
               <div
-                className="absolute inset-10 rounded-full blur-3xl opacity-40"
+                className="absolute inset-0 -z-10"
+                aria-hidden
                 style={{
                   background:
-                    "radial-gradient(circle, oklch(0.92 0.09 55) 0%, transparent 70%)",
+                    "radial-gradient(ellipse 55% 45% at 22% 30%, rgba(255,150,60,0.22) 0%, rgba(255,120,20,0.08) 40%, transparent 75%)",
                 }}
-                aria-hidden
               />
 
-              {/* Animated lighthouse beacon behind Val & Vern */}
-              <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
-                {/* Rotating light beam emanating from the lamp */}
+              {/* Distant lighthouse + rotating beam — sits far behind Val & Vern */}
+              <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden>
+                {/* Distant lighthouse silhouette, atmospheric perspective */}
+                <img
+                  src={beaconLighthouse}
+                  alt=""
+                  className="absolute animate-float"
+                  style={{
+                    left: "16%",
+                    top: "18%",
+                    height: "38%",
+                    width: "auto",
+                    opacity: 0.28,
+                    filter: "blur(0.6px) saturate(0.6)",
+                  }}
+                />
+                {/* Warm lamp glow at the top of the distant lighthouse */}
+                <div
+                  className="absolute rounded-full animate-beacon-pulse"
+                  style={{
+                    left: "19.5%",
+                    top: "21%",
+                    width: "6%",
+                    height: "6%",
+                    background:
+                      "radial-gradient(circle, rgba(255,180,90,0.95) 0%, rgba(255,120,20,0.55) 35%, rgba(255,120,20,0.15) 60%, transparent 78%)",
+                    filter: "blur(2px)",
+                    mixBlendMode: "screen",
+                  }}
+                />
+                {/* Rotating beam sweeping across the sky from the lamp */}
                 <div
                   className="absolute animate-beacon-sweep"
                   style={{
-                    left: "50%",
-                    top: "34%",
-                    width: "140%",
-                    height: "140%",
+                    left: "22%",
+                    top: "24%",
+                    width: "160%",
+                    height: "160%",
                     transform: "translate(-50%, -50%)",
                     background:
-                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,120,20,0.35) 10deg, rgba(255,180,90,0.10) 26deg, transparent 44deg, transparent 180deg, rgba(255,120,20,0.35) 190deg, rgba(255,180,90,0.10) 206deg, transparent 224deg, transparent 360deg)",
-                    filter: "blur(6px)",
+                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,160,70,0.28) 6deg, rgba(255,200,120,0.10) 18deg, transparent 32deg, transparent 360deg)",
+                    filter: "blur(8px)",
                     mixBlendMode: "screen",
                     borderRadius: "9999px",
                   }}
                 />
-                {/* Warm halo around the lamp */}
-                <div
-                  className="absolute rounded-full animate-beacon-pulse"
-                  style={{
-                    left: "50%",
-                    top: "34%",
-                    width: "38%",
-                    height: "38%",
-                    transform: "translate(-50%, -50%)",
-                    background:
-                      "radial-gradient(circle, rgba(255,120,20,0.55) 0%, rgba(255,120,20,0.20) 45%, transparent 72%)",
-                    filter: "blur(4px)",
-                    mixBlendMode: "screen",
-                  }}
-                />
-                {/* Lighthouse silhouette */}
-                <img
-                  src={beaconLighthouse.url}
-                  alt=""
-                  className="absolute left-1/2 -translate-x-1/2 opacity-90"
-                  style={{ bottom: "6%", height: "78%", width: "auto" }}
-                />
               </div>
+
 
 
               <Butterfly className="absolute left-[4%] top-[2%] animate-drift z-10" color="var(--voya-orange)" size={32} style={{ animationDelay: "0s" }} />
