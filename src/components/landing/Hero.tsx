@@ -1,55 +1,9 @@
 import valSquirrel from "@/assets/val-squirrel.png";
 import vernRabbit from "@/assets/vern-rabbit.png";
-import beaconLighthouse from "@/assets/beacon-lighthouse-silhouette.png";
+import beaconLogoLockup from "@/assets/beacon-logo-lockup.png.asset.json";
 import { Butterfly } from "./Butterfly";
-import { useCompanies, usePrompts } from "@/lib/queries";
-
-function useVoyaSom(branding: "branded" | "unbranded") {
-  const companiesQ = useCompanies(branding);
-  const promptsQ = usePrompts();
-  const companies = (companiesQ.data as any)?.companies as
-    | Array<{ company: string; share_pct: number }>
-    | undefined;
-  const voya = companies?.find(
-    (c) => c.company?.toLowerCase() === "voya",
-  );
-  const prompts = promptsQ.data as
-    | Array<{ branding?: string }>
-    | undefined;
-  const promptCount = prompts?.filter((p) => p.branding === branding).length;
-  return {
-    sharePct: voya?.share_pct,
-    promptCount,
-    loading: companiesQ.isLoading || promptsQ.isLoading,
-  };
-}
-
-function formatPct(n?: number) {
-  if (n === undefined || n === null || Number.isNaN(n)) return "—";
-  return `${Math.round(n)}%`;
-}
 
 export function Hero() {
-  const unbranded = useVoyaSom("unbranded");
-  const branded = useVoyaSom("branded");
-
-  const evidence = [
-    {
-      stat: formatPct(unbranded.sharePct),
-      body:
-        unbranded.promptCount !== undefined
-          ? `Voya's Share of Model across ${unbranded.promptCount} unbranded prompts — the questions people ask before they know our name.`
-          : "Voya's Share of Model across the unbranded prompt universe — the questions people ask before they know our name.",
-    },
-    {
-      stat: formatPct(branded.sharePct),
-      body:
-        branded.promptCount !== undefined
-          ? `Voya's Share of Model across ${branded.promptCount} branded prompts — where someone already searched for us by name.`
-          : "Voya's Share of Model across the branded prompt universe — where someone already searched for us by name.",
-    },
-  ];
-
   return (
     <section className="relative overflow-hidden bg-background">
       <div
@@ -61,110 +15,67 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 md:pt-16 md:pb-20">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div className="animate-fade-up">
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground">
-              <span className="block">Turn insight</span>
-              <span className="block">into <span className="text-voya-orange">action</span></span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
-              <span className="block">Voya Beacon measures AI and</span>
-              <span className="block">search visibility, identifies content</span>
-              <span className="block">gaps, recommends improvements,</span>
-              <span className="block">and tracks impact.</span>
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/app"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
-              >
-                Enter Voya Beacon →
-              </a>
-              <a
-                href="#loop"
-                className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
-              >
-                See how it works
-              </a>
+      <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-14 md:pb-20">
+        {/* Stage: giant Beacon lockup centered, Val & Vern nestled to the right */}
+        <div className="relative animate-fade-up">
+          <div className="relative mx-auto flex items-center justify-center min-h-[420px] md:min-h-[520px]">
+            {/* Beacon logo lockup — the hero centerpiece */}
+            <img
+              src={beaconLogoLockup.url}
+              alt="Voya Beacon — Insights. Intelligence. Impact."
+              className="relative z-10 w-[78%] md:w-[62%] lg:w-[56%] h-auto object-contain drop-shadow-sm"
+            />
+
+            {/* Val & Vern floating to the right of the lockup */}
+            <div className="absolute right-0 md:right-2 lg:right-6 top-1/2 -translate-y-1/2 w-[32%] md:w-[26%] lg:w-[24%] pointer-events-none">
+              <div className="relative aspect-[5/4]">
+                <Butterfly className="absolute left-[2%] top-[2%] animate-drift z-20" color="var(--voya-orange)" size={20} style={{ animationDelay: "0s" }} />
+                <Butterfly className="absolute right-[6%] top-[0%] animate-drift z-20" color="var(--voya-purple)" size={18} style={{ animationDelay: "1.5s" }} />
+                <Butterfly className="absolute left-[46%] top-[8%] animate-float z-20" color="var(--voya-orange-light)" size={16} style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties} />
+
+                <div className="absolute bottom-[4%] left-[8%] w-[36%] h-2 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
+                <div className="absolute bottom-[4%] right-[8%] w-[34%] h-2 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
+
+                <div className="relative w-full h-full flex items-end justify-center gap-1 md:gap-2 pb-[4%]">
+                  <img
+                    src={valSquirrel}
+                    alt="Val, an origami squirrel folded from orange dollar bills"
+                    width={1024}
+                    height={1024}
+                    className="w-[48%] h-auto animate-val drop-shadow-xl"
+                  />
+                  <img
+                    src={vernRabbit}
+                    alt="Vern, an origami rabbit folded from orange dollar bills"
+                    width={1024}
+                    height={1024}
+                    className="w-[46%] h-auto animate-vern drop-shadow-xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <div className="relative aspect-[4/3] flex items-end justify-center">
-              {/* Warm dawn glow across the sky — the light the lighthouse casts */}
-              <div
-                className="absolute inset-0 -z-10"
-                aria-hidden
-                style={{
-                  background:
-                    "radial-gradient(ellipse 55% 45% at 22% 30%, rgba(255,150,60,0.22) 0%, rgba(255,120,20,0.08) 40%, transparent 75%)",
-                }}
-              />
-
-              {/* Distant lighthouse + rotating beam — sits far behind Val & Vern */}
-              <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden>
-                {/* Distant lighthouse silhouette, atmospheric perspective */}
-                <img
-                  src={beaconLighthouse}
-                  alt=""
-                  className="absolute animate-float"
-                  style={{
-                    left: "16%",
-                    top: "18%",
-                    height: "38%",
-                    width: "auto",
-                    opacity: 0.28,
-                    filter: "blur(0.6px) saturate(0.6)",
-                  }}
-                />
-                {/* Warm lamp glow at the top of the distant lighthouse */}
-                <div
-                  className="absolute rounded-full animate-beacon-pulse"
-                  style={{
-                    left: "19.5%",
-                    top: "21%",
-                    width: "6%",
-                    height: "6%",
-                    background:
-                      "radial-gradient(circle, rgba(255,180,90,0.95) 0%, rgba(255,120,20,0.55) 35%, rgba(255,120,20,0.15) 60%, transparent 78%)",
-                    filter: "blur(2px)",
-                    mixBlendMode: "screen",
-                  }}
-                />
-                {/* Rotating beam sweeping across the sky from the lamp */}
-                <div
-                  className="absolute animate-beacon-sweep"
-                  style={{
-                    left: "22%",
-                    top: "24%",
-                    width: "160%",
-                    height: "160%",
-                    transform: "translate(-50%, -50%)",
-                    background:
-                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,160,70,0.28) 6deg, rgba(255,200,120,0.10) 18deg, transparent 32deg, transparent 360deg)",
-                    filter: "blur(8px)",
-                    mixBlendMode: "screen",
-                    borderRadius: "9999px",
-                  }}
-                />
-              </div>
-
-
-
-              <Butterfly className="absolute left-[4%] top-[2%] animate-drift z-10" color="var(--voya-orange)" size={32} style={{ animationDelay: "0s" }} />
-              <Butterfly className="absolute right-[4%] top-[4%] animate-drift z-10" color="var(--voya-purple)" size={26} style={{ animationDelay: "1.5s" }} />
-              <Butterfly className="absolute left-[42%] top-[0%] animate-float z-10" color="var(--voya-orange-light)" size={22} style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties} />
-              <Butterfly className="absolute right-[36%] top-[10%] animate-float z-10" color="var(--voya-orange)" size={24} style={{ animationDelay: "2.2s", ["--rot" as string]: "8deg" } as React.CSSProperties} />
-
-              <div className="absolute bottom-[8%] left-[14%] w-[26%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
-              <div className="absolute bottom-[8%] right-[16%] w-[24%] h-3 rounded-full blur-md opacity-25 bg-foreground" aria-hidden />
-
-              <div className="relative w-full h-full flex items-end justify-center gap-2 md:gap-4 pb-[6%]">
-                <img src={valSquirrel} alt="Val, an origami squirrel folded from orange dollar bills" width={1024} height={1024} className="w-[46%] h-auto animate-val drop-shadow-xl" />
-                <img src={vernRabbit} alt="Vern, an origami rabbit folded from orange dollar bills" width={1024} height={1024} className="w-[44%] h-auto animate-vern drop-shadow-xl" />
-              </div>
-            </div>
+        {/* Bottom row: subheader on the left, CTAs on the right */}
+        <div className="mt-10 md:mt-14 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+          <p className="text-lg md:text-xl text-foreground/80 max-w-xl leading-relaxed">
+            Voya Beacon measures AI and search visibility, identifies content
+            gaps, recommends improvements, and tracks impact.
+          </p>
+          <div className="flex flex-wrap gap-3 md:justify-end">
+            <a
+              href="/app"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
+            >
+              Enter Voya Beacon →
+            </a>
+            <a
+              href="#loop"
+              className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+            >
+              See how it works
+            </a>
           </div>
         </div>
       </div>
