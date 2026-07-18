@@ -101,6 +101,49 @@ export function Hero() {
                 aria-hidden
               />
 
+              {/* Animated lighthouse beacon behind Val & Vern */}
+              <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
+                {/* Rotating light beam emanating from the lamp */}
+                <div
+                  className="absolute animate-beacon-sweep"
+                  style={{
+                    left: "50%",
+                    top: "34%",
+                    width: "140%",
+                    height: "140%",
+                    transform: "translate(-50%, -50%)",
+                    background:
+                      "conic-gradient(from 0deg, transparent 0deg, rgba(255,120,20,0.35) 10deg, rgba(255,180,90,0.10) 26deg, transparent 44deg, transparent 180deg, rgba(255,120,20,0.35) 190deg, rgba(255,180,90,0.10) 206deg, transparent 224deg, transparent 360deg)",
+                    filter: "blur(6px)",
+                    mixBlendMode: "screen",
+                    borderRadius: "9999px",
+                  }}
+                />
+                {/* Warm halo around the lamp */}
+                <div
+                  className="absolute rounded-full animate-beacon-pulse"
+                  style={{
+                    left: "50%",
+                    top: "34%",
+                    width: "38%",
+                    height: "38%",
+                    transform: "translate(-50%, -50%)",
+                    background:
+                      "radial-gradient(circle, rgba(255,120,20,0.55) 0%, rgba(255,120,20,0.20) 45%, transparent 72%)",
+                    filter: "blur(4px)",
+                    mixBlendMode: "screen",
+                  }}
+                />
+                {/* Lighthouse silhouette */}
+                <img
+                  src={beaconLighthouse.url}
+                  alt=""
+                  className="absolute left-1/2 -translate-x-1/2 opacity-90"
+                  style={{ bottom: "6%", height: "78%", width: "auto" }}
+                />
+              </div>
+
+
               <Butterfly className="absolute left-[4%] top-[2%] animate-drift z-10" color="var(--voya-orange)" size={32} style={{ animationDelay: "0s" }} />
               <Butterfly className="absolute right-[4%] top-[4%] animate-drift z-10" color="var(--voya-purple)" size={26} style={{ animationDelay: "1.5s" }} />
               <Butterfly className="absolute left-[42%] top-[0%] animate-float z-10" color="var(--voya-orange-light)" size={22} style={{ animationDelay: "0.8s", ["--rot" as string]: "-12deg" } as React.CSSProperties} />
