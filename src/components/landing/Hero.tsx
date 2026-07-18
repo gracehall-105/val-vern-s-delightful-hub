@@ -45,10 +45,11 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <p className="text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed">
+        <div className="mt-10 flex flex-col md:flex-row md:items-end justify-end gap-6">
+          <p className="text-lg md:text-xl text-foreground/75 max-w-xl leading-relaxed text-right">
             <span className="block">Voya Beacon measures AI and search visibility,</span>
-            <span className="block">identifies content gaps, recommends improvements, and tracks impact.</span>
+            <span className="block">identifies content gaps, recommends improvements,</span>
+            <span className="block">and tracks impact.</span>
           </p>
 
           <div className="flex flex-wrap gap-3">
