@@ -27,20 +27,6 @@ export function Hero() {
               <span className="block">gaps, recommends improvements,</span>
               <span className="block">and tracks impact.</span>
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/app"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-voya text-white px-6 py-3 text-sm font-semibold shadow-soft hover:translate-y-[-1px] transition-transform"
-              >
-                Enter Voya Beacon →
-              </a>
-              <a
-                href="#loop"
-                className="inline-flex items-center justify-center rounded-full border border-foreground/15 bg-white px-6 py-3 text-sm font-medium text-foreground hover:bg-secondary transition-colors"
-              >
-                See how it works
-              </a>
-            </div>
           </div>
 
           <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
