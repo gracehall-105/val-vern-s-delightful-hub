@@ -1,54 +1,8 @@
 import valSquirrel from "@/assets/val-squirrel.png";
 import vernRabbit from "@/assets/vern-rabbit.png";
 import { Butterfly } from "./Butterfly";
-import { useCompanies, usePrompts } from "@/lib/queries";
-
-function useVoyaSom(branding: "branded" | "unbranded") {
-  const companiesQ = useCompanies(branding);
-  const promptsQ = usePrompts();
-  const companies = (companiesQ.data as any)?.companies as
-    | Array<{ company: string; share_pct: number }>
-    | undefined;
-  const voya = companies?.find(
-    (c) => c.company?.toLowerCase() === "voya",
-  );
-  const prompts = promptsQ.data as
-    | Array<{ branding?: string }>
-    | undefined;
-  const promptCount = prompts?.filter((p) => p.branding === branding).length;
-  return {
-    sharePct: voya?.share_pct,
-    promptCount,
-    loading: companiesQ.isLoading || promptsQ.isLoading,
-  };
-}
-
-function formatPct(n?: number) {
-  if (n === undefined || n === null || Number.isNaN(n)) return "—";
-  return `${Math.round(n)}%`;
-}
 
 export function Hero() {
-  const unbranded = useVoyaSom("unbranded");
-  const branded = useVoyaSom("branded");
-
-  const evidence = [
-    {
-      stat: formatPct(unbranded.sharePct),
-      body:
-        unbranded.promptCount !== undefined
-          ? `Voya's Share of Model across ${unbranded.promptCount} unbranded prompts — the questions people ask before they know our name.`
-          : "Voya's Share of Model across the unbranded prompt universe — the questions people ask before they know our name.",
-    },
-    {
-      stat: formatPct(branded.sharePct),
-      body:
-        branded.promptCount !== undefined
-          ? `Voya's Share of Model across ${branded.promptCount} branded prompts — where someone already searched for us by name.`
-          : "Voya's Share of Model across the branded prompt universe — where someone already searched for us by name.",
-    },
-  ];
-
   return (
     <section className="relative overflow-hidden bg-background">
       <div
