@@ -3,7 +3,6 @@ import vernRabbit from "@/assets/vern-rabbit.png";
 import beaconLighthouse from "@/assets/beacon-lighthouse-icon.png.asset.json";
 import { Butterfly } from "./Butterfly";
 import { useCompanies, usePrompts } from "@/lib/queries";
-import { useCompanies, usePrompts } from "@/lib/queries";
 
 function useVoyaSom(branding: "branded" | "unbranded") {
   const companiesQ = useCompanies(branding);
