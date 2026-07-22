@@ -17,6 +17,7 @@ import { API_BASE } from '@/lib/api';
 import {
   useTrend, useShares, useCompanies, usePrompts, useStatus, useSources, useRecommendations,
 } from '@/lib/queries';
+import { SYNTHETIC_TREND } from '@/lib/synthetic-trend';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Filler, Tooltip, Legend);
 
@@ -207,7 +208,9 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
   const sourcesQ = useSources(30);
   const recsQ = useRecommendations();
 
-  const trendData = trendQ.data?.trend || [];
+  const apiTrend = trendQ.data?.trend || [];
+  const usingSynthetic = apiTrend.length === 0;
+  const trendData = usingSynthetic ? SYNTHETIC_TREND.slice(-selectedWeeks) : apiTrend;
   const companies = companiesQ.data?.companies || [];
   const allTrackedPrompts = promptsQ.data || [];
   // Filtering logic for prompt display:
@@ -226,10 +229,13 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
     return true;
   }), [allTrackedPrompts, selectedBranding, selectedPrompt]);
   const sourceSummaries = sourcesQ.data?.sources || [];
-  const loading = trendQ.isLoading || maxWeeksQ.isLoading || sharesQ.isLoading || companiesQ.isLoading || promptsQ.isLoading;
+  // Backend is optional — SYNTHETIC_TREND provides a demo fallback so the
+  // view always renders. Never block on the trend queries themselves.
+  const loading = false;
 
   const availableWeeks = useMemo(() => {
-    const count = maxWeeksQ.data?.trend.length || 0;
+    const apiCount = maxWeeksQ.data?.trend.length || 0;
+    const count = apiCount > 0 ? apiCount : SYNTHETIC_TREND.length;
     if (count === 0) return [];
     const weeks = [];
     const limit = Math.min(count, 12);
@@ -372,7 +378,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
         let label = startMonth === endMonth
           ? `${startMonth} ${startDay} - ${endDay}`
           : `${startMonth} ${startDay} - ${endMonth} ${endDay}`;
-        return { date: w.date, week: label, shares: w.shares, prompt_count: w.prompt_count };
+        return { date: w.date, week: label, shares: w.shares, prompt_count: w.prompt_count, missing: (w as any).missing === true };
       });
     }
     return [];
@@ -811,6 +817,26 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
           </p>
         </div>
 
+        {/* Missing-week banner */}
+        {filteredTrend.some(w => (w as any).missing) && (
+          <div className="mb-2 flex items-center justify-between gap-3 rounded-md border border-border bg-secondary/40 px-3 py-2 text-xs">
+            <span className="text-foreground/80">
+              Heads up — {filteredTrend.filter(w => (w as any).missing).length} week{filteredTrend.filter(w => (w as any).missing).length === 1 ? '' : 's'} in this range had no measurement run. The timeline is preserved and shown as a blank slot; week-over-week deltas that touch the gap are hidden.
+            </span>
+            <span className="flex items-center gap-1.5 shrink-0 text-muted-foreground">
+              <span
+                className="inline-block h-3 w-4 rounded-[2px] border border-border"
+                style={{
+                  backgroundImage:
+                    'repeating-linear-gradient(45deg, hsl(var(--muted-foreground) / 0.35) 0 2px, transparent 2px 5px)',
+                }}
+                aria-hidden
+              />
+              Missing week
+            </span>
+          </div>
+        )}
+
         {/* Chart */}
         <div className="h-[200px] relative">
           {filteredTrend.length === 0 ? (
@@ -826,11 +852,70 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
             );
             // Display week with prompt count from API (works across all filters)
             const labels = filteredTrend.map(w => {
+              if ((w as any).missing) return `${w.week} (no data)`;
               const promptCount = w.prompt_count ?? '?';
               return `${w.week} (${promptCount})`;
             });
+            const missingFlags = filteredTrend.map(w => (w as any).missing === true);
             const normalizedData = (company: string) =>
-              filteredTrend.map((w, i) => weekTotals[i] > 0 ? ((w.shares[company] || 0) / weekTotals[i]) * 100 : 0);
+              filteredTrend.map((w, i) => {
+                if (missingFlags[i]) return NaN;
+                return weekTotals[i] > 0 ? ((w.shares[company] || 0) / weekTotals[i]) * 100 : 0;
+              });
+
+            // Chart.js plugin: overlay a diagonal-hatch pattern on any column
+            // where every dataset value is NaN. Reading from `chart.data` at
+            // draw time keeps this stable across react-chartjs-2 re-renders
+            // (a captured `missingFlags` closure would go stale on range change).
+            const missingWeekOverlay = {
+              id: 'missingWeekOverlay',
+              afterDatasetsDraw(chart: any) {
+                const { ctx, chartArea, scales, data } = chart;
+                if (!chartArea || !scales?.x || !data?.datasets?.length) return;
+                const labelList: string[] = data.labels || [];
+                for (let i = 0; i < labelList.length; i++) {
+                  const allNaN = data.datasets.every(
+                    (ds: any) => ds?.data?.[i] == null || Number.isNaN(ds.data[i]),
+                  );
+                  if (!allNaN) continue;
+
+
+                  const center = scales.x.getPixelForValue(i);
+                  const bandWidth = (chartArea.right - chartArea.left) / labelList.length;
+                  const w = Math.max(12, bandWidth * 0.55);
+                  const x = center - w / 2;
+                  const y = chartArea.top;
+                  const h = chartArea.bottom - chartArea.top;
+
+                  ctx.save();
+                  ctx.fillStyle = 'rgba(148, 163, 184, 0.08)';
+                  ctx.fillRect(x, y, w, h);
+                  ctx.strokeStyle = 'rgba(148, 163, 184, 0.45)';
+                  ctx.lineWidth = 1;
+                  ctx.beginPath();
+                  ctx.rect(x, y, w, h);
+                  ctx.clip();
+                  const step = 6;
+                  for (let d = -h; d < w + h; d += step) {
+                    ctx.beginPath();
+                    ctx.moveTo(x + d, y);
+                    ctx.lineTo(x + d + h, y + h);
+                    ctx.stroke();
+                  }
+                  ctx.restore();
+
+                  ctx.save();
+                  ctx.fillStyle = 'rgba(148, 163, 184, 0.9)';
+                  ctx.font = '10px system-ui, -apple-system, sans-serif';
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'middle';
+                  ctx.translate(center, y + h / 2);
+                  ctx.rotate(-Math.PI / 2);
+                  ctx.fillText('No data collected', 0, 0);
+                  ctx.restore();
+                }
+              },
+            };
 
             const sharedOptions = {
               responsive: true,
@@ -849,16 +934,20 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                   bodyFont: { size: 12 },
                   cornerRadius: 10,
                   padding: 14,
-                  filter: (tooltipItem: { dataset: { label?: string } }) => {
+                  filter: (tooltipItem: { dataset: { label?: string }; dataIndex: number }) => {
+                    if (missingFlags[tooltipItem.dataIndex]) return false;
                     if (hoveredCompany) return tooltipItem.dataset.label === hoveredCompany;
                     return true;
                   },
                   callbacks: {
-                    title: (items: { label?: string }[]) => {
+                    title: (items: { label?: string; dataIndex?: number }[]) => {
+                      const idx = items[0]?.dataIndex ?? -1;
+                      if (idx >= 0 && missingFlags[idx]) return `${items[0]?.label} — no data collected this week`;
                       if (hoveredCompany && items.length > 0) return `${hoveredCompany} — ${items[0]?.label}`;
                       return items[0]?.label || '';
                     },
-                    label: (item: { parsed: { y: number | null }; dataset: { label?: string } }) => {
+                    label: (item: { parsed: { y: number | null }; dataset: { label?: string }; dataIndex: number }) => {
+                      if (missingFlags[item.dataIndex]) return '  No measurement run this week';
                       if (hoveredCompany) return `  Share: ${Math.round(item.parsed.y ?? 0)}%`;
                       return `  ${item.dataset.label}: ${Math.round(item.parsed.y ?? 0)}%`;
                     },
@@ -905,6 +994,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                     }),
                   }}
                   options={sharedOptions}
+                  plugins={[missingWeekOverlay]}
                 />
               );
             }
@@ -932,10 +1022,12 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                       tension: 0.3,
                       fill: 'stack',
                       order: 1,
+                      spanGaps: false,
                     };
                   }),
                 }}
                 options={sharedOptions}
+                plugins={[missingWeekOverlay]}
               />
             );
           })()}
