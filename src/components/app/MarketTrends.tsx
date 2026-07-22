@@ -838,7 +838,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
         )}
 
         {/* Chart */}
-        <div className="h-[200px] relative">
+        <div className="h-[260px] relative">
           {filteredTrend.length === 0 ? (
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
               No measurement data yet — chart will populate after the first scheduled run.
