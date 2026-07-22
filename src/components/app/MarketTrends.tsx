@@ -930,7 +930,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
               id: 'promptGrowthOverlay',
               afterDraw(chart: any) {
                 const { ctx, chartArea, scales } = chart;
-                const counts: (number | null)[] | undefined = chart.data?.promptCounts;
+                const counts: (number | null)[] = promptCounts;
                 if (!chartArea || !scales?.x || !counts?.length) return;
 
                 // --- expansion chips ---
