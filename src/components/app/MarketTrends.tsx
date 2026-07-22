@@ -229,11 +229,9 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
     return true;
   }), [allTrackedPrompts, selectedBranding, selectedPrompt]);
   const sourceSummaries = sourcesQ.data?.sources || [];
-  // A query in `isLoading` is still on its first fetch. When the backend
-  // isn't connected the fetch eventually errors and we fall back to
-  // SYNTHETIC_TREND — don't block the whole view on that first attempt.
-  const anyTrendSettled = !trendQ.isLoading || trendQ.isError;
-  const loading = (trendQ.isLoading && !trendQ.isError) && maxWeeksQ.isLoading && sharesQ.isLoading && companiesQ.isLoading && promptsQ.isLoading && !anyTrendSettled;
+  // Backend is optional — SYNTHETIC_TREND provides a demo fallback so the
+  // view always renders. Never block on the trend queries themselves.
+  const loading = false;
 
   const availableWeeks = useMemo(() => {
     const apiCount = maxWeeksQ.data?.trend.length || 0;
