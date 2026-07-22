@@ -376,7 +376,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
         let label = startMonth === endMonth
           ? `${startMonth} ${startDay} - ${endDay}`
           : `${startMonth} ${startDay} - ${endMonth} ${endDay}`;
-        return { date: w.date, week: label, shares: w.shares, prompt_count: w.prompt_count };
+        return { date: w.date, week: label, shares: w.shares, prompt_count: w.prompt_count, missing: (w as any).missing === true };
       });
     }
     return [];
