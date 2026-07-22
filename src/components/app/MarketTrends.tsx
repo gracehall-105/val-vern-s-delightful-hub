@@ -863,28 +863,31 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                 return weekTotals[i] > 0 ? ((w.shares[company] || 0) / weekTotals[i]) * 100 : 0;
               });
 
-            // Chart.js plugin: overlay a diagonal-hatch pattern on missing week columns
+            // Chart.js plugin: overlay a diagonal-hatch pattern on any column
+            // where every dataset value is NaN. Reading from `chart.data` at
+            // draw time keeps this stable across react-chartjs-2 re-renders
+            // (a captured `missingFlags` closure would go stale on range change).
             const missingWeekOverlay = {
               id: 'missingWeekOverlay',
               afterDatasetsDraw(chart: any) {
-                const { ctx, chartArea, scales } = chart;
-                if (!chartArea || !scales?.x) return;
-                const xScale = scales.x;
-                missingFlags.forEach((isMissing, i) => {
-                  if (!isMissing) return;
-                  const center = xScale.getPixelForValue(i);
-                  const bandWidth = (chartArea.right - chartArea.left) / missingFlags.length;
+                const { ctx, chartArea, scales, data } = chart;
+                if (!chartArea || !scales?.x || !data?.datasets?.length) return;
+                const labelList: string[] = data.labels || [];
+                for (let i = 0; i < labelList.length; i++) {
+                  const allNaN = data.datasets.every(
+                    (ds: any) => ds?.data?.[i] == null || Number.isNaN(ds.data[i]),
+                  );
+                  if (!allNaN) continue;
+                  const center = scales.x.getPixelForValue(i);
+                  const bandWidth = (chartArea.right - chartArea.left) / labelList.length;
                   const w = Math.max(12, bandWidth * 0.55);
                   const x = center - w / 2;
                   const y = chartArea.top;
                   const h = chartArea.bottom - chartArea.top;
 
                   ctx.save();
-                  // Faint fill so the slot reads as "reserved but empty"
                   ctx.fillStyle = 'rgba(148, 163, 184, 0.08)';
                   ctx.fillRect(x, y, w, h);
-
-                  // Diagonal hatch pattern
                   ctx.strokeStyle = 'rgba(148, 163, 184, 0.45)';
                   ctx.lineWidth = 1;
                   ctx.beginPath();
@@ -899,7 +902,6 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                   }
                   ctx.restore();
 
-                  // "No data" label
                   ctx.save();
                   ctx.fillStyle = 'rgba(148, 163, 184, 0.9)';
                   ctx.font = '10px system-ui, -apple-system, sans-serif';
@@ -909,7 +911,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                   ctx.rotate(-Math.PI / 2);
                   ctx.fillText('No data collected', 0, 0);
                   ctx.restore();
-                });
+                }
               },
             };
 
