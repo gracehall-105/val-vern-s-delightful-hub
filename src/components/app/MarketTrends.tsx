@@ -1110,6 +1110,7 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                 ref={chartRef}
                 data={{
                   labels,
+                  promptCounts,
                   datasets: chartCompanies.map((company) => {
                     const color = getCompanyColor(company);
                     const isHovered = hoveredCompany === company;
@@ -1131,9 +1132,9 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                       spanGaps: false,
                     };
                   }),
-                }}
+                } as any}
                 options={sharedOptions}
-                plugins={[missingWeekOverlay]}
+                plugins={[missingWeekOverlay, promptGrowthOverlay]}
               />
             );
           })()}
