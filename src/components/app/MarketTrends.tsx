@@ -850,12 +850,15 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
             const weekTotals = filteredTrend.map(w =>
               chartCompanies.reduce((sum, c) => sum + (w.shares[c] || 0), 0)
             );
-            // Display week with prompt count from API (works across all filters)
+            // X-axis shows just the week; prompt-universe growth is rendered
+            // as brackets under the axis + "+N" chips over expansion weeks.
             const labels = filteredTrend.map(w => {
               if ((w as any).missing) return `${w.week} (no data)`;
-              const promptCount = w.prompt_count ?? '?';
-              return `${w.week} (${promptCount})`;
+              return w.week;
             });
+            const promptCounts: (number | null)[] = filteredTrend.map(w =>
+              (w as any).missing ? null : (typeof w.prompt_count === 'number' ? w.prompt_count : null),
+            );
             const missingFlags = filteredTrend.map(w => (w as any).missing === true);
             const normalizedData = (company: string) =>
               filteredTrend.map((w, i) => {
