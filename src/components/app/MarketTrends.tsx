@@ -1024,6 +1024,9 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
               maintainAspectRatio: false,
               animation: { duration: 300 },
               interaction: { intersect: false, mode: 'index' as const },
+              // Reserve room above bars for "+N" chips and below the axis for
+              // the prompt-universe brackets.
+              layout: { padding: { top: 18, bottom: 26 } },
               plugins: {
                 legend: { display: false },
                 tooltip: {
