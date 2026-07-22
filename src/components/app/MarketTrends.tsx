@@ -873,17 +873,12 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
                 const { ctx, chartArea, scales, data } = chart;
                 if (!chartArea || !scales?.x || !data?.datasets?.length) return;
                 const labelList: string[] = data.labels || [];
-                const missing: number[] = [];
                 for (let i = 0; i < labelList.length; i++) {
                   const allNaN = data.datasets.every(
                     (ds: any) => ds?.data?.[i] == null || Number.isNaN(ds.data[i]),
                   );
-                  if (allNaN) missing.push(i);
-                }
-                // eslint-disable-next-line no-console
-                console.log('[missingWeekOverlay] labels=', labelList, 'missing=', missing, 'ds0.data=', data.datasets[0]?.data);
-                for (const i of missing) {
-                  if (false) continue;
+                  if (!allNaN) continue;
+
 
                   const center = scales.x.getPixelForValue(i);
                   const bandWidth = (chartArea.right - chartArea.left) / labelList.length;
