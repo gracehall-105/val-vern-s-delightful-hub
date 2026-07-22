@@ -17,6 +17,7 @@ import { API_BASE } from '@/lib/api';
 import {
   useTrend, useShares, useCompanies, usePrompts, useStatus, useSources, useRecommendations,
 } from '@/lib/queries';
+import { SYNTHETIC_TREND } from '@/lib/synthetic-trend';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Filler, Tooltip, Legend);
 
