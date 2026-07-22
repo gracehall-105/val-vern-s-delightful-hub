@@ -920,6 +920,105 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
               },
             };
 
+            // Prompt-universe growth overlay:
+            //   • rounded "+N prompts" chip above any week whose count grew
+            //     vs. the previous non-missing week (Voya orange).
+            //   • grouping brackets beneath the x-axis that span consecutive
+            //     weeks sharing the same prompt count, labeled with that count.
+            // Reads from chart.data so it stays in sync across re-renders.
+            const promptGrowthOverlay = {
+              id: 'promptGrowthOverlay',
+              afterDraw(chart: any) {
+                const { ctx, chartArea, scales } = chart;
+                const counts: (number | null)[] | undefined = chart.data?.promptCounts;
+                if (!chartArea || !scales?.x || !counts?.length) return;
+
+                // --- expansion chips ---
+                ctx.save();
+                ctx.font = '600 10px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                let lastValid: number | null = null;
+                counts.forEach((c, i) => {
+                  if (c == null) return;
+                  if (lastValid !== null && c > lastValid) {
+                    const delta = c - lastValid;
+                    const x = scales.x.getPixelForValue(i);
+                    const y = chartArea.top - 10;
+                    const label = `+${delta.toLocaleString()}`;
+                    const w = ctx.measureText(label).width + 12;
+                    const h = 16;
+                    const rx = x - w / 2;
+                    const ry = y - h / 2;
+                    ctx.fillStyle = 'rgba(255, 108, 0, 0.15)';
+                    ctx.strokeStyle = 'rgba(255, 108, 0, 0.7)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    if (typeof ctx.roundRect === 'function') {
+                      ctx.roundRect(rx, ry, w, h, 8);
+                    } else {
+                      ctx.rect(rx, ry, w, h);
+                    }
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.fillStyle = 'rgb(255, 108, 0)';
+                    ctx.fillText(label, x, y);
+                  }
+                  lastValid = c;
+                });
+                ctx.restore();
+
+                // --- grouping brackets ---
+                // Missing weeks inherit the previous count so the bracket
+                // spans them rather than breaking the group.
+                const groups: { start: number; end: number; count: number }[] = [];
+                let curStart = -1;
+                let curCount: number | null = null;
+                counts.forEach((c, i) => {
+                  const effective = c ?? curCount;
+                  if (effective == null) return;
+                  if (effective !== curCount) {
+                    if (curStart >= 0 && curCount != null) {
+                      groups.push({ start: curStart, end: i - 1, count: curCount });
+                    }
+                    curStart = i;
+                    curCount = effective;
+                  }
+                });
+                if (curStart >= 0 && curCount != null) {
+                  groups.push({ start: curStart, end: counts.length - 1, count: curCount });
+                }
+
+                const bracketY = chart.height - 20;
+                const bandWidth = (chartArea.right - chartArea.left) / counts.length;
+                ctx.save();
+                ctx.strokeStyle = 'rgba(100, 116, 139, 0.55)';
+                ctx.lineWidth = 1;
+                ctx.font = '600 10px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                groups.forEach(g => {
+                  const x1 = scales.x.getPixelForValue(g.start);
+                  const x2 = scales.x.getPixelForValue(g.end);
+                  const left = x1 - bandWidth * 0.35;
+                  const right = x2 + bandWidth * 0.35;
+                  ctx.beginPath();
+                  ctx.moveTo(left, bracketY);
+                  ctx.lineTo(left, bracketY + 4);
+                  ctx.lineTo(right, bracketY + 4);
+                  ctx.lineTo(right, bracketY);
+                  ctx.stroke();
+                  ctx.fillStyle = 'rgba(71, 85, 105, 0.95)';
+                  ctx.fillText(g.count.toLocaleString(), (left + right) / 2, bracketY + 7);
+                });
+                ctx.textAlign = 'left';
+                ctx.fillStyle = 'rgba(100, 116, 139, 0.85)';
+                ctx.font = '500 9px system-ui, -apple-system, sans-serif';
+                ctx.fillText('Prompt universe', chartArea.left, bracketY - 10);
+                ctx.restore();
+              },
+            };
+
             const sharedOptions = {
               responsive: true,
               maintainAspectRatio: false,
