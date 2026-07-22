@@ -232,7 +232,8 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
   const loading = trendQ.isLoading || maxWeeksQ.isLoading || sharesQ.isLoading || companiesQ.isLoading || promptsQ.isLoading;
 
   const availableWeeks = useMemo(() => {
-    const count = maxWeeksQ.data?.trend.length || 0;
+    const apiCount = maxWeeksQ.data?.trend.length || 0;
+    const count = apiCount > 0 ? apiCount : SYNTHETIC_TREND.length;
     if (count === 0) return [];
     const weeks = [];
     const limit = Math.min(count, 12);
