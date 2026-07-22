@@ -208,7 +208,9 @@ export default function MarketTrends({ onNavigateToContent }: MarketTrendsProps)
   const sourcesQ = useSources(30);
   const recsQ = useRecommendations();
 
-  const trendData = trendQ.data?.trend || [];
+  const apiTrend = trendQ.data?.trend || [];
+  const usingSynthetic = apiTrend.length === 0;
+  const trendData = usingSynthetic ? SYNTHETIC_TREND.slice(-selectedWeeks) : apiTrend;
   const companies = companiesQ.data?.companies || [];
   const allTrackedPrompts = promptsQ.data || [];
   // Filtering logic for prompt display:
