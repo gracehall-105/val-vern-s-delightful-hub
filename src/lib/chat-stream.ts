@@ -17,7 +17,7 @@
  *   { "type": "done" }
  */
 
-import { API_BASE } from "./api";
+import { API_BASE, HAS_API_BACKEND } from "./api";
 
 export type ChatRole = "user" | "assistant";
 
