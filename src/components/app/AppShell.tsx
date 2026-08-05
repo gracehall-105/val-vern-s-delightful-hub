@@ -310,6 +310,14 @@ export function AppShell() {
               <HelpCircle className="h-3.5 w-3.5" />
               How it works
             </Link>
+            <button
+              onClick={() => setChatOpen(true)}
+              aria-label="Ask Beacon"
+              className="inline-flex items-center gap-1.5 rounded-full border border-voya-orange/30 bg-voya-orange/10 px-3 py-1.5 text-xs font-medium text-voya-orange transition-colors hover:bg-voya-orange/20"
+            >
+              <MessageSquare className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Ask Beacon</span>
+            </button>
             <ThemeToggle />
             <button className="h-9 w-9 grid place-items-center rounded-full hover:bg-secondary text-foreground/70">
               <Bell className="h-4 w-4" />
