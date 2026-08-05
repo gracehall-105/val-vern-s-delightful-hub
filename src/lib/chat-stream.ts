@@ -70,20 +70,34 @@ export interface StreamChatOptions {
 
 /** Reads an SSE body and dispatches parsed JSON events. */
 export async function streamChat({ messages, signal, onEvent }: StreamChatOptions) {
-  const res = await fetch(`${API_BASE}/chat/stream`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
-    body: JSON.stringify({ messages }),
-    signal,
-  });
-
-  if (!res.ok || !res.body) {
+  if (!HAS_API_BACKEND) {
     throw new Error(
-      res.status === 404
+      "Ask Beacon needs the Databricks backend. This preview has no /chat/stream endpoint — run the app against your FastAPI host (or set VITE_API_BASE) to chat.",
+    );
+  }
+
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}/chat/stream`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
+      body: JSON.stringify({ messages }),
+      signal,
+    });
+  } catch (err) {
+    if (signal?.aborted) throw err;
+    throw new Error("Could not reach the chat backend.");
+  }
+
+  const contentType = res.headers.get("content-type") ?? "";
+  if (!res.ok || !res.body || !contentType.includes("text/event-stream")) {
+    throw new Error(
+      res.status === 404 || !contentType.includes("text/event-stream")
         ? "Chat backend not available yet (POST /chat/stream)."
         : `Chat request failed: ${res.status} ${res.statusText}`,
     );
   }
+
 
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
