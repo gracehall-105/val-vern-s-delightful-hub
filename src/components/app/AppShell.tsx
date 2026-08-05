@@ -400,6 +400,8 @@ export function AppShell() {
           <Outlet />
         </main>
       </div>
+
+      <ChatPanel open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   );
 }
