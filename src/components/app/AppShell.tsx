@@ -129,6 +129,9 @@ export function AppShell() {
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const currentUser = useCurrentUser();
+  const [chatOpen, setChatOpen] = useState(false);
+
+
 
   const [tooltip, setTooltip] = useState<{ text: string; top: number } | null>(null);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
