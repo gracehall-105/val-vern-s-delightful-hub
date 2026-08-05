@@ -18,8 +18,10 @@ import {
   PanelLeft,
   PanelRight,
   Database,
+  MessageSquare,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
+import { ChatPanel } from "@/components/app/ChatPanel";
 import {
   DropdownMenu,
   DropdownMenuContent,
